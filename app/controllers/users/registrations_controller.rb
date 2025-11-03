@@ -12,6 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.build_dog unless resource.dog
     end
 
+    def update
+        super do |resource|
+            redirect_to mypage_path, notice: "プロフィールを更新しました！" and return
+        end
+    end
+
+
     protected
 
     def configure_permitted_parameters
