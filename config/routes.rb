@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    get 'users/favorites'
+  get 'mypages/show'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     get :favorites, on: :member
   end
+
+  resource :mypage, only: :show
 
   resources :shops, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :shop_favorite, only: [:create, :destroy]
