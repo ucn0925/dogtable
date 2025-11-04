@@ -28,6 +28,11 @@
     </div>
 
     <div>
+      <%= f.label :images, "店舗の写真" %><br>
+      <%= f.file_field :images, multiple: true, accept: "image/*" %>
+    </div>
+
+    <div>
       <%= f.label :block_id, "地域ブロックID" %><br>
       <%= f.collection_select :block_id, Block.all, :id, :name, prompt: "エリアを選択してください" %>
     </div>

@@ -3,6 +3,16 @@
 <p>住所：<%= @shop.address %></p>
 <p>ジャンル：<%= @shop.genre.name %></p>
 
+<% if @shop.images.attached? %>
+  <h3>店舗写真</h3>
+  <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <% @shop.images.each do |image| %>
+      <%= image_tag image, style: "width: 200px; border-radius: 8px;" %>
+    <% end %>
+  </div>
+<% end %>
+
+
 <% if user_signed_in? %>
   <% if current_user.shop_favorites.exists?(shop_id: @shop.id) %>
     <%= link_to shop_shop_favorite_path(@shop), 
