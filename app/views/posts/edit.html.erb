@@ -1,6 +1,6 @@
 <h3>コメントを編集する</h3>
 
-<%= form_with(model: [@shop, @comment], local: true) do |f| %>
+<%= form_with(model: [@shop, @post], local: true) do |f| %>
     <div>
       <%= f.text_area :content, rows: 3 %>
     </div>

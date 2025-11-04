@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :shops, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :shop_favorite, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy, :edit, :update]
+    resources :posts, only: [:create, :destroy, :edit, :update]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "shops#index"

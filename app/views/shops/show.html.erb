@@ -35,34 +35,34 @@
 
 <hr>
 
-<h3>コメント一覧</h3>
+<h3>投稿一覧</h3>
 
-<% if @shop.comments.any? %>
-  <% @shop.comments.order(created_at: :desc).each do |comment| %>
+<% if @shop.posts.any? %>
+  <% @shop.posts.order(created_at: :desc).each do |post| %>
     <div style="margin: 8px 0; border-bottom; 1px solid #ccc, padding-bottom: 5px;">
       <p>
-        <strong><%= comment.user.name if comment.user %></strong>
-          (<%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>)
+        <strong><%= post.user.name if post.user %></strong>
+          (<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>)
       </p>
-      <p><%= simple_format(h(comment.content)) %></p>
-      <% if comment.user == current_user %>
-        <%= link_to "編集", edit_shop_comment_path(@shop, comment), style: "margin-left: 10px;" %>
-        <%= link_to "削除", shop_comment_path(@shop, comment), 
-              data: { turbo_method: :delete, turbo_confirm: "このコメントを削除しますか？" }, 
+      <p><%= simple_format(h(post.content)) %></p>
+      <% if post.user == current_user %>
+        <%= link_to "編集", edit_shop_post_path(@shop, post), style: "margin-left: 10px;" %>
+        <%= link_to "削除", shop_post_path(@shop, post), 
+              data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" }, 
               style: "color: red; margin-left: 10px;" %>
       <% end %>
     </div>
   <% end %>
 <% else %>
-  <p>まだコメントはありません。</p>
+  <p>まだ投稿はありません。</p>
 <% end %>
 
-<h2>コメント</h2>
+<h2>新規投稿</h2>
 
 <% if user_signed_in? %>
-  <%= form_with(model: [@shop, @shop.comments.build], local: true) do |f| %>
+  <%= form_with(model: [@shop, @shop.posts.build], local: true) do |f| %>
     <div style="margin: 8px 0;">
-      <%= f.text_area :content, row: 3, placeholder: "コメントを入力してください" %>
+      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください" %>
     </div>
       <%= f.submit "投稿する" %>
   <% end %>
