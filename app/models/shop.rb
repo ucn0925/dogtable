@@ -8,6 +8,8 @@ class Shop < ApplicationRecord
   has_many :favorited_users, through: :shop_favorites, source: :user
   has_many :comments, dependent: :destroy
 
+  has_many_attached :images
+  
   validates :name, presence: true
   validates :address, presence: true
   validates :genre_id, presence: true
