@@ -7,9 +7,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorite_shops = @user.favorite_shops
-
-    if @user != current_user
-      redirect_to root_path, alert: "他のユーザーのページにはアクセスできません。"
-    end
+    @posts = @user.posts.includes(:shop)
   end
 end
