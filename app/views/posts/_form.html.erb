@@ -1,0 +1,27 @@
+<%# app/views/posts/_form.html.erb %>
+
+<%= form_with(model: [shop, post], local: true) do |f| %>
+
+    <div>
+      <%= f.label :rating_overall, "総合評価" %><br>
+      <%= f.select :rating_overall, options_for_select(1..5, post.rating_overall), prompt: "選択してください" %>
+    </div>
+
+    <div>
+      <%=  f.label :rating_food, "料理の評価" %><br>
+      <%= f.select :rating_food, options_for_select(1..5, post.rating_food), prompt: "選択してください" %>
+    </div>
+
+    <div>
+      <%= f.label :rating_dog_friendliness, "犬連れやすさ" %><br>
+      <%= f.select :rating_dog_friendliness, options_for_select(1..5, post.rating_dog_friendliness), prompt: "選択してください" %>
+    </div>
+
+    <div style="margin: 8px 0;">
+      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください" %>
+    </div>
+
+    <%= f.submit post.persisted? ? "更新する" : "投稿する"%>
+
+<% end %>
+

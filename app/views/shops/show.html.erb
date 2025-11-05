@@ -60,12 +60,8 @@
 <h2>新規投稿</h2>
 
 <% if user_signed_in? %>
-  <%= form_with(model: [@shop, @shop.posts.build], local: true) do |f| %>
-    <div style="margin: 8px 0;">
-      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください" %>
-    </div>
-      <%= f.submit "投稿する" %>
-  <% end %>
+  <%= render "posts/form", post: @shop.posts.build, shop: @shop %>
+
 <% else %>
   <p>コメントを投稿するにはログインが必要です。</p>
 <% end %>

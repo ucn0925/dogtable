@@ -36,6 +36,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def new
+    @shop = Shop.find(params[:shop_id])
+    @post = @shop.posts.build
+  end
+
   private
 
   def post_params
