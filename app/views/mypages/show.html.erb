@@ -2,7 +2,26 @@
 
 <p>
   💬投稿数：<%= @posts.count %>件<br>
-  ♡お気に入り店舗数：<%= @favorites.count %>件
+  ♡お気に入り店舗数：<%= @favorites.count %>件<br>
+  ⭐️平均評価：
+  <% if @posts.any? %>
+    <% avg = @posts.average(:rating_overall).to_f.round(1) %>
+    <% full = avg.floor %>
+    <% frac = avg - full %>
+
+    <%= avg %>
+    <% 5.times do |i| %>
+      <% if i <full %>
+        <span style="color: gold;">★</span>
+      <% elsif i == full && frac >= 0.5 %>
+        <span style="color: gold;">☆</span>
+      <% else %>
+        <span style="color: #ccc;">★</span>
+      <% end %>
+    <% end %>
+  <% else %>
+    投稿なし
+  <% end %>
 </p>
 
 <hr>
