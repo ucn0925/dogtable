@@ -35,26 +35,55 @@
 
 <hr>
 
-<h3>投稿一覧</h3>
+<h3 style="margin-top: 30px;">口コミ一覧</h3>
 
 <% if @shop.posts.any? %>
-  <% @shop.posts.order(created_at: :desc).each do |post| %>
-    <div style="margin: 8px 0; border-bottom; 1px solid #ccc, padding-bottom: 5px;">
-      <p>
-        <strong><%= post.user.name if post.user %></strong>
-          (<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>)
-      </p>
-      <p><%= simple_format(h(post.content)) %></p>
-      <% if post.user == current_user %>
-        <%= link_to "編集", edit_shop_post_path(@shop, post), style: "margin-left: 10px;" %>
-        <%= link_to "削除", shop_post_path(@shop, post), 
-              data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" }, 
-              style: "color: red; margin-left: 10px;" %>
-      <% end %>
+  <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
+    <div style="border-bottom: 1px solid #ddd; padding: 16px 0;">
+      <!-- ユーザー名と投稿日 -->
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <strong style="font-size: 1.1em;"><%= post.user&.name || "退会ユーザー" %></strong>
+          <span style="color: #888; font-size: 0.9em; margin-left: 6px;">
+            <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+          </span>
+        </div>
+
+        <% if post.user == current_user %>
+          <div style="font-size: 0.9em;">
+            <%= link_to "編集", edit_shop_post_path(@shop, post),
+                  style: "margin-right: 8px; color: #0073bb;" %>
+            <%= link_to "削除", shop_post_path(@shop, post),
+                  data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" },
+                  style: "color: #bb0000;" %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 評価表示 -->
+      <div style="margin: 6px 0; font-size: 0.95em;">
+        総合評価：
+        <% (1..5).each do |i| %>
+          <span style="color: <%= i <= (post.rating_overall || 0) ? 'gold' : '#ccc' %>;">★</span>
+        <% end %>
+        料理：
+        <% (1..5).each do |i| %>
+          <span style="color: <%= i <= (post.rating_food || 0) ? 'gold' : '#ccc' %>;">★</span>
+        <% end %>
+        犬連れやすさ：
+        <% (1..5).each do |i| %>
+          <span style="color: <%= i <= (post.rating_dog_friendliness || 0) ? 'gold' : '#ccc' %>;">★</span>
+        <% end %>
+      </div>
+
+      <!-- コメント内容 -->
+      <div style="margin-top: 8px; line-height: 1.6;">
+        <%= simple_format(h(post.content)) %>
+      </div>
     </div>
   <% end %>
 <% else %>
-  <p>まだ投稿はありません。</p>
+  <p>まだ口コミはありません。</p>
 <% end %>
 
 <h2>新規投稿</h2>
