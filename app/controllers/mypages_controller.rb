@@ -3,7 +3,7 @@ class MypagesController < ApplicationController
 
   def show
     @user = current_user
-    @comments = @user.comments.includes(:shop)
+    @posts = @user.posts.includes(:shop)
     @favorites = @user.shop_favorites.includes(:shop)
   end
 end
