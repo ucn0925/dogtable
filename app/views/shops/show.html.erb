@@ -102,6 +102,10 @@
         <% end %>
       </div>
 
+      <% if post.dog_size.present? %>
+        <p style="margin: 4px 0;">🐶 一緒に行った犬のサイズ：<%= post.dog_size %></p>
+      <% end %>
+
       <!-- コメント内容 -->
       <div style="margin-top: 8px; line-height: 1.6;">
         <%= simple_format(h(post.content)) %>

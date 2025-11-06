@@ -48,7 +48,8 @@ class PostsController < ApplicationController
       :content,
       :rating_overall,
       :rating_food,
-      :rating_dog_friendliness
+      :rating_dog_friendliness,
+      :dog_size
       )
   end
 end

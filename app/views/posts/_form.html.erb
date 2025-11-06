@@ -17,6 +17,18 @@
       <%= f.select :rating_dog_friendliness, options_for_select(1..5, post.rating_dog_friendliness), prompt: "選択してください" %>
     </div>
 
+    <diV style="margin-top: 12px;">
+      <p>一緒に行った犬のサイズ</p>
+      <%= f.radio_button :dog_size, "小型犬" %>
+      <%= f.label :dog_size_small, "小型犬" %><br>
+
+      <%= f.radio_button :dog_size, "中型犬" %>
+      <%= f.label :dog_size_medium, "中型犬" %><br>
+
+      <%= f.radio_button :dog_size, "大型犬" %>
+      <%= f.label :dog_size_large, "大型犬" %>
+    </div>
+
     <div style="margin: 8px 0;">
       <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください" %>
     </div>
