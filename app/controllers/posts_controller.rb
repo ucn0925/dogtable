@@ -49,7 +49,8 @@ class PostsController < ApplicationController
       :rating_overall,
       :rating_food,
       :rating_dog_friendliness,
-      :dog_size
+      :dog_size,
+      :visited_on
       )
   end
 end

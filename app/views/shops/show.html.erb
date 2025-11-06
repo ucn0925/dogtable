@@ -110,6 +110,11 @@
       <div style="margin-top: 8px; line-height: 1.6;">
         <%= simple_format(h(post.content)) %>
       </div>
+
+      <% if post.visited_on.present? %>
+        <p>訪問日：<%= post.visited_on.strftime("%Y/%m/%d") %></p>
+      <% end %>
+
     </div>
   <% end %>
 <% else %>
