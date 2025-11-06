@@ -35,6 +35,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @average_rating = @shop.posts.average(:rating_overall)&.round(1)
   end
 
   def new

@@ -3,6 +3,27 @@
 <p>住所：<%= @shop.address %></p>
 <p>ジャンル：<%= @shop.genre.name %></p>
 
+<p>
+  ☆平均評価：
+  <% if @average_rating.present? %>
+    <% full = @average_rating.floor %>
+    <% frac = @average_rating - full %>
+
+    <% 5.times do |i| %>
+      <% if i < full %>
+        <span style="color: gold;">★</span>
+      <% elsif i == full && frac >= 0.5 %>
+        <span style="color: lightgray;">☆</span>
+      <% else %>
+        <span style="color: lightgray;">★</span>
+      <% end %>
+    <% end %>
+    <%= @average_rating %>点
+  <% else %>
+    まだ評価がありません
+  <% end %>
+</p>
+
 <% if @shop.images.attached? %>
   <h3>店舗写真</h3>
   <div style="display: flex; gap: 10px; flex-wrap: wrap;">
