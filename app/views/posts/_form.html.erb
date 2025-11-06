@@ -19,13 +19,13 @@
 
     <diV style="margin-top: 12px;">
       <p>一緒に行った犬のサイズ</p>
-      <%= f.radio_button :dog_size, "小型犬" %>
+      <%= f.radio_button :dog_size, :small %>
       <%= f.label :dog_size_small, "小型犬" %><br>
 
-      <%= f.radio_button :dog_size, "中型犬" %>
+      <%= f.radio_button :dog_size, :medium %>
       <%= f.label :dog_size_medium, "中型犬" %><br>
 
-      <%= f.radio_button :dog_size, "大型犬" %>
+      <%= f.radio_button :dog_size, :large %>
       <%= f.label :dog_size_large, "大型犬" %>
     </div>
 

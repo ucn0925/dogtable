@@ -103,7 +103,16 @@
       </div>
 
       <% if post.dog_size.present? %>
-        <p style="margin: 4px 0;">🐶 一緒に行った犬のサイズ：<%= post.dog_size %></p>
+        <p style="margin: 4px 0;">🐶 一緒に行った犬のサイズ：
+          <%=
+            case post.dog_size
+            when "small" then "小型犬"
+            when "medium" then "中型犬"
+            when "large" then "大型犬"
+            else "未選択"
+            end
+          %>
+        </p>
       <% end %>
 
       <!-- コメント内容 -->

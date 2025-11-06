@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_06_070410) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_06_074218) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_06_070410) do
     t.integer "rating_overall"
     t.integer "rating_food"
     t.integer "rating_dog_friendliness"
-    t.string "dog_size"
+    t.integer "dog_size"
     t.date "visited_on"
     t.index ["shop_id"], name: "index_posts_on_shop_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
