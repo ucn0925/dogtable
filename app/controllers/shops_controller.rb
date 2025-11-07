@@ -58,7 +58,14 @@ class ShopsController < ApplicationController
 
   def update
     @shop = Shop.find(params[:id])
-    if @shop.update(shop_params)
+
+    if params[:shop][:images].present? && params[:shop][:images].reject(&:blank?).present?
+      update_params = shop_params
+    else
+      update_params = shop_params.except(:images)
+    end
+
+    if @shop.update(update_params)
       redirect_to @shop, notice: "店鋪情報を更新しました！"
     else
       render :edit, status: :unprocessable_entity
