@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_06_074218) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_07_005833) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -102,6 +102,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_06_074218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "city_id", null: false
+    t.boolean "inside_ok"
+    t.boolean "terrace_ok"
+    t.boolean "dog_menu"
+    t.boolean "lead_hook"
+    t.string "opening_hours"
+    t.string "closed_days"
+    t.boolean "parking"
     t.index ["city_id"], name: "index_shops_on_city_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end

@@ -3,6 +3,20 @@
 <p>住所：<%= @shop.address %></p>
 <p>ジャンル：<%= @shop.genre.name %></p>
 
+<h3>店舗情報</h3>
+<p>営業時間：<%= @shop.opening_hours.presence || "未登録" %></p>
+<p>定休日：<%= @shop.closed_days.presence || "未登録" %></p>
+<p>駐車場：<%= @shop.parking ? "あり" : "なし" %></p>
+
+<h3>犬連れ情報</h3>
+<ul style="list-style: none; padding-left: 0;">
+  <li>店内同伴OK：<%= @shop.inside_ok? ? "⭕️" : "❌" %></li>
+  <li>テラスOK：<%= @shop.terrace_ok? ? "⭕️" : "❌" %></li>
+  <li>犬用メニューあり：<%= @shop.dog_menu? ? "⭕️" : "❌" %></li>
+  <li>リードフックあり：<%= @shop.lead_hook? ? "⭕️" : "❌" %></li>
+<ul>
+
+
 <p>
   ☆平均評価：
   <% if @average_rating.present? %>

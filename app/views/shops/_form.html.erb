@@ -43,6 +43,36 @@
     </div>
 
     <div>
+      <%= f.label :opening_hours, "営業時間" %><br>
+      <%= f.text_field :opening_hours, placeholder: "例）10:00〜18:00" %>
+    </div>
+
+    <div>
+      <%= f.label :closed_days, "定休日" %><br>
+      <%= f.text_field :closed_days, placeholder: "例）火曜・水曜" %>
+    </div>
+
+    <div>
+      <%= f.label :parking, "駐車場あり" %><br>
+      <%= f.check_box :parking %>
+    </div>
+
+    <h3>犬連れ情報</h3>
+    <div style="margin-bottom: 15px;">
+      <%= f.check_box :inside_ok %>
+      <%= f.label :inside_ok, "店内同伴OK" %><br>
+
+      <%=f.check_box :terrace_ok %>
+      <%= f.label :terrace_ok, "テラスOK" %><br>
+
+      <%= f.check_box :dog_menu %>
+      <%= f.label :dog_menu, "犬用メニューあり" %><br>
+
+      <%= f.check_box :lead_hook %>
+      <%= f.label :lead_hook, "リードフックあり" %><br>
+    </div>
+
+    <div>
       <%= f.submit shop.new_record? ? "登録する" : "更新する" %>
     </div>
 <% end %>
