@@ -58,7 +58,7 @@
 
     <div class="field">
       <%= d.label :dog_image, "犬の写真" %><br>
-      <%= d.file_field :dog_image %>
+      <%= d.file_field :dog_image, include_hidden: false %>
     </div>
   <% end %>
 

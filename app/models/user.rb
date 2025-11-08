@@ -9,7 +9,9 @@ class User < ApplicationRecord
   has_one :dog, dependent: :destroy
   has_one_attached :profile_image
 
-  accepts_nested_attributes_for :dog
+  accepts_nested_attributes_for :dog, 
+    reject_if: proc { |a| a.values.all?(&:blank?) },
+    update_only: true
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
