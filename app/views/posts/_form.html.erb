@@ -34,6 +34,11 @@
     </div>
 
     <div style="margin-top: 12px;">
+      <%= f.label :images, "写真をアップロード（複数可）" %><br>
+      <%= f.file_field :images, multiple: true, accept: "image/*" %>
+    </div>
+
+    <div style="margin-top: 12px;">
       <%= f.label :visited_on, "訪問日" %><br>
       <%= f.date_field :visited_on %>
     </div>

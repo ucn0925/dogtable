@@ -50,7 +50,8 @@ class PostsController < ApplicationController
       :rating_food,
       :rating_dog_friendliness,
       :dog_size,
-      :visited_on
+      :visited_on,
+      images: []
       )
   end
 end
