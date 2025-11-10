@@ -2,5 +2,32 @@
 
 <%= render "form", shop: @shop %>
 
+<hr>
+
+<h3>登録済みの画像</h3>
+
+<% if @shop.images.attached? %>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <% @shop.images.each do |image| %>
+        <div style="position: relative; display: inline-block;">
+          <%= image_tag image.variant(resize_to_limit: [200, 200], saver: { quality: 90 }).processed,
+                        style: "width: 200px; height: 200px; object-fit: cover;     
+                                border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);" %>
+          <%#= image_tag image, style: "width: 200px; height: auto; border-radius: 8px;" %>
+          <%= link_to "削除", destroy_image_shop_path(image.id),
+                data: { turbo_method: :delete, confirm: "この画像を削除しますか？" },
+                style: "position: absolute; top: 5px; right: 5px;
+                        background: rgba(0,0,0,0.6); color: white;
+                        padding: 2px 6px; border-radius: 4px;
+                        text-decoration: none;" %>
+        </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>登録された画像はありません。</p>
+<% end %>
+
+<hr>
+
 <%= link_to "戻る", shop_path(@shop) %>
 

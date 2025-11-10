@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   def index
     @shops = Shop.all
@@ -70,13 +71,23 @@ class ShopsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy_image
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.purge
+    redirect_back(fallback_location: shop_path(image.record), notice: "画像を削除しました！")
+  end
+
+    def destroy
     @shop = Shop.find(params[:id])
     @shop.destroy
     redirect_to shops_path, notice: "店舗を削除しました！"
   end
 
   private
+
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
 
   def shop_params
     params.require(:shop).permit(
