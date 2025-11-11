@@ -1,5 +1,9 @@
 <h1><%= @user.name %>さんのページ</h1>
 
+<p>
+  フォロー中：<%= @user.followings.count %>人
+  フォロワー：<%= @user.followers.count %>人
+
 <% unless current_user == @user %>
   <% if current_user.following?(@user) %>
     <%= button_to "フォロー解除", user_relationships_path(@user), method: :delete, class: "btn btn-outline-secondary", style: "margin-bottom: 10px;" %>
