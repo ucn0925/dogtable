@@ -1,5 +1,13 @@
 <h1><%= @user.name %>さんのページ</h1>
 
+<% unless current_user == @user %>
+  <% if current_user.following?(@user) %>
+    <%= button_to "フォロー解除", user_relationships_path(@user), method: :delete, class: "btn btn-outline-secondary", style: "margin-bottom: 10px;" %>
+  <% else %>
+    <%= button_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
+  <% end %>
+<% end %>
+
 <h2>プロフィール</h2>
 <p>メールアドレス：<%= @user.email %></p>
 <p>自己紹介：<%= @user.profile.presence || "未設定" %></p>

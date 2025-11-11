@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'mypages/show'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
   
   resources :users, only: [:show] do
+    resource :relationships, only: [:create, :destroy]
     get :favorites, on: :member
   end
 
@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   resources :shops, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :shop_favorite, only: [:create, :destroy]
-    resources :posts, only: [:create, :destroy, :edit, :update]
+
+    resources :posts, only: [:create, :destroy, :edit, :update] do
+      member do
+        delete :destroy_image
+      end
+    end
 
     member do
       delete :destroy_image

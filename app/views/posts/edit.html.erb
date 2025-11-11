@@ -1,5 +1,29 @@
-<h3>投稿を編集する</h3>
+<h2>投稿を編集する</h2>
 
 <%= render "form", post: @post, shop: @shop %>
+
+<% if @post.images.attached? %>
+  <h3 style="margin-top: 24px;">投稿済みの画像</h3>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <% @post.images.each do |image| %>
+        <div style="position: relative; display: inline-block;">
+          <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+
+          <%= link_to "削除",
+                destroy_image_shop_post_path(@post.shop, @post, image_id: image.id),
+                data: { turbo_method: :delete, turbo_confirm: "この画像を削除しますか？"},
+                style: "position: absolute; top: 6px; right: 6px;
+                        background: rgba(220, 53, 69, 0.9); color: #fff;
+                        padding: 3px 8px; border-radius: 6px;
+                        text-decoration: none;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.2)" %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+
 
 <%= link_to "戻る", shop_path(@shop) %>

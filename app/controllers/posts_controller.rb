@@ -46,6 +46,13 @@ class PostsController < ApplicationController
     @post = @shop.posts.build
   end
 
+  def destroy_image
+    @post = Post.find(params[:id])
+    image = @post.images.find(params[:image_id])
+    image.purge
+    redirect_to edit_shop_post_path(@post.shop, @post), notice: "画像を削除しました"
+  end
+
   private
 
   def post_params
