@@ -1,10 +1,15 @@
 <h2><%= @user.name %>さんをフォローしているユーザー</h2>
 
 <% if @users.any? %>
-  <ul>
+  <ul style="list-style: none; padding: 0;"> 
     <% @users.each do |user| %>
-        <li>
-          <%= link_to user.name, user_path(user) %>
+        <li style="display: flex; align-items: center; margin-bottom: 10px;">
+          <% if user.profile_image.attached? %>
+            <%= image_tag user.profile_image.variant(resize_to_limit: [50, 50]), class: "rounded-circle", style: "margin-right: 10px; border: 1px solid #ccc;" %>
+          <% else %>
+            <%= image_tag "no_image.png", size: "50x50", style: "margin-right: 10px; border-radius: 50%; border: 1px solid #ccc;" %>
+          <% end %>
+          <%= link_to user.name, user_path(user), style: "font-size: 16px;" %>
         </li>
     <% end %>
   </ul>
