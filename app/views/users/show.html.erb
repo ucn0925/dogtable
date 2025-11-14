@@ -7,6 +7,32 @@
   <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
 </p>
 
+<p>
+  💬投稿数：<%= @user.posts.count %>件<br>
+  ♡お気に入り店舗数：<%= @user.shop_favorites.count %>件<br>
+  ⭐️平均評価：
+  <% if @user.posts.any? %>
+    <% avg = @user.posts.average(:rating_overall).to_f.round(1) %>
+    <% full = avg.floor %>
+    <% frac = avg - full %>
+
+    <%= avg %>
+    <% 5.times do |i| %>
+      <% if i < full %>
+        <span style="color: gold;">★</span>
+      <% elsif i == full && frac >= 0.5 %>
+        <span style="color: gold;">☆</span>
+      <% else %>
+        <span style="color: #ccc;">★</span>
+      <% end %>
+    <% end %>
+  <% else %>
+    投稿はまだありません
+  <% end %>
+</p>
+
+<hr>
+
 <% unless current_user == @user %>
   <% if current_user.following?(@user) %>
     <%= button_to "フォロー解除", user_relationships_path(@user), method: :delete, class: "btn btn-outline-secondary", style: "margin-bottom: 10px;" %>

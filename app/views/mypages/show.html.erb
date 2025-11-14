@@ -1,11 +1,11 @@
-<h1><%= current_user.name %>さんのマイページ</h1>
+<h1><%= @user.name %>さんのマイページ</h1>
 
 <p>
   フォロー中：
-  <%= link_to "#{current_user.followings.count}人", followings_user_path(current_user) %>
+  <%= link_to "#{@user.followings.count}人", followings_user_path(@user) %>
   ／
   フォロワー：
-  <%= link_to "#{current_user.followers.count}人", followers_user_path(current_user) %>
+  <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
 </p>
 
 <p>
@@ -35,10 +35,10 @@
 <hr>
 
 <h2>プロフィール</h2>
-<p>自己紹介：<%= current_user.profile.presence || "未設定" %></p>
+<p>自己紹介：<%= @user.profile.presence || "未設定" %></p>
 
-<% if current_user.profile_image.attached? %>
-  <%= image_tag current_user.profile_image, size: "150x150", class: "rounded-full" %>
+<% if @user.profile_image.attached? %>
+  <%= image_tag @user.profile_image, size: "150x150", class: "rounded-full" %>
 <% else %>
   <p>プロフィール画像はまだ設定されていません。</p>
 <% end %>
@@ -48,13 +48,13 @@
 <hr>
 
 <h2>愛犬情報</h2>
-<% if current_user.dog.present? %>
-  <p>犬の名前：<%= current_user.dog.name %></p>
-  <p>犬種：<%= current_user.dog.breed %></p>
-  <p>犬のサイズ：<%= current_user.dog.size_jp %></p>
+<% if @user.dog.present? %>
+  <p>犬の名前：<%= @user.dog.name %></p>
+  <p>犬種：<%= @user.dog.breed %></p>
+  <p>犬のサイズ：<%= @user.dog.size_jp %></p>
 
-  <% if current_user.dog.dog_image.attached? %>
-    <%= image_tag current_user.dog.dog_image, size: "200x200" %>
+  <% if @user.dog.dog_image.attached? %>
+    <%= image_tag @user.dog.dog_image, size: "200x200" %>
   <% else %>
     <p>愛犬の写真はまだ登録されていません。</p>
   <% end %>
