@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   
   resources :users, only: [:show] do
-    resource :relationships, only: [:create, :destroy]
+    resources :relationships, only: [:create, :destroy]
     get :favorites, on: :member
     member do
       get :followings
