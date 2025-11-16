@@ -27,13 +27,12 @@
         </div>
 
         <div>
-          <% if @user.following?(u) %>
+          <% if current_user.following?(u) %>
+            <% rel = current_user.active_relationships.find_by(followed_id: u.id) %>
             <%= button_to "フォロー解除",
-                  user_relationship_path(
-                    @user,
-                    @user.active_relationships.find_by(followed_id: u.id)
-                  ),
+                  user_relationship_path(current_user, rel.id),
                   method: :delete,
+                  data: { turbo: false },
                   style: "padding: 6px 10px;
                           background: #ddd;
                           border-radius: 6px;
@@ -41,8 +40,9 @@
                           color: #333;" %>
           <% else %>
             <%= button_to "フォローする",
-                  relationships_path(@user, followed_id: u.id),
+                  user_relationships_path(current_user, followed_id: u.id),
                   method: :post,
+                  data: { turbo: false },
                   style: "padding: 6px 10px;
                   background: #0095f6;
                   color: white;

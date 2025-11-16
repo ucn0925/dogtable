@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def followings
     @user = User.find(params[:id])
     @users = @user.followings
+    @relationships = current_user.active_relationships.index_by(&:followed_id)
   end
 
   def followers
