@@ -1,0 +1,90 @@
+<h2>口コミ詳細</h2>
+
+<div style="margin-bottom: 20px;">
+  <%= link_to "←店舗ページに戻る", shop_path(@shop), style: "color: #0073bb;" %>
+</div>
+
+<div style="border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+
+  <!--ユーザー情報 -->
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div>
+      <strong style="font-size: 1.2em;">
+        <%= link_to @post.user.name, user_path(@post.user), style: "color: #0073bb;" %>
+      </strong>
+      <span style= "color: #888; margin-left: 10px;">
+        <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </span>
+    </div>
+
+    <% if current_user == @post.user %>
+      <div>
+        <%= link_to "編集", edit_shop_post_path(@shop, @post), style: "margin-right: 8px; color: #0073bb;" %>
+        <%= link_to "削除", shop_post_path(@shop, @post),
+              data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか？" },
+              style: "color: #bbb0000;" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- 星の評価 -->
+  <div style="margin: 10px 0;">
+
+    <p>
+      総合評価：
+      <% 5.times do |i| %>
+        <span style="color: <%= i < @post.rating_overall.to_i ? 'gold' : '#ccc' %>;">★</span>
+      <% end %>
+    </p>
+
+    <p>
+      料理の評価：
+      <% 5.times do |i| %>
+        <span style="color: <%= i < @post.rating_food.to_i ? 'gold' : '#ccc' %>;">★</span>
+      <% end %>
+
+    <p>
+      犬連れやすさ：
+      <% 5.times do |i| %>
+        <span style="color: <%= i < @post.rating_dog_friendliness.to_i ? 'gold' : '#ccc' %>;">★</span>
+      <% end %>
+    </p>
+
+  </div>
+
+  <!-- 犬のサイズ -->
+  <% if @post.dog_size.present? %>
+    <p>
+      🐶一緒に行った犬のサイズ：
+      <%=
+        case @post.dog_size
+        when "small" then "小型犬"
+        when "medium" then "中型犬"
+        when "large" then "大型犬"
+        else "未選択"
+        end
+      %>
+    </p>
+  <% end %>
+
+  <!-- 訪問日 -->
+  <% if @post.visited_on.present? %>
+    <p>訪問日：<%= @post.visited_on.strftime("%Y/%m/%d") %></p>
+  <% end %>
+
+  <!-- コメント本文 -->
+  <div style="margin-top: 15px; line-height: 1.7;">
+    <%= simple_format(h(@post.content)) %>
+  </div>
+
+  <!-- 投稿画像 -->
+  <% if @post.images.attached? %>
+    <div style="display: flex; flex-wrap: wrap; gap:10px; margin-top: 15px;">
+      <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [300, 300]),
+                style: "border-radius: 8px" %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
