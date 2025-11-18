@@ -30,7 +30,7 @@
       </p>
 
       <!-- 本文 -->
-      <p><%= post.content %></p>
+      <p><%= link_to post.content, shop_post_path(post.shop, post), style: "color: #333;" %></p>
 
       <!-- いいねボタン -->
       <div style="margin: 10px 0;">
