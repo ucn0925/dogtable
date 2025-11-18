@@ -88,3 +88,26 @@
 <% else %>
   <p>お気に入り登録された店舗はありません。</p>
 <% end %>
+
+<hr>
+
+<h2>投稿一覧</h2>
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+        <li style="margin-bottom: 12px;">
+          <strong><%= link_to post.shop.name, shop_path(post.shop) %></strong><br>
+          投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+          評価：
+          <% (1..5).each do |i| %>
+            <span style="color: <%= i <= (post.rating_overall || 0) ? 'gold' : '#ccc' %>;" >★</span>
+          <% end %>
+          <br>
+          <%= simple_format(post.content) %>       
+        </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>投稿はまだありません。</p>
+<% end %>
+

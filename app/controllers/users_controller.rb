@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorite_shops = @user.favorite_shops
-    @posts = @user.posts.includes(:shop)
+    @posts = @user.posts.includes(:shop).order(created_at: :desc)
   end
 
   def followings
