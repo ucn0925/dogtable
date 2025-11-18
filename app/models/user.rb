@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_one :dog, dependent: :destroy
   has_one_attached :profile_image
+  has_many :post_favorites, dependent: :destroy
+  has_many :favorited_posts, through: :post_favorites, source: :post
 
   accepts_nested_attributes_for :dog, 
     reject_if: proc { |a| a.values.all?(&:blank?) },

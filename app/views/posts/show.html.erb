@@ -77,6 +77,23 @@
     <%= simple_format(h(@post.content)) %>
   </div>
 
+  <!--いいねボタン -->
+  <div style="margin-top: 15px; line-height: 1.7;">
+    <% if @post.favorited_by?(current_user) %>
+      <%= button_to shop_post_post_favorite_path(@shop, @post),
+            method: :delete,
+            class: "btn btn-danger" do %>
+         ❤️ いいね済み
+      <% end %>
+    <% else %>
+      <%= button_to shop_post_post_favorite_path(@shop, @post),
+            method: :post,
+            class: "btn btn-outline-danger" do %>
+        ♡ いいね
+      <% end %>
+    <% end %>
+  </div>    
+
   <!-- 投稿画像 -->
   <% if @post.images.attached? %>
     <div style="display: flex; flex-wrap: wrap; gap:10px; margin-top: 15px;">

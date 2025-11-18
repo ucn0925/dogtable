@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       member do
         delete :destroy_image
       end
+      resource :post_favorite, only: [:create, :destroy]
     end
 
     member do
