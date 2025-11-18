@@ -58,6 +58,13 @@ class PostsController < ApplicationController
     redirect_to edit_shop_post_path(@post.shop, @post), notice: "画像を削除しました"
   end
 
+  def timeline
+    following_ids = current_user.followings.pluck(:id)
+    @posts = Post.where(user_id: following_ids)
+                 .includes(:shop, :user)
+                 .order(created_at: :desc)
+  end
+
   private
 
   def post_params

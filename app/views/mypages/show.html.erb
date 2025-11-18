@@ -8,6 +8,12 @@
   <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
 </p>
 
+<div style="margin: 20px 0;">
+  <%= link_to "タイムラインを見る", timeline_path,
+      class: "btn btn-primary",
+      style: "background-color: #0073bb; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;" %>
+</div>
+
 <p>
   💬投稿数：<%= @posts.count %>件<br>
   ♡お気に入り店舗数：<%= @favorites.count %>件<br>

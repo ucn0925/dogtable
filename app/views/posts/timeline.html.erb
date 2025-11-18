@@ -1,0 +1,48 @@
+<h2>タイムライン</h2>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div style="border-bottom: 1px solid #ddd; padding: 20px0;">
+
+      <!-- 投稿ユーザー -->
+      <p>
+        <strong>
+          <%= link_to post.user.name, user_path(post.user), style: "color: #0073bb;" %>
+        </strong>
+      </p>
+
+      <!-- 店舗名 -->
+      <h3>
+        <%= link_to post.shop.name, shop_path(post.shop) %>
+      </h3>
+
+      <!-- 投稿日 -->
+      <p style="color: #999;">
+        投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </p>
+
+      <!-- 評価 -->
+      <p>
+        評価：
+        <% post.rating_overall.times do %>
+            ⭐️
+        <% end %>
+      </p>
+
+      <!-- 本文 -->
+      <p><%= post.content %></p>
+
+      <!-- 画像 -->
+      <% if post.images.attached? %>
+        <div style="margin-top:10px;">
+          <% post.images.each do |img| %>
+            <%= image_tag img, size: "300x300", style: "margin-right: 10px;" %>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+<% else %>
+  <p>フォローしている人の投稿はまだありません。</p>
+<% end %>
