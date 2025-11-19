@@ -2,15 +2,56 @@
 
 <% if @users.any? %>
   <ul style="list-style: none; padding: 0;"> 
-    <% @users.each do |user| %>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <% if user.profile_image.attached? %>
-            <%= image_tag user.profile_image.variant(resize_to_limit: [50, 50]), class: "rounded-circle", style: "margin-right: 10px; border: 1px solid #ccc;" %>
+
+    <% @users.each do |u| %>
+      <li style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 5px;
+        border-bottom: 1px solid #eee;
+      ">
+
+        <div style="display: flex; align-items: center; gap: 12px">
+          <% if u.profile_image.attached? %>
+            <%= image_tag u.profile_image.variant(resize_to_fill: [50, 50]), 
+                style: "border-radius: 50%; border: 1px solid #ccc;" %>
           <% else %>
-            <%= image_tag "no_image.png", size: "50x50", style: "margin-right: 10px; border-radius: 50%; border: 1px solid #ccc;" %>
+            <%= image_tag "no_image.png", 
+                size: "50x50", 
+                style: "margin-right: 10px; border: 1px solid #ccc;" %>
           <% end %>
-          <%= link_to user.name, user_path(user), style: "font-size: 16px;" %>
-        </li>
+
+          <%= link_to u.name, user_path(u), 
+              style: "font-size: 16px; font-weight: bold; color: #333;" %>
+        </div>
+
+        <div>
+          <% if current_user.following?(u) %>
+            <% rel = current_user.active_relationships.find_by(followed_id: u.id) %>
+            <%= button_to "フォロー解除",
+                  user_relationship_path(current_user, rel.id),
+                  method: :delete,
+                  data: { turbo: false },
+                  style: "padding: 6px 10px;
+                          background: #ddd;
+                          border-radius: 6px;
+                          border: none;
+                          color: #333;" %>
+          <% else %>
+              <%= button_to "フォローする",
+                    user_relationshis_path(current_user, followed_id: u.id),
+                    method: :post,
+                    data: { turbo: false },
+                    style: "padding: 6px 10px;
+                            background: #0095f6;
+                            color: white;
+                            border-radius: 6px;
+                            border: none;" %>
+          <% end %>
+        </div>
+
+      </li>
     <% end %>
   </ul>
 <% else %>

@@ -14,7 +14,7 @@
 
         <div style="display: flex; align-items: center; gap: 12px">
           <% if u.profile_image.attached? %>
-            <%= image_tag u.profile_image.variant(resize_to_limit: [50, 50]),
+            <%= image_tag u.profile_image.variant(resize_to_fill: [50, 50]),
                 style: "border-radius: 50%; border: 1px solid #ccc;" %>
           <% else %>
             <%= image_tag "no_image.png",
