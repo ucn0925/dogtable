@@ -11,11 +11,6 @@
     <%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), include_blank: "ジャンルを選択" %>
   </div>
 
-  <div style="margin-top: 8px;">
-    <!-- 地域選択 -->
-    <%= select_tag :area_id, options_for_select(@area_options, params[:area_id]), include_blank: "地域を選択してください" %>
-  </div>
-
   <div style="margin-top: 10px;">
     <%= submit_tag "検索" %>
   </div>

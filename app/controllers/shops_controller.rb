@@ -5,15 +5,6 @@ class ShopsController < ApplicationController
 
   def index
     @shops = Shop.all
-    @area_options = []
-
-    Block.all.each do |block|
-      @area_options << [block.name, "block_#{block.id}"]
-
-      block.cities.each do |city|
-        @area_options << [" ├ #{city.name}", "city_#{city.id}"]
-      end
-    end
 
     if params[:keyword].present?
       @shops = @shops.where("name LIKE ?", "%#{params[:keyword]}%")
