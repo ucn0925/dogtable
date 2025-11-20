@@ -8,6 +8,29 @@
 
   <!-- 検索ボックス一式 -->
   <%= form_with url: shops_path, method: :get, local: true do %>
+
+    <!-- フリーワード検索（上段） -->
+    <div style="
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    ">
+
+      <%= text_field_tag :keyword, params[:keyword],
+          placeholder: "店名で検索",
+          style: "
+            width: 360px;
+            padding: 10px; 
+            font-size: 16px; 
+            border-radius: 6px; 
+            border: 1px solid #ccc;
+          "
+      %>
+    </div>
+    
+    <!-- エリア＆ジャンル（下段） -->
     <div style="
       display: flex;
       justify-content: center;
@@ -20,7 +43,7 @@
         options_for_select(@area_options, params[:area_id]),
         {
           include_blank: "エリア",
-          style: "padding: 10px; font-size: 16px; border-radius: 6px;" 
+          style: "padding: 10px; font-size: 16px; border-radius: 6px; width: 150px" 
         }
       %>
           
@@ -30,7 +53,7 @@
         options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
         {
           include_blank: "ジャンル",
-          style: "padding: 10px; font-size: 16px; border-radius: 6px;"
+          style: "padding: 10px; font-size: 16px; border-radius: 6px; width: 150px;"
         } 
       %>
 
