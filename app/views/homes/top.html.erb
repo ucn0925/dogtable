@@ -18,8 +18,21 @@
       <!-- エリア（blockとcity） -->
       <%= select_tag :area_id,
         options_for_select(@area_options, params[:area_id]),
-        include_blank: "エリア",
-        style: "padding: 10px; font-size: 16px; border-radius: 6px;" %>
+        {
+          include_blank: "エリア",
+          style: "padding: 10px; font-size: 16px; border-radius: 6px;" 
+        }
+      %>
+          
+
+      <!-- ジャンル選択 -->
+      <%= select_tag :genre_id,
+        options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
+        {
+          include_blank: "ジャンル",
+          style: "padding: 10px; font-size: 16px; border-radius: 6px;"
+        } 
+      %>
 
       <!-- 検索ボタン -->
       <%= submit_tag "検索",
