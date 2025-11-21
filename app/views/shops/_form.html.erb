@@ -12,47 +12,47 @@
 <% end %>
 
 <%= form_with model: shop, local: true do |f| %>
-    <div>
-      <%= f.label :name, "店名" %><br>
+    <div style="margin-bottom: 10px;">
+      <%= f.label :name, "店名" %><span style="color:red;"> *</span><br>
       <%= f.text_field :name %>
     </div>
 
-    <div>
-      <%= f.label :address, "住所" %><br>
+    <div style="margin-bottom: 10px;">
+      <%= f.label :address, "住所" %><span style="color:red;"> *</span><br>
       <%= f.text_field :address %>
     </div>
 
-    <div>
-      <%= f.label :genre_id, "ジャンル" %><br>
+    <div style="margin-bottom: 10px;">
+      <%= f.label :genre_id, "ジャンル" %><span style="color:red;"> *</span><br>
       <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px;">
       <%= f.label :images, "店舗の写真" %><br>
       <%= f.file_field :images, multiple: true, accept: "image/*" %>
     </div>
 
-    <div>
-      <%= f.label :block_id, "地域ブロックID" %><br>
+    <div style="margin-bottom: 10px;">
+      <%= f.label :block_id, "地域ブロックID" %><span style="color:red;"> *</span><br>
       <%= f.collection_select :block_id, Block.all, :id, :name, prompt: "エリアを選択してください" %>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px;">
       <%= f.label :city_id, "市町村" %><br>
       <%= f.collection_select :city_id, City.all, :id, :name, prompt: "市町村を選択してください" %>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px;">
       <%= f.label :opening_hours, "営業時間" %><br>
       <%= f.text_field :opening_hours, placeholder: "例）10:00〜18:00" %>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px;">
       <%= f.label :closed_days, "定休日" %><br>
       <%= f.text_field :closed_days, placeholder: "例）火曜・水曜" %>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px;">
       <%= f.label :parking, "駐車場あり" %><br>
       <%= f.check_box :parking %>
     </div>
@@ -71,6 +71,10 @@
       <%= f.check_box :lead_hook %>
       <%= f.label :lead_hook, "リードフックあり" %><br>
     </div>
+
+    <p style="color: gray; font-size: 13px; margin: 20px 0;">
+      <span style="color:red;">* </span>は必須項目です
+    </p>
 
     <div>
       <%= f.submit shop.new_record? ? "登録する" : "更新する" %>

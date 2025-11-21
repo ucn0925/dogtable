@@ -2,17 +2,22 @@
 
 <!-- 検索フォーム部分 -->
 <%= form_with url: shops_path, method: :get, local: true do %>
-  <div style="margin-top: 8px;">
-    <%= text_field_tag :keyword, params[:keyword], placeholder: "店名で検索" %>
-  </div>
+  <div style="display: flex; gap: 10px; align-items: center; margin: 16px 0;">
 
-  <div style="margin-top: 8px;">
+    <!-- 店名検索 -->
+    <%= text_field_tag :keyword, params[:keyword],
+        placeholder: "店名で検索",
+        style: "width: 200px; padding: 6px;" %>
+ 
     <!-- ジャンル選択 -->
-    <%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), include_blank: "ジャンルを選択" %>
-  </div>
+    <%= select_tag :genre_id, 
+        options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), 
+        include_blank: "ジャンルを選択",
+        style: "padding: 6px;" %>  
 
-  <div style="margin-top: 10px;">
+    <!-- 検索ボタン -->
     <%= submit_tag "検索" %>
+
   </div>
 <% end %>
 
