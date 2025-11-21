@@ -38,7 +38,7 @@ class ShopsController < ApplicationController
     @shop = current_user.shops.build(shop_params)
 
     if @shop.save
-      redirect_to new_shop_path, notice: "お店を登録しました！"
+      redirect_to shop_path(@shop), notice: "お店を登録しました！"
     else
       render :new, status: :unprocessable_entity
     end
