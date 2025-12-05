@@ -22,6 +22,10 @@
       <%= f.text_field :address %>
     </div>
 
+    <%# 緯度・経度を入れるhidden_field（自動入力用） %>
+    <%= f.hidden_field :latitude, id: "shop-latitude" %>
+    <%= f.hidden_field :longitude, id: "shop-longitude" %>
+
     <div style="margin-bottom: 10px;">
       <%= f.label :genre_id, "ジャンル" %><span style="color:red;"> *</span><br>
       <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %>

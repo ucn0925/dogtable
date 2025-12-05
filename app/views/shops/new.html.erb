@@ -1,3 +1,5 @@
 <h1>店舗登録</h1>
 
 <%= render "form", shop: @shop %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %> " async defer></script>

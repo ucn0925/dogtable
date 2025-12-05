@@ -25,8 +25,11 @@ class ShopsController < ApplicationController
     end
   end
 
+  def map
+    @shops = Shop.where.not(latitude: nil, longitude: nil)
+  end
+
   def show
-    @shop = Shop.find(params[:id])
     @average_rating = @shop.posts.average(:rating_overall)&.round(1)
   end
 
@@ -45,12 +48,9 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = Shop.find(params[:id])
   end
 
   def update
-    @shop = Shop.find(params[:id])
-
     if params[:shop][:images].present? && params[:shop][:images].reject(&:blank?).present?
       @shop.images.attach(params[:shop][:images])
     end
@@ -69,7 +69,6 @@ class ShopsController < ApplicationController
   end
 
     def destroy
-    @shop = Shop.find(params[:id])
     @shop.destroy
     redirect_to shops_path, notice: "店舗を削除しました！"
   end
@@ -94,6 +93,8 @@ class ShopsController < ApplicationController
       :opening_hours,
       :closed_days,
       :parking,
+      :latitude,
+      :longitude,
       images: [])
   end
 end

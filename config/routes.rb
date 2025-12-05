@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "map", to: "shops#map"
+
   get "timeline", to: "posts#timeline"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
