@@ -1,3 +1,5 @@
+console.log("geocode.js loaded");
+
 function initMap() {
     console.log("Google Maps セット完了！");
 
