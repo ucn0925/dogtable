@@ -11,10 +11,30 @@ function initMap() {
     if (typeof shops !== "undefined") {
         shops.forEach((shop) => {
             if (shop.latitude && shop.longitude) {
-                new google.maps.Marker({
+
+                const marker = new google.maps.Marker({
                     position: { lat: shop.latitude, lng: shop.longitude },
                     map: map,
                     title: shop.name
+                });
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div style="font-size: 14px;">${shop.name}</div>`
+                });
+
+                marker.addListener("mouseover", () => {
+                    infoWindow.open({
+                        anchor: marker,
+                        map,
+                    });
+                });
+
+                marker.addListener("mouseout", () => {
+                    infoWindow.close();
+                });
+
+                marker.addListener("click", () => {
+                    window.location.href = `/shops/${shop.id}`;
                 });
             }
         });
@@ -29,18 +49,17 @@ function geocodeAddress() {
     if (!address) return;
 
     const geocoder = new google.maps.Geocoder();
-
     geocoder.geocode({ address: address }, function(results, status) {
-        if (status === "OK"){
+        if (status === "OK") {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
 
             document.getElementById("shop-latitude").value = lat;
             document.getElementById("shop-longitude").value = lng;
 
-            console.log("緯度・経度セット完了：", lat, lng);
+            console.log(`セット完了！！ 緯度：${lat} 緯度：${lng}`);
         } else {
-            console.warn("Geocode failed: " + status);
+            console.error("ジオコーディング失敗：" + status);
         }
     });
 }
