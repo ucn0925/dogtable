@@ -10,6 +10,37 @@ function initMap() {
         zoom: 13
     });
 
+    const currentLocationBtn = document.getElementById("current-location-btn");
+
+    if (currentLocationBtn) {
+        currentLocationBtn.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const userLat = position.coords.latitude;
+                        const userLng = position.coords.longitude;
+
+                        map.setCenter({ lat: userLat, lng: userLng });
+                        map.setZoom(15);
+
+                        new google.maps.Marker({
+                            position: { lat: userLat, lng: userLng },
+                            map: map,
+                            icon: {
+                                url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                            }
+                        });
+                    },
+                    () => {
+                        alert("現在地を取得できませんでした。");
+                    }
+                );
+            } else {
+                alert("このブラウザは位置情報に対応していません。");
+            }
+        });
+    }
+
     if (typeof shops !== "undefined") {
         shops.forEach((shop) => {
             if (shop.latitude && shop.longitude) {
