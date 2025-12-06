@@ -1,3 +1,5 @@
+let openInfoWindow = null;
+
 console.log("geocode.js loaded");
 
 function initMap() {
@@ -20,22 +22,33 @@ function initMap() {
 
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
-                      <div style="font-size: 14px;">
-                        <strong>${shop.name}</strong><br>
-                        ${shop.genre_name}
+                      <div style="
+                        font-size: 14px;
+                        line-height: 1.5;
+                        padding: 6px 4px;
+                      ">
+                        <div style="font-weight: bold; font-size: 15px; margin-bottom: 2px;">
+                          ${shop.name}
+                        </div>
+                        <div style="color: #666; margin-bottom: 4px;">
+                          ジャンル：${shop.genre_name}
+                        </div>
+                        <a href="/shops/${shop.id}" style="color: #007bff; text-decoration: underline;">
+                          詳細ページを見る
+                        </a>
                       </div>
                     `
                 });
 
                 marker.addListener("mouseover", () => {
+                    if (openInfoWindow) {
+                        openInfoWindow.close();
+                    }
                     infoWindow.open({
                         anchor: marker,
                         map,
                     });
-                });
-
-                marker.addListener("mouseout", () => {
-                    infoWindow.close();
+                    openInfoWindow = infoWindow;
                 });
 
                 marker.addListener("click", () => {
