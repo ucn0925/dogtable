@@ -26,7 +26,10 @@ class ShopsController < ApplicationController
   end
 
   def map
-    @shops = Shop.where.not(latitude: nil, longitude: nil)
+    @shops = Shop
+             .joins(:genre)
+             .select("shops.*, genres.name AS genre_name")
+             .where.not(latitude: nil, longitude: nil)
   end
 
   def show

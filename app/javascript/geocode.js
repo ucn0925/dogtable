@@ -19,7 +19,12 @@ function initMap() {
                 });
 
                 const infoWindow = new google.maps.InfoWindow({
-                    content: `<div style="font-size: 14px;">${shop.name}</div>`
+                    content: `
+                      <div style="font-size: 14px;">
+                        <strong>${shop.name}</strong><br>
+                        ${shop.genre_name}
+                      </div>
+                    `
                 });
 
                 marker.addListener("mouseover", () => {
