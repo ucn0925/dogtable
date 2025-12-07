@@ -24,6 +24,8 @@ gem 'devise'
 
 gem 'rails-i18n'
 
+gem 'kaminari'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

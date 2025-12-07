@@ -39,6 +39,9 @@
         <p><%= shop.genre.name %> ／ <%= shop.block.name %></p>
       </div>
     <% end %>
+
+    <%= paginate @shops %>
+
   <% else %>
     <!-- 該当したけど０件のときだけ表示 -->
     <p>該当する店舗が見つかりませんでした。</p>
@@ -54,6 +57,9 @@
         <p>♡ <%= shop.shop_favorites.count %> 💬 <%= shop.posts.count %></p>
       </div>
     <% end %>
+
+    <%= paginate @shops %>
+    
   <% end %> 
 
 <!-- 新しい店舗を登録するリンク -->

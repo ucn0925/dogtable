@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shops = Shop.all
+    @shops = Shop.page(params[:page]).per(5)
 
     if params[:keyword].present?
       @shops = @shops.where("name LIKE ?", "%#{params[:keyword]}%")
