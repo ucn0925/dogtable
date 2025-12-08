@@ -2,21 +2,23 @@
 
 <!-- 検索フォーム部分 -->
 <%= form_with url: shops_path, method: :get, local: true do %>
-  <div style="display: flex; gap: 10px; align-items: center; margin: 16px 0;">
+  <div class="d-flex gap-2 align-items-center my-3">
 
     <!-- 店名検索 -->
     <%= text_field_tag :keyword, params[:keyword],
         placeholder: "店名で検索",
-        style: "width: 200px; padding: 6px;" %>
+        class: "form-control",
+        style: "max-width: 200px;" %>
  
     <!-- ジャンル選択 -->
     <%= select_tag :genre_id, 
         options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), 
         include_blank: "ジャンルを選択",
-        style: "padding: 6px;" %>  
+        class: "form-select",
+        style: "max-width: 180px;" %>  
 
     <!-- 検索ボタン -->
-    <%= submit_tag "検索" %>
+    <%= submit_tag "検索", class: "btn btn-primary" %>
 
   </div>
 <% end %>
@@ -25,16 +27,16 @@
 
 <!-- 検索パラメータがある時だけ、件数やリセットリンクを表示 -->
 <% if params[:keyword].present? || params[:genre_id].present? || params[:area_id].present? %>
-  <div style= "margin-top: 10px;">
+  <div class="mt-3">
     <p>検索結果：<%= @shops.count %>件</p>
-    <%= link_to "検索条件をリセット", shops_path, style: "text-decoration: underline; color: gray;" %>
+    <%= link_to "検索条件をリセット", shops_path, class: "text-secondary text-decoration-underline" %>
   </div>
 
-  <!-- 検索結果がある場合と０件の場合を分ける -->
+  <!-- 検索結果がある場合 -->
   <% if @shops.any? %>
     <% @shops.each do |shop| %>
-      <div style="margin-bottom: 16px;">
-        <h2><%= link_to shop.name, shop_path(shop) %></h2>
+      <div class="carf mb-3 p-3">
+        <h2 class="h5"><%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %></h2>
         <p><%= shop.address %></p>
         <p><%= shop.genre.name %> ／ <%= shop.block.name %></p>
       </div>
@@ -43,15 +45,15 @@
     <%= paginate @shops %>
 
   <% else %>
-    <!-- 該当したけど０件のときだけ表示 -->
+    <!-- 該当０件 -->
     <p>該当する店舗が見つかりませんでした。</p>
   <% end %>
 
   <% else %>
     <!-- 検索していないとき（通常の一覧表示） -->
     <% @shops.each do |shop| %>
-      <div style="margin-bottom: 16px;">
-        <h2><%= link_to shop.name, shop_path(shop) %></h2>
+      <div class="card mb-3 p-3">
+        <h2 class="h5"><%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %></h2>
         <p><%= shop.address %></p>
         <p><%= shop.genre.name %> ／ <%= shop.block.name %></p>
         <p>♡ <%= shop.shop_favorites.count %> 💬 <%= shop.posts.count %></p>
@@ -63,4 +65,6 @@
   <% end %> 
 
 <!-- 新しい店舗を登録するリンク -->
-<%= link_to "新しい店鋪を登録する", new_shop_path %>
+<div class="mt-3">
+  <%= link_to "新しい店鋪を登録する", new_shop_path, class: "btn btn-successs" %>
+</div>

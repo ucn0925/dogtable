@@ -1,168 +1,195 @@
-<h1><%= @shop.name %></h1>
-<p>♡ <%= @shop.shop_favorites.count %> 件のお気に入り</p>
-<p>住所：<%= @shop.address %></p>
-<p>ジャンル：<%= @shop.genre.name %></p>
+<div class="container my-4">
 
-<h3>店舗情報</h3>
-<p>営業時間：<%= @shop.opening_hours.presence || "未登録" %></p>
-<p>定休日：<%= @shop.closed_days.presence || "未登録" %></p>
-<p>駐車場：<%= @shop.parking ? "あり" : "なし" %></p>
-
-<h3>犬連れ情報</h3>
-<ul style="list-style: none; padding-left: 0;">
-  <li>店内同伴OK：<%= @shop.inside_ok? ? "⭕️" : "❌" %></li>
-  <li>テラスOK：<%= @shop.terrace_ok? ? "⭕️" : "❌" %></li>
-  <li>犬用メニューあり：<%= @shop.dog_menu? ? "⭕️" : "❌" %></li>
-  <li>リードフックあり：<%= @shop.lead_hook? ? "⭕️" : "❌" %></li>
-<ul>
-
-
-<p>
-  ☆平均評価：
-  <% if @average_rating.present? %>
-    <% full = @average_rating.floor %>
-    <% frac = @average_rating - full %>
-
-    <% 5.times do |i| %>
-      <% if i < full %>
-        <span style="color: gold;">★</span>
-      <% elsif i == full && frac >= 0.5 %>
-        <span style="color: lightgray;">☆</span>
-      <% else %>
-        <span style="color: lightgray;">★</span>
-      <% end %>
-    <% end %>
-    <%= @average_rating %>点
-  <% else %>
-    まだ評価がありません
-  <% end %>
-</p>
-
-<% if @shop.images.attached? %>
-  <h3>店舗写真</h3>
-  <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-    <% @shop.images.each do |image| %>
-      <%= image_tag image, style: "width: 200px; border-radius: 8px;" %>
-    <% end %>
+  <!-- 店舗名 &  お気に入り数 -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class=h3 m-o><%= @shop.name %></h1>
+    <span class="text-muted">♡ <%= @shop.shop_favorites.count %> 件のお気に入り</span>
   </div>
-<% end %>
 
-<% if user_signed_in? %>
-  <% if current_user.shop_favorites.exists?(shop_id: @shop.id) %>
-    <%= link_to shop_shop_favorite_path(@shop), 
-        data: { turbo_method: :delete, turbo_confirm: "お気に入りを解除しますか？" },
-        class: "btn btn-outline-danger" do %>
-      ♥ お気に入り解除
-    <% end %>
-  <% else %>
-    <%= link_to shop_shop_favorite_path(@shop), 
-        data: { turbo_method: :post },
-        class: "btn btn-outline-primary" do %>
-      ♡ お気に入り登録
-    <% end %>
-  <% end %>  
-<% end %>
+  <!-- 基本情報カード -->
+  <div class="card mb-4">
+    <div class="card-body">
 
-<%= link_to "編集する", edit_shop_path %>
-<%= link_to "一覧に戻る", shops_path(@shop) %>
-<%= link_to "削除する", shop_path(@shop), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+      <p><strong>住所：</strong><%= @shop.address %></p>
+      <p><strong>ジャンル：</strong><%= @shop.genre.name %></p>
 
-<hr>
+      <h4 class="h5 mt-4">店舗情報</h4>
+      <p>営業時間：<%= @shop.opening_hours.presence || "未登録" %></p>
+      <p>定休日：<%= @shop.closed_days.presence || "未登録" %></p>
+      <p>駐車場：<%= @shop.parking ? "あり" : "なし" %></p>
 
-<h3 style="margin-top: 30px;">口コミ一覧</h3>
+      <h4 class="h5 mt-4">犬連れ情報</h4>
+      <ul class="list-unstyled">
+        <li>店内同伴OK：<%= @shop.inside_ok? ? "⭕️" : "❌" %></li>
+        <li>テラスOK：<%= @shop.terrace_ok? ? "⭕️" : "❌" %></li>
+        <li>犬用メニューあり：<%= @shop.dog_menu? ? "⭕️" : "❌" %></li>
+        <li>リードフックあり：<%= @shop.lead_hook? ? "⭕️" : "❌" %></li>
+      <ul>
 
-<% if @shop.posts.any? %>
-  <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
-    <div style="border-bottom: 1px solid #ddd; padding: 16px 0;">
-      <!-- ユーザー名と投稿日 -->
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div>
-          <strong style="font-size: 1.1em;">
-            <% if post.user.present? %>
-              <%= link_to post.user.name, user_path(post.user), style: "color: #0073bb; text-decoration: none;" %>
+      <!-- 平均評価 -->
+      <h4 class="h5 mt-4">平均評価</h4>
+      <p>
+        <% if @average_rating.present? %>
+          <% full = @average_rating.floor %>
+          <% frac = @average_rating - full %>
+
+          <% 5.times do |i| %>
+            <% if i < full %>
+              <span class="text-warning">★</span>
+            <% elsif i == full && frac >= 0.5 %>
+              <span class="text-warning">★</span>
             <% else %>
-              退会ユーザー
+              <span class="text-secondary;">★</span>
             <% end %>
-          </strong>
-          <span style="color: #888; font-size: 0.9em; margin-left: 6px;">
-            <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
-          </span>
+          <% end %>
+
+          <%= @average_rating %>点
+        <% else %>
+          まだ評価がありません
+        <% end %>
+      </p>
+
+      <!-- 店舗写真 -->
+      <% if @shop.images.attached? %>
+        <h4 class="h5 mt-4">店舗写真</h4>
+        <div class="d-flex flex-wrap gap-2">
+          <% @shop.images.each do |image| %>
+          <%= image_tag image, class: "img-fluid rounded", style: "max-width: 200px;" %>
+        <% end %>
         </div>
-
-        <% if post.user == current_user %>
-          <div style="font-size: 0.9em;">
-            <%= link_to "編集", edit_shop_post_path(@shop, post),
-                  style: "margin-right: 8px; color: #0073bb;" %>
-            <%= link_to "削除", shop_post_path(@shop, post),
-                  data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" },
-                  style: "color: #bb0000;" %>
-          </div>
-        <% end %>
-      </div>
-    
-      <!-- 評価表示 -->
-      <div style="margin: 6px 0; font-size: 0.95em;">
-        総合評価：
-        <% (1..5).each do |i| %>
-          <span style="color: <%= i <= (post.rating_overall || 0) ? 'gold' : '#ccc' %>;">★</span>
-        <% end %>
-        料理：
-        <% (1..5).each do |i| %>
-          <span style="color: <%= i <= (post.rating_food || 0) ? 'gold' : '#ccc' %>;">★</span>
-        <% end %>
-        犬連れやすさ：
-        <% (1..5).each do |i| %>
-          <span style="color: <%= i <= (post.rating_dog_friendliness || 0) ? 'gold' : '#ccc' %>;">★</span>
-        <% end %>
-      </div>
-
-      <% if post.dog_size.present? %>
-        <p style="margin: 4px 0;">🐶 一緒に行った犬のサイズ：
-          <%=
-            case post.dog_size
-            when "small" then "小型犬"
-            when "medium" then "中型犬"
-            when "large" then "大型犬"
-            else "未選択"
-            end
-          %>
-        </p>
-      <% end %>
-
-      <!-- コメント内容 -->
-      <div style="margin-top: 8px; line-height: 1.6;">
-
-        <% if post.images.attached? %>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;">
-            <% post.images.each do |image| %>
-              <%= image_tag image.variant(resize_to_limit: [250, 250]), style: "border-radius: 6px;" %>
-            <% end %>
-          </div>
-        <% end %>
-
-        <%= link_to shop_post_path(@shop, post),
-              style: "color: #333; text-decoration: none;" do %>
-          <%= simple_format(h(post.content)) %>
-        <% end %>
-      </div>
-
-      <% if post.visited_on.present? %>
-        <p>訪問日：<%= post.visited_on.strftime("%Y/%m/%d") %></p>
       <% end %>
 
     </div>
+  </div>
+
+  <!-- お気に入りボタン -->
+  <% if user_signed_in? %>
+    <% if current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+      <%= link_to shop_shop_favorite_path(@shop), 
+            data: { turbo_method: :delete, turbo_confirm: "お気に入りを解除しますか？" },
+            class: "btn btn-outline-danger mb-3" do %>
+        ♥ お気に入り解除
+      <% end %>
+    <% else %>
+      <%= link_to shop_shop_favorite_path(@shop), 
+            data: { turbo_method: :post },
+            class: "btn btn-outline-primary mb-3" do %>
+        ♡ お気に入り登録
+      <% end %>
+    <% end %>  
   <% end %>
-<% else %>
-  <p>まだ口コミはありません。</p>
-<% end %>
 
-<h2>新規投稿</h2>
+  <div class="mb-3">
+    <%= link_to "編集する", edit_shop_path %>
+    <%= link_to "一覧に戻る", shops_path(@shop) %>
+    <%= link_to "削除する", shop_path(@shop), 
+          data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
+          class: "btn btn-danger" %>
+  </div>
 
-<% if user_signed_in? %>
-  <%= render "posts/form", post: @shop.posts.build, shop: @shop %>
+  <hr>
 
-<% else %>
-  <p>コメントを投稿するにはログインが必要です。</p>
-<% end %>
 
-<hr>
+  <!-- 口コミ一覧 -->
+  <h3 class="h4 mt-4;">口コミ一覧</h3>
+
+  <% if @shop.posts.any? %>
+    <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
+    
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <!-- ユーザー名 & 投稿日 -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <strong>
+                <% if post.user.present? %>
+                  <%= link_to post.user.name, user_path(post.user), class: "text-primary text-decoration-none" %>
+                <% else %>
+                  退会ユーザー
+                <% end %>
+              </strong>
+              <span class="text-muted ms-2" style="font-size: 0.9em;">
+                <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </span>
+            </div>
+
+            <% if post.user == current_user %>
+              <div>
+                <%= link_to "編集", edit_shop_post_path(@shop, post), class: "text-primary me-2" %>
+                <%= link_to "削除", shop_post_path(@shop, post), 
+                      data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" },
+                      class: "text-danger" %>
+              </div>
+            <% end %>
+          </div>
+    
+          <!-- 評価表示 -->
+          <div class="mb-2">
+            総合評価：
+            <% (1..5).each do |i| %>
+              <span class="<%= i <= (post.rating_overall || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+            <% end %>
+            ／ 料理：
+            <% (1..5).each do |i| %>
+              <span class="<%= i <= (post.rating_food || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+            <% end %>
+            ／犬連れやすさ：
+            <% (1..5).each do |i| %>
+              <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+            <% end %>
+          </div>
+
+          <!-- 犬サイズ -->
+          <% if post.dog_size.present? %>
+            <p>🐶 一緒に行った犬のサイズ：
+              <%=
+                case post.dog_size
+                when "small" then "小型犬"
+                when "medium" then "中型犬"
+                when "large" then "大型犬"
+                else "未選択"
+                end
+              %>
+            </p>
+          <% end %>
+
+          <!-- コメント内容 -->
+          <div class="mt-2">
+            <% if post.images.attached? %>
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <% post.images.each do |image| %>
+                  <%= image_tag image.variant(resize_to_limit: [250, 250]), 
+                        class: "img-fluid rounded" %>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= link_to shop_post_path(@shop, post),
+                  class: "text-dark text-decoration-none" do %>
+              <%= simple_format(h(post.content)) %>
+            <% end %>
+          </div>
+
+          <% if post.visited_on.present? %>
+            <p class="mt-2">訪問日：<%= post.visited_on.strftime("%Y/%m/%d") %></p>
+          <% end %>
+
+        </div>
+      </div>
+
+    <% end %>
+  <% else %>
+    <p>まだ口コミはありません。</p>
+  <% end %>
+
+  <!-- 新規投稿 -->
+  <h2 class="h4 mt-5">新規投稿</h2>
+
+  <% if user_signed_in? %>
+    <%= render "posts/form", post: @shop.posts.build, shop: @shop %>
+  <% else %>
+    <p>コメントを投稿するにはログインが必要です。</p>
+  <% end %>
+
+</div>
