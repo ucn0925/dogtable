@@ -4,10 +4,40 @@ ja:
       signed_up: "アカウント登録が完了しました！"
       updated: "アカウント情報を更新しました！"
       destroyed: "アカウントを削除しました。"
+
     sessions:
       signed_in: "ログインしました！"
       signed_out: "ログアウトしました！"
+
     failure:
       unauthenticated: "ログインしてください。"
       invalid: "メールアドレスまたはパスワードが違います。"
-      not_found_in_databese: "メールアドレスまたはパスワードが違います。"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+  
+    shared:
+      minimum_password_length: "(%{count}文字以上)"
+
+  helpers:
+    label:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+      
+    submit:
+      user:
+        create: "新規登録"
+        update: "更新する"
+
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+  
+  errors:
+    messages:
+      too_short: "%{count}文字以上で入力してください"
