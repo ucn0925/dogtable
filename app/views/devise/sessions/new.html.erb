@@ -6,7 +6,7 @@
 
         <h2 class="mb-4 text-center">ログイン</h2>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
           <div class="mb-3">
             <%= f.label :email, "メールアドレス", class: "form-label" %>

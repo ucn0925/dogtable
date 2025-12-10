@@ -1,81 +1,112 @@
-<h2>プロフィール編集</h2>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <h2 class="mb-4 text-center">プロフィール編集</h2>
 
-  <div class ="field">
-    <%= f.label :name, "名前" %><br>
-    <%= f.text_field :name, autocomplete: "name" %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-  <div class="field">
-    <%= f.label :password, "新しいパスワード（変更する場合のみ）" %><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br>
-      <em><%= @minimum_password_length %>文字以上入力してください</em>
-    <% end %>
-  </div>
+            <!-- 名前 -->
+            <div class="mb-3">
+              <%= f.label :name, "名前", class: "form-label" %>
+              <%= f.text_field :name, class: "form-control", autocomplete: "name" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "新しいパスワード（確認用）" %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+            <!-- メールアドレス -->
+            <div class="mb-3">
+              <%= f.label :email, "メールアドレス", class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :current_password, "現在のパスワード（確認のため必須）" %><br>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+            <!-- 新しいパスワード -->
+            <div class="mb-3">
+              <%= f.label :password, "新しいパスワード（変更する場合のみ）", class: "form-label" %>
+              <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+              <% if @minimum_password_length %>
+                <small class="text-muted"><%= @minimum_password_length %>文字以上入力してください</small>
+              <% end %>
+            </div>
 
-  <div class="field">
-    <%= f.label :profile, "自己紹介" %><br>
-    <%= f.text_area :profile, row: 5 %>
-  </div>
+            <!-- パスワード確認 -->
+            <div class="mb-3">
+              <%= f.label :password_confirmation, "新しいパスワード（確認用）", class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :profile_image, "プロフィール画像" %><br>
-    <%= f.file_field :profile_image, accept: "image/*" %>
-  </div>
+            <!-- 現在のパスワード -->
+            <div class="mb-3">
+              <%= f.label :current_password, "現在のパスワード（確認のため必須）", class: "form-label" %>
+              <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password" %>
+              <small class="text-muted">※プロフィールを更新するために必要です</small>
+            </div>
 
-  <h3>愛犬情報</h3>
+            <!-- 自己紹介 -->
+            <div class="mb-3">
+              <%= f.label :profile, "自己紹介", class: "form-label" %>
+              <%= f.text_area :profile, rows: 5, class: "form-control" %>
+            </div>
 
-  <% resource.build_dog if resource.dog.nil? %>
-  <%= f.fields_for :dog do |d| %>
-    <div class="field">
-      <%= d.label :name, "犬の名前" %><br>
-      <%= d.text_field :name %>
+            <!-- プロフィール画像 -->
+            <div class="mb-3">
+              <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
+              <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+            </div>
+
+            <h4 class="mt-4 mb-3">愛犬情報</h4>
+
+            <% resource.build_dog if resource.dog.nil? %>
+            <%= f.fields_for :dog do |d| %>
+
+              <div class="mb-3">
+                <%= d.label :name, "犬の名前", class: "form-label" %>
+                <%= d.text_field :name, class: "form-control" %>
+              </div>
+
+              <div class="mb-3">
+                <%= d.label :breed, "犬種", class: "form-label" %>
+                <%= d.text_field :breed, class: "form-control" %>
+              </div>
+
+              <div class="mb-3">
+                <%= d.label :size, "犬のサイズ", class: "form-label" %>
+                <%= d.select :size, Dog.size_options, {}, class: "form-select" %>
+              </div>
+
+              <div class="mb-3">
+                <%= d.label :dog_image, "犬の写真", class: "form-label" %>
+                <%= d.file_field :dog_image, include_hidden: false, class: "form-control" %>
+              </div>
+
+            <% end %>
+
+            <div class="d-grid mt-4 mb-3">
+              <%= f.submit "更新する", class: "btn btn-primary" %>
+            </div>
+
+          <% end %>
+
+          <hr>
+
+          <!-- アカウント削除 -->
+          <div class="text-center">
+            <p class="text-muted">アカウントを削除しますか？</p>
+            <%= button_to "アカウントを削除する", registration_path(resource_name),
+                data: { confirm: "本当に削除しますか？" },
+                method: :delete,
+                class: "btn btn-outline-danger w-100" %>
+          </div>
+
+          <div class="text-center mt-3">
+            <%= link_to "戻る", mypage_path, class: "btn btn-secondary" %>
+          </div>
+
+
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= d.label :breed, "犬種" %><br>
-      <%= d.text_field :breed %>
-    </div>
-
-    <div class="field">
-      <%= d.label :size, "犬のサイズ" %><br>
-      <%= d.select :size, Dog.size_options %>
-    </div>
-
-    <div class="field">
-      <%= d.label :dog_image, "犬の写真" %><br>
-      <%= d.file_field :dog_image, include_hidden: false %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "更新する" %>
   </div>
-<% end %>
-
-<h3>アカウント削除</h3>
-<div>
-  <%= button_to "アカウントを削除する", registration_path(resource_name), 
-    data: { confirm: "本当に削除しますか？", turbo_confirm: "本当に削除しますか？" },
-    method: :delete, class: "btn-danger" %>
 </div>
-
-<%= link_to "戻る", mypage_path, class: "btn-back" %>
