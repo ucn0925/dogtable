@@ -1,108 +1,190 @@
-<h1><%= @user.name %>さんのマイページ</h1>
+<div class="container py-4">
+  <div class="card mb-4">
+    <div class="card-body text-center">
+      <h2 class="mb-3"><%= @user.name %>さんのマイページ</h2>
 
-<p>
-  フォロー中：
-  <%= link_to "#{@user.followings.count}人", followings_user_path(@user) %>
-  ／
-  フォロワー：
-  <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
-</p>
+      <p>
+        フォロー中：
+        <%= link_to "#{@user.followings.count}人", followings_user_path(@user) %>
+        ／
+        フォロワー：
+        <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
+      </p>
 
-<div style="margin: 20px 0;">
-  <%= link_to "タイムラインを見る", timeline_path,
-      class: "btn btn-primary",
-      style: "background-color: #0073bb; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;" %>
-</div>
+      <%= link_to "タイムラインを見る", 
+          timeline_path,
+          class: "btn btn-primary mt-2" %>
+    </div>
+  </div>
 
-<p>
-  💬投稿数：<%= @posts.count %>件<br>
-  ♡お気に入り店舗数：<%= @favorites.count %>件<br>
-  ⭐️平均評価：
-  <% if @posts.any? %>
-    <% avg = @posts.average(:rating_overall).to_f.round(1) %>
-    <% full = avg.floor %>
-    <% frac = avg - full %>
+  <div class="card mb-4">
+    <div class="card-body">
 
-    <%= avg %>
-    <% 5.times do |i| %>
-      <% if i <full %>
-        <span style="color: gold;">★</span>
-      <% elsif i == full && frac >= 0.5 %>
-        <span style="color: gold;">☆</span>
-      <% else %>
-        <span style="color: #ccc;">★</span>
-      <% end %>
-    <% end %>
-  <% else %>
-    投稿なし
-  <% end %>
-</p>
+      <h3 class="card-title">アクティビティ</h3>
 
-<hr>
+      <p class="mb-1">💬投稿数：<strong><%= @posts.count %></strong>件</p>
+      <p class="mb-1">♡お気に入り店舗数：<strong><%= @favorites.count %></strong>件</p>
 
-<h2>プロフィール</h2>
-<p>自己紹介：<%= @user.profile.presence || "未設定" %></p>
+      <p class="mb-0">
+        ⭐️平均評価：
+        <% if @posts.any? %>
+          <% avg = @posts.average(:rating_overall).to_f.round(1) %>
+          <% full = avg.floor %>
+          <% frac = avg - full %>
 
-<% if @user.profile_image.attached? %>
-  <%= image_tag @user.profile_image, size: "150x150", class: "rounded-full" %>
-<% else %>
-  <p>プロフィール画像はまだ設定されていません。</p>
-<% end %>
-
-<%= link_to "プロフィールを編集する", edit_user_registration_path, class: "btn" %>
-
-<hr>
-
-<h2>愛犬情報</h2>
-<% if @user.dog.present? %>
-  <p>犬の名前：<%= @user.dog.name %></p>
-  <p>犬種：<%= @user.dog.breed %></p>
-  <p>犬のサイズ：<%= @user.dog.size_jp %></p>
-
-  <% if @user.dog.dog_image.attached? %>
-    <%= image_tag @user.dog.dog_image, size: "200x200" %>
-  <% else %>
-    <p>愛犬の写真はまだ登録されていません。</p>
-  <% end %>
-<% else %>
-  <p>愛犬情報はまだ登録されていません。</p>
-<% end %>
-
-<hr>
-
-<h2>お気に入り店舗一覧</h2>
-<% if @favorites.any? %>
-  <ul>
-    <% @favorites.each do |favorite| %>
-        <li>
-          <%= link_to favorite.shop.name, shop_path(favorite.shop) %>
-        </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>お気に入り登録した店舗はまだありません。</p>
-<% end %>
-
-<hr>
-
-<h2>投稿一覧</h2>
-<% if @posts.any? %>
-  <ul>
-    <% @posts.each do |post| %>
-        <li style="margin-bottom: 12px;">
-          <strong><%= link_to post.shop.name, shop_path(post.shop) %></strong><br>
-          投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
-          評価：
-          <% (1..5).each do |i| %>
-            <span style="color: <%= i <= (post.rating_overall || 0) ? 'gold' : '#ccc' %>;" >★</span>
+          <strong><%= avg %></strong>
+          <% 5.times do |i| %>
+            <% if i <full %>
+              <span class="text-warning">★</span>
+            <% elsif i == full && frac >= 0.5 %>
+              <span class="text-warning">☆</span>
+            <% else %>
+              <span class="text-muted">★</span>
+            <% end %>
           <% end %>
-          <br>
-          <%= simple_format(post.content) %>       
-        </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>投稿はまだありません。</p>
-<% end %>
+        <% else %>
+          投稿なし
+        <% end %>
+      </p>
+
+    </div>
+  </div>
+
+<hr>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">プロフィール</h3>
+
+      <div class="row align-items-center">
+        <div class="col-md-9">
+          <p class="mb-2">
+            <strong>自己紹介</strong><br>
+            <%= @user.profile.presence || "未設定" %>
+          </p>
+
+          <%= link_to "プロフィールを編集する", 
+              edit_user_registration_path, 
+              class: "btn btn-outline-secondary btn-sm" %>
+        </div>
+      
+        <div class="col-md-3 text-center">
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, 
+                size: "150x150", 
+                class: "img-fluid rounded-circle mb-2" %>
+          <% else %>
+            <p class="text-muted">画像未設定</p>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+<hr>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">愛犬情報</h3>
+
+      <div class="row align-items-center">
+        <div class="col-md-9">
+          <% if @user.dog.present? %>
+            <p><strong>犬の名前：</strong><%= @user.dog.name %></p>
+            <p><strong>犬種：</strong><%= @user.dog.breed %></p>
+            <p><strong>犬のサイズ：</strong><%= @user.dog.size_jp %></p>
+          <% else %>
+            <p class="text-muted">愛犬情報はまだ登録されていません。</p>
+          <% end %>
+        </div>
+
+        <div class="col-md-3 text-center">
+          <% if @user.dog&.dog_image&.attached? %>
+            <%= image_tag @user.dog.dog_image, 
+                class: "img-fluid rounded-circle mb-2" %>
+          <% else %>
+            <p>写真なし</p>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+<hr>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">お気に入り店舗一覧</h3>
+        <% if @favorites.any? %>
+          <ul class="list-group list-group-flush">
+            <% @favorites.each do |favorite| %>
+              <li class="list-group-item">
+                <%= link_to favorite.shop.name, 
+                    shop_path(favorite.shop),
+                    class: "text-decoration-none" %>
+              </li>
+           <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted mb-0">お気に入り登録した店舗はまだありません。</p>
+        <% end %>
+
+    </div>
+  </div>
+
+<hr>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">投稿一覧</h3>
+
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>
+          <div class="card mb-3">
+            <div class="card-body">
+
+              <h5 class="card-title mb-1">
+                <%= link_to post.shop.name, shop_path(post.shop),
+                    class: "text-decoration-none" %>
+              </h5>
+
+              <p class="text-muted mb-2">
+                投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </p>
+
+              <p class="mb-2">
+                評価：
+                <% (1..5).each do |i| %>
+                  <span class="<%= i <= (post.rating_overall || 0) ? 'text-warning' : 'text-muted' %>">
+                    ★
+                  </span>
+                <% end %>
+              </p>
+
+              <% if post.content.present? %>
+                <div class="mt-2 p-3 bg-light rounded">
+                  <small class="text-muted d-block mb-1">コメント</small>
+                  <p class="mb-0">
+                    <%= truncate(post.content, length: 80) %>
+                  </p>
+                </div>
+              <% end %>
+ 
+            </div>
+          </div>
+        <% end %>
+  
+      <% else %>
+        <p class="text-muted mb-0">投稿はまだありません。</p>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
 
    
