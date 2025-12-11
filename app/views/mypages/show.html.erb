@@ -168,9 +168,16 @@
               <% if post.content.present? %>
                 <div class="mt-2 p-3 bg-light rounded">
                   <small class="text-muted d-block mb-1">コメント</small>
-                  <p class="mb-0">
+
+                  <p class="mb-1">
                     <%= truncate(post.content, length: 80) %>
                   </p>
+
+                  <div class="text-end">
+                    <%= link_to "投稿詳細を見る →",
+                        shop_post_path(post.shop, post),
+                        class: "small text-decoration-none" %>
+                  </div>
                 </div>
               <% end %>
  
