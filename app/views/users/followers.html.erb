@@ -1,59 +1,56 @@
-<h2><%= @user.name %>さんをフォローしているユーザー</h2>
+<div class="container mt-4">
 
-<% if @users.any? %>
-  <ul style="list-style: none; padding: 0;"> 
+  <h2 class="mb-4"><%= @user.name %>さんをフォローしているユーザー</h2>
 
-    <% @users.each do |u| %>
-      <li style="
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 5px;
-        border-bottom: 1px solid #eee;
-      ">
+  <% if @users.any? %>
+    <div class="list-group"> 
 
-        <div style="display: flex; align-items: center; gap: 12px">
-          <% if u.profile_image.attached? %>
-            <%= image_tag u.profile_image.variant(resize_to_fill: [50, 50]), 
-                style: "border-radius: 50%; border: 1px solid #ccc;" %>
-          <% else %>
-            <%= image_tag "no_image.png", 
-                size: "50x50", 
-                style: "margin-right: 10px; border: 1px solid #ccc;" %>
-          <% end %>
+      <% @users.each do |u| %>
+        <div class="list-group-item d-flex justify-content-between align-items-center py-3">
 
-          <%= link_to u.name, user_path(u), 
-              style: "font-size: 16px; font-weight: bold; color: #333;" %>
+          <!-- 左側（アイコン ＋ 名前） -->
+          <div class="d-flex align-items-center">
+
+            <% if u.profile_image.attached? %>
+              <%= image_tag u.profile_image.variant(resize_to_fill: [50, 50]), 
+                  class: "rounded-circle me-3 border",
+                  style: "width: 50px; height: 50px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "no_image.png", 
+                  class: "rounded-circle me-3 border", 
+                  style: "width: 50px; height: 50px; object-fit: cover;" %>
+            <% end %>
+
+            <%= link_to u.name, user_path(u), 
+                class: "fw-bold text-decoration-none text-dark" %>
+          </div>
+
+          <!-- 右側（フォローボタン） -->
+          <div>
+            <% if current_user.following?(u) %>
+              <% rel = current_user.active_relationships.find_by(followed_id: u.id) %>
+              <%= button_to "フォロー解除",
+                    user_relationship_path(current_user, rel.id),
+                    method: :delete,
+                    class: "btn btn-outline-secondary btn-sm",
+                    data: { turbo: false } %>
+                  
+            <% else %>
+
+                <%= button_to "フォローする",
+                      user_relationships_path(current_user, followed_id: u.id),
+                      method: :post,
+                      class: "btn btn-primary btn-sm",
+                      data: { turbo: false } %>
+              
+            <% end %>
+          </div>
+
         </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>フォロワーはいません。</p>
+  <% end %>
 
-        <div>
-          <% if current_user.following?(u) %>
-            <% rel = current_user.active_relationships.find_by(followed_id: u.id) %>
-            <%= button_to "フォロー解除",
-                  user_relationship_path(current_user, rel.id),
-                  method: :delete,
-                  data: { turbo: false },
-                  style: "padding: 6px 10px;
-                          background: #ddd;
-                          border-radius: 6px;
-                          border: none;
-                          color: #333;" %>
-          <% else %>
-              <%= button_to "フォローする",
-                    user_relationships_path(current_user, followed_id: u.id),
-                    method: :post,
-                    data: { turbo: false },
-                    style: "padding: 6px 10px;
-                            background: #0095f6;
-                            color: white;
-                            border-radius: 6px;
-                            border: none;" %>
-          <% end %>
-        </div>
-
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>フォロワーはいません。</p>
-<% end %>
+</div>
