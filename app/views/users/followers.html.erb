@@ -40,7 +40,7 @@
                           color: #333;" %>
           <% else %>
               <%= button_to "フォローする",
-                    user_relationshis_path(current_user, followed_id: u.id),
+                    user_relationships_path(current_user, followed_id: u.id),
                     method: :post,
                     data: { turbo: false },
                     style: "padding: 6px 10px;

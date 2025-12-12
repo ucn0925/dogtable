@@ -9,8 +9,8 @@
         <!-- ユーザー名 -->
         <div class="d-flex align-items-center mb-2">
           <!-- アイコン -->
-          <% if post.user.respond_to?(:avatar) && post.user.avatar.attached? %>
-            <%= image_tag post.user.avatar.variant(resize_to_fill: [40, 40]),
+          <% if post.user.profile_image.attached? %>
+            <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
                   class: "rounded-circle me-2",
                   style: "width: 40px; height: 40px; object-fit: cover;" %>
           <% else %>
