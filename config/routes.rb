@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     resources :posts, only: [:create, :destroy, :edit, :update, :show] do
       member do
+        get :photos
         delete :destroy_image
       end
       resource :post_favorite, only: [:create, :destroy]

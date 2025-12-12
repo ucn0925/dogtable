@@ -16,6 +16,11 @@ class PostsController < ApplicationController
     @post = @shop.posts.find(params[:id])
   end
 
+  def photos
+    @shop = Shop.find(params[:shop_id])
+    @post = @shop.posts.find(params[:id])
+  end
+
   def destroy
     @post = Post.find(params[:id])
     if @post.user == current_user

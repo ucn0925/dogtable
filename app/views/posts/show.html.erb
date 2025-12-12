@@ -120,18 +120,20 @@
 
     <!-- 投稿画像 -->
     <% if @post.images.attached? %>
-      <div class="mt-4">
-        <div class="row g-3">
-          <% @post.images.each do |image| %>
-            <div class="col-6 col-md-4">
-              <div class="p-1 bg-light rounded shadow-sm">
-                <%= image_tag image.variant(resize_to_limit: [250, 250]),
-                      class: "img-fluid rounded" %>
-              </div>
-            </div>
+      <div class="d-flex gap-2 mt-3">
+        <% @post.images.first(2).each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [250, 250]),
+                class: "img-fluid rounded shadow-sm" %>
         <% end %>
-        </div>
       </div>
+
+      <% if @post.images.count > 2 %>
+        <div class="mt-2">
+          <%= link_to "写真をもっと見る（#{@post.images.count}枚）",
+              photos_shop_post_path(@shop, @post),
+              class: "btn btn-outline-secondary btn-sm" %>
+        </div>
+      <% end %>
     <% end %>
 
     </div>

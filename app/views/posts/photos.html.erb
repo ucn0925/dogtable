@@ -1,0 +1,17 @@
+<div class="container py-4">
+
+  <h3>写真一覧</h3>
+
+  <%=link_to "← 投稿詳細に戻る", shop_post_path(@shop, @post),
+       class: "text-primary" %>
+  
+  <div class="row g-3 mt-3">
+    <% @post.images.each do |image| %>
+      <div class="col-6 col-md-4">
+        <%= image_tag image.variant(resize_to_limit: [600, 600]),
+              class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
