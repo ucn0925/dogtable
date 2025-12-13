@@ -42,7 +42,7 @@ function initMap() {
     }
 
     if (typeof shops !== "undefined") {
-        shops.forEach((shop) => {
+        window.shops.forEach((shop) => {
             if (shop.latitude && shop.longitude) {
 
                 const marker = new google.maps.Marker({
@@ -53,11 +53,7 @@ function initMap() {
 
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
-                      <div style="
-                        font-size: 14px;
-                        line-height: 1.5;
-                        padding: 6px 4px;
-                      ">
+                      <div style="font-size: 14px; line-height: 1.5; padding: 6px 4px;">
                         <div style="font-weight: bold; font-size: 15px; margin-bottom: 2px;">
                           ${shop.name}
                         </div>
@@ -72,9 +68,7 @@ function initMap() {
                 });
 
                 marker.addListener("mouseover", () => {
-                    if (openInfoWindow) {
-                        openInfoWindow.close();
-                    }
+                    if (openInfoWindow) openInfoWindow.close();
                     infoWindow.open({
                         anchor: marker,
                         map,
@@ -98,7 +92,7 @@ function geocodeAddress() {
     if (!address) return;
 
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: address }, function(results, status) {
+    geocoder.geocode({ address: address }, (results, status) => {
         if (status === "OK") {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
@@ -114,10 +108,12 @@ function geocodeAddress() {
 }
 
 document.addEventListener("turbo:load", () => {
-    const addressField = document.getElementById("shop-address");
-    if (addressField) {
-        addressField.addEventListener("change", geocodeAddress);
+    if (document.getElementById("map") && window.google) {
+        initMap();
     }
+
+    const addressField = document.getElementById("shop-address");
+    if (addressField) addressField.addEventListener("change", geocodeAddress);
 });
 
 window.initMap = initMap;
