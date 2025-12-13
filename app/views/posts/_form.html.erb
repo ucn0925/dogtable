@@ -2,48 +2,79 @@
 
 <%= form_with(model: [shop, post], local: true) do |f| %>
 
-    <div>
-      <%= f.label :rating_overall, "総合評価" %><br>
-      <%= f.select :rating_overall, options_for_select(1..5, post.rating_overall), prompt: "選択してください" %>
+  <!-- 総合評価 -->
+  <div class="mb-3">
+    <%= f.label :rating_overall, "総合評価", class: "form-label" %>
+    <%= f.select :rating_overall, 
+        options_for_select(1..5, post.rating_overall), 
+        { prompt: "選択してください" },
+        class: "form-select"
+    %>
+  </div>
+
+  <!-- 料理の評価 -->
+  <div class="mb-3">
+    <%= f.label :rating_food, "料理の評価", class: "form-label" %>
+    <%= f.select :rating_food, 
+        options_for_select(1..5, post.rating_food), 
+        { prompt: "選択してください" },
+        class: "form-select" 
+    %>
+  </div>
+
+  <!-- 犬連れやすさ -->
+  <div class="mb-3">
+    <%= f.label :rating_dog_friendliness, "犬連れやすさ", class: "form-label" %>
+    <%= f.select :rating_dog_friendliness, 
+        options_for_select(1..5, post.rating_dog_friendliness), 
+        { prompt: "選択してください" },
+        class: "form-select" 
+    %>
+  </div>
+
+  <!-- 犬のサイズ-->
+  <div class="mb-3">
+      <p class="form-label">一緒に行った犬のサイズ</p>
+      
+      <div class="form-check">
+        <%= f.radio_button :dog_size, :small, class: "form-check-input", id: "dog_size_small" %>
+        <%= f.label :dog_size_small, "小型犬", class: "form-check-label" %>
+      </div>
+
+      <div class="form-check">
+        <%= f.radio_button :dog_size, :medium, class: "form-check-input", id: "dog_size_medium" %>
+        <%= f.label :dog_size_medium, "中型犬", class: "form-check-label" %>
+      </div>
+
+      <div class="form-check">
+        <%= f.radio_button :dog_size, :large, class: "form-check-input", id: "dog_size_large" %>
+        <%= f.label :dog_size_large, "大型犬", class: "form-check-label" %>
+      </div>
     </div>
 
-    <div>
-      <%=  f.label :rating_food, "料理の評価" %><br>
-      <%= f.select :rating_food, options_for_select(1..5, post.rating_food), prompt: "選択してください" %>
+    <!-- コメント -->
+    <div class="mb-3">
+      <%= f.label :content, "コメント", class: "form-label" %>
+      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください", class: "form-control" %>
     </div>
 
-    <div>
-      <%= f.label :rating_dog_friendliness, "犬連れやすさ" %><br>
-      <%= f.select :rating_dog_friendliness, options_for_select(1..5, post.rating_dog_friendliness), prompt: "選択してください" %>
+    <!-- 写真アップロード -->
+    <div class="mb-3">
+      <%= f.label :images, "写真をアップロード（複数可）", class: "form-label" %>
+      <%= f.file_field :images, multiple: true, accept: "image/*", class: "form-control" %>
     </div>
 
-    <diV style="margin-top: 12px;">
-      <p>一緒に行った犬のサイズ</p>
-      <%= f.radio_button :dog_size, :small %>
-      <%= f.label :dog_size_small, "小型犬" %><br>
-
-      <%= f.radio_button :dog_size, :medium %>
-      <%= f.label :dog_size_medium, "中型犬" %><br>
-
-      <%= f.radio_button :dog_size, :large %>
-      <%= f.label :dog_size_large, "大型犬" %>
+    <!-- 訪問日 -->
+    <div class="mb-3">
+      <%= f.label :visited_on, "訪問日", class: "form-label"%>
+      <%= f.date_field :visited_on, class: "form-control" %>
     </div>
 
-    <div style="margin: 8px 0;">
-      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください" %>
+    <!-- ボタン -->
+    <div class="mt-3">
+      <%= f.submit (post.persisted? ? "更新する" : "投稿する"),
+            class: "btn btn-primary w-100" %>
     </div>
-
-    <div style="margin-top: 12px;">
-      <%= f.label :images, "写真をアップロード（複数可）" %><br>
-      <%= f.file_field :images, multiple: true, accept: "image/*" %>
-    </div>
-
-    <div style="margin-top: 12px;">
-      <%= f.label :visited_on, "訪問日" %><br>
-      <%= f.date_field :visited_on %>
-    </div>
-
-    <%= f.submit post.persisted? ? "更新する" : "投稿する"%>
 
 <% end %>
 
