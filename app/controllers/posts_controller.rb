@@ -40,10 +40,6 @@ class PostsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @post = @shop.posts.find(params[:id])
 
-    if params[:post][:images].present? && params[:post][:images].reject(&:blank?).empty?
-      params[:post].delete(:images)
-    end
-
     if @post.update(post_params)
       redirect_to shop_path(@shop), notice: "コメントを更新しました"
     else

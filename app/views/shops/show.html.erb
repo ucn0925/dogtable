@@ -52,11 +52,19 @@
       <!-- 店舗写真 -->
       <% if @shop.images.attached? %>
         <h4 class="h5 mt-4">店舗写真</h4>
-        <div class="d-flex flex-wrap gap-2">
+
+        <div class="d-flex flex-wrap gap-2 mb-2">
           <% @shop.images.each do |image| %>
-          <%= image_tag image, class: "img-fluid rounded", style: "max-width: 200px;" %>
-        <% end %>
+            <%= link_to url_for(image), 
+                  class: "glightbox",
+                  data: { gallery: "shopt-#{@shop.id}" } do %>
+              <%= image_tag image.variant(resize_to_fill: [250, 250]), 
+                    class: "rounded", 
+                    style: "width: 250px; height:250px; object-fit: cover;" %>
+            <% end %>
+          <% end %>
         </div>
+
       <% end %>
 
     </div>
@@ -159,8 +167,13 @@
             <% if post.images.attached? %>
               <div class="d-flex flex-wrap gap-2 mb-2">
                 <% post.images.each do |image| %>
-                  <%= image_tag image.variant(resize_to_limit: [250, 250]), 
-                        class: "img-fluid rounded" %>
+                  <%= link_to url_for(image), 
+                        class: "glightbox",
+                        data: { gallery: "post-#{post.id}" } do %>
+                    <%= image_tag image.variant(resize_to_fill: [250, 250]), 
+                        class: "rounded",
+                        style: "width: 250px; height: 250px; object-fit: cover;" %>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
@@ -187,7 +200,12 @@
   <h2 class="h4 mt-5">新規投稿</h2>
 
   <% if user_signed_in? %>
-    <%= render "posts/form", post: @shop.posts.build, shop: @shop %>
+
+    <% new_post = @shop.posts.build %>
+
+    <%= form_with(model: [@shop, new_post], local: true) do |f| %>
+      <%= render "posts/form", post:new_post, shop: @shop, f: f %>
+    <% end %>
   <% else %>
     <p>コメントを投稿するにはログインが必要です。</p>
   <% end %>

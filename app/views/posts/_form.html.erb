@@ -1,7 +1,5 @@
 <%# app/views/posts/_form.html.erb %>
 
-<%= form_with(model: [shop, post], local: true) do |f| %>
-
   <!-- 総合評価 -->
   <div class="mb-3">
     <%= f.label :rating_overall, "総合評価", class: "form-label" %>
@@ -70,11 +68,4 @@
       <%= f.date_field :visited_on, class: "form-control" %>
     </div>
 
-    <!-- ボタン -->
-    <div class="mt-3">
-      <%= f.submit (post.persisted? ? "更新する" : "投稿する"),
-            class: "btn btn-primary w-100" %>
-    </div>
-
-<% end %>
-
+    

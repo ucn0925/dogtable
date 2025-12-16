@@ -1,29 +1,65 @@
-<h2>投稿を編集する</h2>
+<div class="container mt-4">
+  <div class="row-justify-content-center">
+    <div class="col-md-8 col-lg-6">
 
-<%= render "form", post: @post, shop: @shop %>
+      <!-- 編集タイトル -->
+      <h2 class="text-center mb-4">投稿を編集する</h2>
 
-<% if @post.images.attached? %>
-  <h3 style="margin-top: 24px;">投稿済みの画像</h3>
+      <%= form_with(model: [@shop, @post], local: true) do |f| %>
 
-  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <% @post.images.each do |image| %>
-        <div style="position: relative; display: inline-block;">
-          <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+        <div class="card shadow-sm p-4 mb-4">
 
-          <%= link_to "削除",
-                destroy_image_shop_post_path(@post.shop, @post, image_id: image.id),
-                data: { turbo_method: :delete, turbo_confirm: "この画像を削除しますか？"},
-                style: "position: absolute; top: 6px; right: 6px;
-                        background: rgba(220, 53, 69, 0.9); color: #fff;
-                        padding: 3px 8px; border-radius: 6px;
-                        text-decoration: none;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.2)" %>
+          <!-- 入力フォーム -->  
+          <%= render "form", post: @post, shop: @shop, f: f %>
+
+          <!-- 投稿済み画像 -->
+          <% if @post.images.attached? %>
+            <div class="card p-3 shadow-sm mb-4">
+              <h5 class="mb-3">投稿済みの画像</h3>
+
+              <div class="row g-3">
+                <% @post.images.each do |image| %>
+                  <div class="col-6 col-md-4">
+                    <div class="position-relative">
+
+                      <%= image_tag image.variant(resize_to_limit: [200, 200]),
+                            class: "img-fluid rounded" %>
+
+                      <%= link_to(
+                            destroy_image_shop_post_path(@post.shop, @post, image_id: image.id),
+                            {
+                              data: { 
+                                turbo_method: :delete, 
+                                turbo_confirm: "この画像を削除しますか？"
+                              },
+                              class: "btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center position-absolute",
+                              style: "top: -8px; right: -8px; width: 26px; height: 26px; padding: 0;"
+                            }
+                          ) do %>
+                        ×
+                      <% end %>                  
+
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- ボタン専用フォーム -->
+          <div class="mt-3">
+            <%= f.submit "更新する", class: "btn btn-primary w-100" %>
+          </div>
+
         </div>
-    <% end %>
+      
+      <% end %>
+
+      <!-- 戻るリンク -->
+      <div class="text-center">
+        <%= link_to "戻る", shop_path(@shop), class: "btn btn-outline-secondary" %>
+      </div>
+
+    </div>
   </div>
-<% end %>
-
-
-
-
-<%= link_to "戻る", shop_path(@shop) %>
+</div>

@@ -8,6 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+   <!-- GLightbox CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+   <!-- Glightbox JS -->
+   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   </head>
 
   <body>
@@ -35,6 +41,18 @@
     <% end %>
 
     <%= yield %>
+
+    <script>
+    document.addEventListener("turbo:load", () => {
+      if (window.GLightbox) {
+        GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true, 
+          loop: true
+        });
+      }
+    });
+    </script>
       
     </body>
 </html>
