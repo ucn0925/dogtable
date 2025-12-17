@@ -88,15 +88,25 @@
   <% end %>
 
   <div class="mb-3">
-    <%= link_to "編集する", edit_shop_path %>
     <%= link_to "一覧に戻る", shops_path(@shop) %>
-    <%= link_to "削除する", shop_path(@shop), 
-          data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
-          class: "btn btn-danger" %>
+  </div>
+
+  <div class="card mb-4 border-secondary">
+    <div class="card-body">
+      <small class="text-muted d-block mb-2">この店舗の管理</small>
+      
+      <%= link_to "店舗情報を編集", 
+            edit_shop_path,
+            class: "btn btn-outline-secondary btn-sm me-2" %>
+
+      <%= link_to "店舗を削除", 
+            shop_path(@shop), 
+            data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
+            class: "btn btn-danger btn-sm" %>
+    </div>
   </div>
 
   <hr>
-
 
   <!-- 口コミ一覧 -->
   <div class="d-flex justify-content-between align-items-center mt-4">
