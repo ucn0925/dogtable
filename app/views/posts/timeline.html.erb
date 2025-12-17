@@ -3,7 +3,13 @@
 
   <% if @posts.any? %>
     <% @posts.each do |post| %>
-      <div class="card mb-4 shadow-sm"">
+      <div class="card mb-4 shadow-sm position-relative">
+
+        <!-- カード全体クリック用リンク -->
+        <%= link_to shop_post_path(post.shop, post),
+              class: "stretched-link" do %>
+        <% end  %>
+
         <div class="card-body">
 
         <!-- ユーザー名 -->

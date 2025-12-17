@@ -122,8 +122,13 @@
   <% if @shop.posts.any? %>
     <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
     
-      <div class="card mb-3">
+      <div class="card mb-3 position-relative">
         <div class="card-body">
+
+          <!-- カード全体クリック -->
+          <%= link_to shop_post_path(@shop, post),
+                class: "stretched-link" do %>
+          <% end %>
 
           <!-- ユーザー名 & 投稿日 -->
           <div class="d-flex justify-content-between align-items-center mb-2">
