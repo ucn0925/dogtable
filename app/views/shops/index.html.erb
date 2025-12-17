@@ -37,10 +37,44 @@
     <!-- 検索結果がある場合 -->
     <% if @shops.any? %>
       <% @shops.each do |shop| %>
-        <div class="carf mb-3 p-3">
-          <h2 class="h5"><%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %></h2>
-          <p><%= shop.address %></p>
-          <p><%= shop.genre.name %> ／ <%= shop.block.name %></p>
+        <div class="card mb-3 p-3 px-4 mx-auto" style="max-width: 700px;">
+          <div class="d-flex align-items-start" style="gap:30px;">
+
+          <!-- サムネイル写真 -->
+          <% if shop.images.attached? %>
+            <%= image_tag shop.images.first.variant(resize_to_fill: [120, 120]),
+                  class: "rounded",
+                  style: "width: 120px; height: 120px; object-fit: cover;" %>
+          <% else %>
+            <div style=
+              "width:120px; 
+              height:120px; 
+              background: #eee; 
+              border-radius:8px;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              color:#999;
+              font-size:12px;
+            ">
+              NO IMAGE
+            </div>
+          <% end %>
+
+          <!-- 店舗情報 -->
+          <div>
+            <h2 class="h5 mb-1">
+              <%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %>
+            </h2>
+            <p class="mb-1"><%= shop.address %></p>
+            <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
+            <p class="text-muted">
+              ♡ <%= shop.shop_favorites.count %>
+              💬 <%= shop.posts.count %>
+            </p>
+          </div>
+
+          </div>
         </div>
       <% end %>
 
@@ -54,11 +88,43 @@
     <% else %>
       <!-- 検索していないとき（通常の一覧表示） -->
       <% @shops.each do |shop| %>
-        <div class="card mb-3 p-3">
-          <h2 class="h5"><%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %></h2>
-          <p><%= shop.address %></p>
-          <p><%= shop.genre.name %> ／ <%= shop.block.name %></p>
-          <p>♡ <%= shop.shop_favorites.count %> 💬 <%= shop.posts.count %></p>
+        <div class="card mb-3 p-3 px-4 mx-auto" style="max-width: 700px;">
+          <div class="d-flex align-items-start" style="gap:30px;">
+
+            <!-- サムネイル写真 -->
+            <% if shop.images.attached? %>
+              <%= image_tag shop.images.first.variant(resize_to_fill: [120, 120]),
+                    class: "rounded",
+                    style: "width:120px; height:120px; object-fit: cover;" %>
+            <% else %>
+              <!-- 画像がないときのダミー -->
+              <div style="
+                width:120px; 
+                height:120px; 
+                background:#eee; 
+                border-radius: 8px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#999;
+                font-size:12px;
+              ">
+                NO IMAGE
+              </div>
+            <% end %>
+          
+
+          <!-- 店舗情報 -->
+          <div>
+            <h2 class="h5 mb-1">
+              <%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %>
+            </h2>
+            <p class="mb-1"><%= shop.address %></p>
+            <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
+            <p class="text-muted">♡ <%= shop.shop_favorites.count %> 💬 <%= shop.posts.count %></p>
+          </div>
+
+          </div>
         </div>
       <% end %>
 
