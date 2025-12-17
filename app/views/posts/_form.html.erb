@@ -68,4 +68,9 @@
       <%= f.date_field :visited_on, class: "form-control" %>
     </div>
 
+    <!-- 送信ボタン -->
+    <div class="mt-4 d-grid gap-2">
+      <%= f.submit post.new_record? ? "投稿する" : "更新する",
+            class: "btn btn-primary btn-lg" %>
+    </div>
     
