@@ -99,7 +99,15 @@
 
 
   <!-- 口コミ一覧 -->
-  <h3 class="h4 mt-4;">口コミ一覧</h3>
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <h3 class="h4 mt-4;">口コミ一覧</h3>
+
+    <% if user_signed_in? %>
+      <a href="#new-post" class="btn btn-outline-primary btn-sm">
+        ＋ 口コミを投稿する
+      </a>
+    <% end %>
+  </div>
 
   <% if @shop.posts.any? %>
     <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
@@ -197,17 +205,20 @@
   <% end %>
 
   <!-- 新規投稿 -->
-  <h2 class="h4 mt-5">新規投稿</h2>
+  <div class="card mt-5" id="new-post">
+    <div class="card-body">
+      <h2 class="h4 mb-3">口コミを投稿する</h2>
 
-  <% if user_signed_in? %>
+      <% if user_signed_in? %>
+        <% new_post = @shop.posts.build %>
 
-    <% new_post = @shop.posts.build %>
-
-    <%= form_with(model: [@shop, new_post], local: true) do |f| %>
-      <%= render "posts/form", post:new_post, shop: @shop, f: f %>
-    <% end %>
-  <% else %>
-    <p>コメントを投稿するにはログインが必要です。</p>
-  <% end %>
+        <%= form_with(model: [@shop, new_post], local: true) do |f| %>
+          <%= render "posts/form", post:new_post, shop: @shop, f: f %>
+        <% end %>
+      <% else %>
+        <p>口コミを投稿するにはログインが必要です。</p>
+      <% end %>
+    </div>
+  </div>
 
 </div>
