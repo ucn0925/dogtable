@@ -1,5 +1,18 @@
-<h1>店舗登録</h1>
+<div class="container mt-5 mb-5>"
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
 
-<%= render "form", shop: @shop %>
+      <div class="card shadow-sm mt-3">
+        <div class="card-body">
+          <h1 class="h4 mb-4 text-center">店舗登録</h1>
+
+          <%= render "form", shop: @shop %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %> " async defer></script>

@@ -1,9 +1,11 @@
 <%# app/views/shops/_form.html.erb %>
 
 <% if shop.errors.any? %>
-  <div style="color: red; margin-bottom: 20px;">
-    <h4><%= shop.errors.count %>件のエラーがあります：</h4>
-    <ul>
+  <div class="alert alert-danger mb-4">
+    <h5 class="mb-2">
+      <%= shop.errors.count %>件のエラーがあります
+    </h5>
+    <ul class="mb-0">
       <% shop.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
@@ -12,76 +14,125 @@
 <% end %>
 
 <%= form_with model: shop, local: true do |f| %>
-    <div style="margin-bottom: 10px;">
-      <%= f.label :name, "店名" %><span style="color:red;"> *</span><br>
-      <%= f.text_field :name %>
-    </div>
+  <!-- 店名 -->
+  <div class="mb-3">
+    <%= f.label :name, "店名", class: "form-label" %>
+    <span class="text-danger"> *</span>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :address, "住所" %><span style="color:red;"> *</span><br>
-      <%= f.text_field :address, id: "shop-address" %>
-    </div>
+  <!-- 住所 -->
+  <div class="mb-3">
+    <%= f.label :address, "住所", class: "form-label" %>
+    <span class="text-danger"> *</span>
+    <%= f.text_field :address, 
+          class: "form-control",
+          id: "shop-address" %>
+  </div>
 
-    <%# 緯度・経度を入れるhidden_field（自動入力用） %>
+    <%# 緯度・経度（hidden） %>
     <%= f.hidden_field :latitude, id: "shop-latitude" %>
     <%= f.hidden_field :longitude, id: "shop-longitude" %>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :genre_id, "ジャンル" %><span style="color:red;"> *</span><br>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %>
+    <!-- ジャンル -->
+    <div class="mb-3">
+      <%= f.label :genre_id, "ジャンル", class: "form-label" %>
+      <span class="text-danger"> *</span>
+      <%= f.collection_select :genre_id, 
+            Genre.all, :id, :name, 
+            { prompt: "ジャンルを選択してください" },
+            { class: "form-select" } %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :images, "店舗の写真" %><br>
-      <%= f.file_field :images, multiple: true, accept: "image/*" %>
+    <!-- 店舗写真 -->
+    <div class="mb-3">
+      <%= f.label :images, "店舗の写真", class: "form-label" %>
+      <%= f.file_field :images, 
+            multiple: true, 
+            accept: "image/*",
+            class: "form-control" %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :block_id, "地域ブロックID" %><span style="color:red;"> *</span><br>
-      <%= f.collection_select :block_id, Block.all, :id, :name, prompt: "エリアを選択してください" %>
+    <!-- エリア（ブロック） -->
+    <div class="mb-3">
+      <%= f.label :block_id, "地域ブロックID", class: "form-label" %>
+      <span class="text-danger"> *</span>
+      <%= f.collection_select :block_id, 
+            Block.all, :id, :name, 
+            { prompt: "エリアを選択してください" },
+            { class: "form-select" } %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :city_id, "市町村" %><br>
-      <%= f.collection_select :city_id, City.all, :id, :name, prompt: "市町村を選択してください" %>
+    <!-- 市町村 -->
+    <div class="mb-3">
+      <%= f.label :city_id, "市町村", class: "form-label" %>
+      <%= f.collection_select :city_id, 
+            City.all, :id, :name, 
+            { prompt: "市町村を選択してください" },
+            { class: "form-select" } %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :opening_hours, "営業時間" %><br>
-      <%= f.text_field :opening_hours, placeholder: "例）10:00〜18:00" %>
+    <!-- 営業時間 -->
+    <div class="mb-3">
+      <%= f.label :opening_hours, "営業時間", class: "form-label" %>
+      <%= f.text_field :opening_hours, 
+            class: "form-control",
+            placeholder: "例）10:00〜18:00" %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :closed_days, "定休日" %><br>
-      <%= f.text_field :closed_days, placeholder: "例）火曜・水曜" %>
+    <!-- 定休日 -->
+    <div class="mb-3">
+      <%= f.label :closed_days, "定休日", class: "form-label" %>
+      <%= f.text_field :closed_days, 
+            class: "form-control",
+            placeholder: "例）火曜・水曜" %>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= f.label :parking, "駐車場あり" %><br>
-      <%= f.check_box :parking %>
+    <!-- 駐車場 -->
+    <div class="form-check mb-4">
+      <%= f.check_box :parking, class: "form-check-input" %>
+      <%= f.label :parking, "駐車場あり", class: "form-check-label" %>
     </div>
 
-    <h3>犬連れ情報</h3>
-    <div style="margin-bottom: 15px;">
-      <%= f.check_box :inside_ok %>
-      <%= f.label :inside_ok, "店内同伴OK" %><br>
+    <!-- 犬連れ情報 -->
+    <h5 class="mt-4 mb-3">犬連れ情報</h5>
 
-      <%=f.check_box :terrace_ok %>
-      <%= f.label :terrace_ok, "テラスOK" %><br>
-
-      <%= f.check_box :dog_menu %>
-      <%= f.label :dog_menu, "犬用メニューあり" %><br>
-
-      <%= f.check_box :lead_hook %>
-      <%= f.label :lead_hook, "リードフックあり" %><br>
+    <div class="form-check mb-2">
+      <%= f.check_box :inside_ok, class: "form-check-input" %>
+      <%= f.label :inside_ok, "店内同伴OK", class: "form-check-label" %>
     </div>
 
-    <p style="color: gray; font-size: 13px; margin: 20px 0;">
-      <span style="color:red;">* </span>は必須項目です
+    <div class="form-check mb-2">
+      <%=f.check_box :terrace_ok, class: "form-check-input" %>
+      <%= f.label :terrace_ok, "テラスOK", class: "form-check-label" %>
+    </div>
+
+    <div class="form-check mb-2">
+      <%= f.check_box :dog_menu, class: "form-check-input" %>
+      <%= f.label :dog_menu, "犬用メニューあり" %>
+    </div>
+
+    <div class="form-check mb-4">
+      <%= f.check_box :lead_hook, class: "form-check-input" %>
+      <%= f.label :lead_hook, "リードフックあり", class: "form-check-label" %>
+    </div>
+
+    <!-- 必須項目 -->
+    <p class="text-muted small">
+      <span class="text-danger">* </span>は必須項目です
     </p>
 
-    <div>
-      <%= f.submit shop.new_record? ? "登録する" : "更新する" %>
+    <!-- 送信ボタン -->
+    <div  class="mt-4 d-grid gap-2">
+      <%= f.submit shop.new_record? ? "登録する" : "更新する",
+            class: "btn btn-primary btn-lg" %>
     </div>
+
+    <!-- 一覧に戻る -->
+    <div class="mt-3 text-center">
+      <%= link_to "← 一覧に戻る", shops_path,
+            class: "text-decoration-none text-muted" %>
+    </div>
+
 <% end %>
 
