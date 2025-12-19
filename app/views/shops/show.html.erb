@@ -10,24 +10,71 @@
   <div class="card mb-4">
     <div class="card-body">
 
-      <p><strong>住所：</strong><%= @shop.address %></p>
-      <p><strong>ジャンル：</strong><%= @shop.genre.name %></p>
+      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">店舗情報</h4>
 
-      <h4 class="h5 mt-4">店舗情報</h4>
-      <p>営業時間：<%= @shop.opening_hours.presence || "未登録" %></p>
-      <p>定休日：<%= @shop.closed_days.presence || "未登録" %></p>
-      <p>駐車場：<%= @shop.parking ? "あり" : "なし" %></p>
+      <dl class="row mb-0">
+        <dt class="col-4 text-muted">住所</dt>
+        <dd class="col-8"><%= @shop.address %></dd>
 
-      <h4 class="h5 mt-4">犬連れ情報</h4>
-      <ul class="list-unstyled">
-        <li>店内同伴OK：<%= @shop.inside_ok? ? "⭕️" : "❌" %></li>
-        <li>テラスOK：<%= @shop.terrace_ok? ? "⭕️" : "❌" %></li>
-        <li>犬用メニューあり：<%= @shop.dog_menu? ? "⭕️" : "❌" %></li>
-        <li>リードフックあり：<%= @shop.lead_hook? ? "⭕️" : "❌" %></li>
-      <ul>
+        <dt class="col-4 text-muted">ジャンル</dt>
+        <dd class="col-8"><%= @shop.genre.name %></dd>
+
+        <dt class="col-4 text-muted">営業時間</dt>
+        <dd class="col-8"><%= @shop.opening_hours.presence || "未登録" %></dd>
+
+        <dt class="col-4 text-muted">定休日</dt>
+        <dd class="col-8"><%= @shop.closed_days.presence || "未登録" %></dd>
+
+        <dt class="col-4 text-muted">駐車場</dt>
+        <dd class="col-8"><%= @shop.parking ? "あり" : "なし" %></dd>
+      </dl>
+
+      <hr class="my-3">
+
+      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">犬連れ情報</h4>
+
+      <dl class="row mb-0">
+        <dt class="col-4 text-muted">店内同伴OK</dt>
+        <dd class="col-8">
+          <% if @shop.inside_ok? %>
+            <span class="text-success fw-semibold">可</span>
+          <% else %>
+            <span class="text-danger fw-semibold">不可</span>
+          <% end %>
+        </dd>
+
+        <dt class="col-4 text-muted">テラスOK</dt>
+        <dd class="col-8">
+          <% if @shop.terrace_ok? %>
+            <span class="text-success fw-semibold">可</span>
+          <% else %>
+            <span class="text-danger fw-semibold">不可</span> 
+          <% end %>
+        </dd>
+
+        <dt class="col-4 text-muted">犬用メニューあり</dt>
+        <dd class="col-8">
+          <% if @shop.dog_menu? %>
+            <span class="text-success fw-semibold">可</span>
+          <% else %>
+            <span class="text-danger fw-semibold">不可</span>
+          <% end %>
+        </dd>
+
+        <dt class="col-4 text-muted">リードフックあり</dt>
+        <dd class="col-8">
+          <% if @shop.lead_hook? %>
+            <span class="text-success fw-semibold">可</span>
+          <% else %>
+            <span class="text-danger fw-semibold">不可</span>
+          <% end %>
+        </dd>
+      <dl>
+
+      <hr class="my-3">
 
       <!-- 平均評価 -->
-      <h4 class="h5 mt-4">平均評価</h4>
+      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">平均評価</h4>
       <p>
         <% if @average_rating.present? %>
           <% full = @average_rating.floor %>
@@ -49,9 +96,11 @@
         <% end %>
       </p>
 
+      <hr class="my-3">
+
       <!-- 店舗写真 -->
       <% if @shop.images.attached? %>
-        <h4 class="h5 mt-4">店舗写真</h4>
+        <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">店舗写真</h4>
 
         <div class="d-flex flex-wrap gap-2 mb-2">
           <% @shop.images.each do |image| %>
