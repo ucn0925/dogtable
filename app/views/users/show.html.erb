@@ -1,113 +1,181 @@
-<h1><%= @user.name %>さんのページ</h1>
+<div class="container my-4">  
 
-<p>
-  フォロー中：
-  <%= link_to "#{@user.followings.count}人", followings_user_path(@user) %>
-  フォロワー：
-  <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
-</p>
-
-<p>
-  💬投稿数：<%= @user.posts.count %>件<br>
-  ♡お気に入り店舗数：<%= @user.shop_favorites.count %>件<br>
-  ⭐️平均評価：
-  <% if @user.posts.any? %>
-    <% avg = @user.posts.average(:rating_overall).to_f.round(1) %>
-    <% full = avg.floor %>
-    <% frac = avg - full %>
-
-    <%= avg %>
-    <% 5.times do |i| %>
-      <% if i < full %>
-        <span style="color: gold;">★</span>
-      <% elsif i == full && frac >= 0.5 %>
-        <span style="color: gold;">☆</span>
-      <% else %>
-        <span style="color: #ccc;">★</span>
-      <% end %>
-    <% end %>
-  <% else %>
-    投稿はまだありません
-  <% end %>
-</p>
-
-<hr>
-
-<% unless current_user == @user %>
-  <% if current_user.following?(@user) %>
-    <%= button_to "フォロー解除", user_relationships_path(@user), method: :delete, class: "btn btn-outline-secondary", style: "margin-bottom: 10px;" %>
-  <% else %>
-    <%= button_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-primary", style: "margin-bottom: 10px;" %>
-  <% end %>
-<% end %>
-
-<h2>プロフィール</h2>
-<p>メールアドレス：<%= @user.email %></p>
-<p>自己紹介：<%= @user.profile.presence || "未設定" %></p>
-<%  if @user.profile_image.attached? %>
-  <%= image_tag @user.profile_image, size: "150x150", class: "rounded-full" %>
-<% else %>
-  <p>プロフィール画像は未設定です</p>
-<% end %>
-
-<% if current_user == @user %>
-  <div style="margin-top: 10px;">
-    <%= link_to "プロフィールを編集する", edit_user_registration_path, class: "btn" %>
+  <!-- ヘッダー -->
+  <div class="mb-4">
+    <h1><%= @user.name %>さんのページ</h1>
+    <div class="text-muted">
+      フォロー中：
+      <%= link_to "#{@user.followings.count}人", followings_user_path(@user) %>／
+      フォロワー：
+      <%= link_to "#{@user.followers.count}人", followers_user_path(@user) %>
+    </div>
   </div>
-<% end %>
 
-<hr>
+  <div class="row">
 
-<h2>愛犬情報</h2>
+    <!-- 左カラム -->
+    <div class="col-md-4">
 
-<% if @user.dog.present? %>
-  <p>犬の名前：<%= @user.dog.name %></p>
-  <p>犬種：<%= @user.dog.breed %></p>
-  <p>犬のサイズ：<%= @user.dog.size_jp %></p>
-  <% if @user.dog.dog_image.attached? %>
-    <%= image_tag @user.dog.dog_image, size: "200x200" %>
-  <% else %>
-    <p>写真はまだ登録されていません</p>
-  <% end %>
-<% else %>
-  <p>愛犬情報は未登録です。</p>
-<% end %>
+      <div class="card mb-4">
+        <div class="card-body text-center">
 
-<hr>
+          <!-- ユーザー名 -->
+          <h5 class="fw-bold mb-2"><%= @user.name %></h5>
 
-<h2>お気に入り店舗一覧</h2>
-
-<% if @favorite_shops.any? %>
-  <ul>
-    <% @favorite_shops.each do |shop| %>
-        <li>
-          <%= link_to shop.name, shop_path(shop) %> (<%= shop.city.name %>)
-        </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>お気に入り登録された店舗はありません。</p>
-<% end %>
-
-<hr>
-
-<h2>投稿一覧</h2>
-<% if @posts.any? %>
-  <ul>
-    <% @posts.each do |post| %>
-        <li style="margin-bottom: 12px;">
-          <strong><%= link_to post.shop.name, shop_path(post.shop) %></strong><br>
-          投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
-          評価：
-          <% (1..5).each do |i| %>
-            <span style="color: <%= i <= (post.rating_overall || 0) ? 'gold' : '#ccc' %>;" >★</span>
+          <!-- プロフ画像 -->
+          <%  if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, 
+                  class: "rounded-circle mb-3",
+                  style: "width: 120px; height: 120px; object-fit: cover;" %>
           <% end %>
-          <br>
-          <%= simple_format(post.content) %>       
-        </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>投稿はまだありません。</p>
-<% end %>
 
+          <!-- 数字サマリー -->
+          <p class="mb-1">💬投稿数：<%= @user.posts.count %>件</p>
+          <p class="mb-3">♡お気に入り店舗数：<%= @user.shop_favorites.count %></p>
+
+          <!-- フォローボタン -->
+          <% unless current_user == @user %>
+            <% if current_user.following?(@user) %>
+              <%= button_to "フォロー解除", 
+                    user_relationships_path(@user), 
+                    method: :delete, 
+                    class: "btn btn-outline-secondary btn-sm w-100 mt-2" %>
+            <% else %>
+              <%= button_to "フォローする", 
+                    user_relationships_path(@user), 
+                    method: :post, 
+                    class: "btn btn-primary btn-sm w-100 mt-2" %>
+              <% end %>
+            <% end %>
+      
+          </div>
+        </div>
+  
+    </div>
+
+    <!-- 右カラム --> 
+    <div class ="col-md-8">
+
+      <!-- 平均評価 -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-2">平均評価</h5>
+
+          <% if @user.posts.any? %>
+            <% avg = @user.posts.average(:rating_overall).to_f.round(1) %>
+            <strong><%= avg %></strong>
+            <% (1..5).each do |i| %>
+              <span class="<%= i <= avg.floor ? 'text-warning' : 'text-secondary' %>">★</span>
+            <% end %>
+          <% else %>
+            <p class="text-muted mb-0">未評価</p>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- プロフィール -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">プロフィール</h5>
+          <%= simple_format(@user.profile.presence || "未設定") %>
+
+          <% if current_user == @user %>
+            <%= link_to "プロフィールを編集", 
+                  edit_user_registration_path, 
+                  class: "btn btn-outline-primary btn-sm mt-2" %>
+          <% end %>
+          
+        </div>
+      </div>
+
+      <!-- 愛犬情報 -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">愛犬情報</h5>
+
+          <% if @user.dog.present? %>
+            <div class="d-flex align-items-center gap-4">
+
+              <!-- 犬のアイコン -->
+              <% if @user.dog.dog_image.attached? %>
+                <%= image_tag @user.dog.dog_image, 
+                      class: "rounded-circle",
+                      style: "width: 120px; height: 120px; object-fit: cover;" %>
+              <% else %>
+                <div class="rounded-circle bg-secondary"
+                            style="width: 120px; height: 120px;"></div>
+              <% end %>
+
+              <!-- 犬テキスト情報 -->
+              <div>
+                <p class="mb-1">犬の名前：<%= @user.dog.name %></p>
+                <p class="mb-1">犬種：<%= @user.dog.breed %></p>
+                <p class="mb-2">犬のサイズ：<%= @user.dog.size_jp %></p>
+              </div>
+
+            </div>
+          <% else %>
+            <p class="text-muted">愛犬情報は未登録です。</p>
+              </div>
+            <% end %>
+        </div>
+      </div>
+
+      <!-- お気に入り店舗 -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">お気に入り店舗一覧</h5>
+
+          <% if @favorite_shops.any? %>
+            <ul class="list-group list-group-flush">
+              <% @favorite_shops.each do |shop| %>
+                  <li class="list-group-item">
+                    <%= link_to shop.name, shop_path(shop) %> 
+                    <small class="text-muted">(<%= shop.city.name %>)</small>
+                  </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-muted">お気に入り店舗はありません。</p>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 投稿一覧 -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">投稿一覧</h5>
+
+          <% if @posts.any? %>
+            <% @posts.each do |post| %>
+              <div class="border-bottom pb-3 mb-3">   
+                <strong>
+                  <%= link_to post.shop.name, shop_path(post.shop) %>
+                </strong>
+
+                <div class="text-muted small">
+                  投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+                </div>
+
+                <% (1..5).each do |i| %>
+                  <span class="<%= i <= (post.rating_overall || 0) ? 'text-warning' : 'text-secondary' %>" >★</span>
+                <% end %>
+
+                <div class="mt-2">
+                  <%= simple_format(post.content) %>   
+                </div>    
+              </div>
+            <% end %>
+          <% else %>
+            <p class="text-muted">投稿はまだありません。</p>
+          <% end %>
+        </div>
+      </div>
+        
+        
+    </div>
+  </div>
+</div>
+
+
+    
