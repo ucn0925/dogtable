@@ -2,7 +2,7 @@
   <h2 class="mb-4"><%= @user.name %>さんがフォロー中のユーザー</h2>
 
   <% if @users.any? %>
-    <div class="list-group"">
+    <div class="list-group">
 
        <% @users.each do |u| %>
         <div class="list-group-item d-flex justify-content-between align-items-center py-3">
@@ -37,7 +37,7 @@
               <%= button_to "フォローする",
                     user_relationships_path(current_user, followed_id: u.id),
                     method: :post,
-                    class: "btn btn-primary btn-sm"
+                    class: "btn btn-primary btn-sm",
                     data: { turbo: false } %>
             <% end %>
           </div>
