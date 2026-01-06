@@ -13,6 +13,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def update
+        if params[:remove_profile_image] == "1"
+            resource.profile_image.purge
+        end
+
+        if params[:remove_dog_image] == "1"
+            resource.dog&.dog_image&.purge
+        end
+        
         super do |resource|
             redirect_to mypage_path, notice: "プロフィールを更新しました！" and return
         end
@@ -35,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
                 :name,
                 :profile, 
                 :profile_image, 
-                dog_attributes: [:name, :breed, :size, :dog_image]
+                dog_attributes: [:id, :name, :breed, :size, :dog_image]
             ]
         )
     end

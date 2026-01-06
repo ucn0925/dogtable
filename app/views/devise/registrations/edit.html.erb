@@ -8,7 +8,8 @@
 
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
+                      html: { method: :put, multipart: true }) do |f| %>
 
             <!-- 名前 -->
             <div class="mb-3">
@@ -54,6 +55,13 @@
             <div class="mb-3">
               <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
               <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+
+              <% if resource.profile_image.attached? %>
+                <div class="form-check mt-2">
+                  <%= check_box_tag :remove_profile_image, "1", false, class: "form-check-input" %>
+                  <%= label_tag :remove_profile_image, "現在のプロフィール画像を削除する", class: "form-check-label" %>
+                </div>
+              <% end %>
             </div>
 
             <h4 class="mt-4 mb-3">愛犬情報</h4>
@@ -79,6 +87,13 @@
               <div class="mb-3">
                 <%= d.label :dog_image, "犬の写真", class: "form-label" %>
                 <%= d.file_field :dog_image, include_hidden: false, class: "form-control" %>
+
+                <% if resource.dog&.dog_image&.attached? %>
+                  <div class="form-check mt-2">
+                    <%= check_box_tag :remove_dog_image, "1", false, class: "form-check-input" %>
+                    <%= label_tag :remove_dog_image, "犬の写真を削除する", class: "form-check-label" %>
+                  </div>
+                <% end %>
               </div>
 
             <% end %>
