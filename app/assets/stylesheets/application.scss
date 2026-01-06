@@ -11,3 +11,12 @@
 .gclose {
     opacity: 1 !important;
 }
+
+.circle-image {
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    max-width: none !important;
+    max-height: none !important;
+}

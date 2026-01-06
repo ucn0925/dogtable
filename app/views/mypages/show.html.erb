@@ -72,7 +72,7 @@
           <% if @user.profile_image.attached? %>
             <%= image_tag @user.profile_image, 
                 size: "150x150", 
-                class: "img-fluid rounded-circle mb-2" %>
+                class: "img-fluid rounded-circle circle-image mb-2" %>
           <% else %>
             <p class="text-muted">画像未設定</p>
           <% end %>
@@ -103,7 +103,8 @@
         <div class="col-md-3 text-center">
           <% if @user.dog&.dog_image&.attached? %>
             <%= image_tag @user.dog.dog_image, 
-                class: "img-fluid rounded-circle mb-2" %>
+                size: "150x150",
+                class: "img-fluid rounded-circle circle-image mb-2" %>
           <% else %>
             <p>写真なし</p>
           <% end %>
