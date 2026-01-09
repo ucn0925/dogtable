@@ -74,7 +74,9 @@
                 size: "150x150", 
                 class: "img-fluid rounded-circle circle-image mb-2" %>
           <% else %>
-            <p class="text-muted">画像未設定</p>
+            <%= image_tag "default_user.png",
+                size: "150x150",
+                class: "img-fluid rounded-circle circle-image mb-2" %>
           <% end %>
         </div>
 
@@ -106,7 +108,9 @@
                 size: "150x150",
                 class: "img-fluid rounded-circle circle-image mb-2" %>
           <% else %>
-            <p>写真なし</p>
+            <%= image_tag "default_user.png",
+                size: "150x150",
+                class: "img-fluid rounded-circle circle-image mb-2" %>
           <% end %>
         </div>
 
