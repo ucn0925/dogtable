@@ -1,78 +1,53 @@
-<div style="width: 100%; max-width: 600px; margin: 40px auto; text-align: center;"> 
+<div class="hero">
+  <div class="hero__inner container text-center"> 
 
-  <!-- サイト名 -->
-  <h1 style="font-size: 40px; margin-bottom: 10px;">Dog Table</h1>
-  
-  <!-- テーマ -->
-  <p style="font-size: 18px; margin-bottom: 40px;">おいしいも、一緒がいい。</p>
-
-  <!-- 検索ボックス一式 -->
-  <%= form_with url: shops_path, method: :get, local: true do %>
-
-    <!-- フリーワード検索（上段） -->
-    <div style="
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 15px;
-    ">
-
-      <%= text_field_tag :keyword, params[:keyword],
-          placeholder: "店名で検索",
-          style: "
-            width: 360px;
-            padding: 10px; 
-            font-size: 16px; 
-            border-radius: 6px; 
-            border: 1px solid #ccc;
-          "
-      %>
-    </div>
+    <!-- サイト名 -->
+    <h1 class="display-5 fw-bold mb-2">Dog Table</h1>
     
-    <!-- エリア＆ジャンル（下段） -->
-    <div style="
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 30px;
-    ">
+    <!-- テーマ -->
+    <p class="lead mb-4">おいしいも、一緒がいい。</p>
 
-      <!-- エリア（blockとcity） -->
-      <%= select_tag :area_id,
-        options_for_select(@area_options, params[:area_id]),
-        {
-          include_blank: "エリア",
-          style: "padding: 10px; font-size: 16px; border-radius: 6px; width: 150px" 
-        }
-      %>
-          
+    <!-- 検索ボックス一式 -->
+    <div class="search-card mx-auto">
+      <%= form_with url: shops_path, method: :get, local: true do %>
 
-      <!-- ジャンル選択 -->
-      <%= select_tag :genre_id,
-        options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
-        {
-          include_blank: "ジャンル",
-          style: "padding: 10px; font-size: 16px; border-radius: 6px; width: 150px;"
-        } 
-      %>
+        <!-- フリーワード検索（上段） -->
+        <div class="d-flex justify-content-center mb-3">
+          <%= text_field_tag :keyword, params[:keyword],
+              placeholder: "店名で検索",
+              class: "form-control",
+              style: "max-width: 520px;"
+          %>
+        </div>
+      
+        <!-- エリア＆ジャンル（下段） -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-2">
 
-      <!-- 検索ボタン -->
-      <%= submit_tag "検索",
-        style: "
-          padding: 10px 20px;
-          font-size: 16px;
-          boder-radius: 6px;
-          border: none;
-          background: #333;
-          color: white;
-      " %>
-  
+          <!-- エリア（blockとcity） -->
+          <%= select_tag :area_id,
+                options_for_select(@area_options, params[:area_id]),
+                include_blank: "エリア",
+                class: "form-select",
+                style: "width: 170px;" 
+          %>
+
+          <!-- ジャンル選択 -->
+          <%= select_tag :genre_id,
+                options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
+                include_blank: "ジャンル",
+                class: "form-select",
+                style: "width: 170px;"
+          %>
+
+          <!-- 検索ボタン -->
+          <%= submit_tag "検索", class: "btn btn-dark px-4" %>
+        </div>
+
+      <% end %>
+
+      <!-- 地図で探すリンク -->
+      <%= link_to "地図から探す", map_path, class: "link-primary d-inline-block mt-2" %>
     </div>
-  <% end %>
-
-  <!-- 地図で探すリンク -->
-  <p style="font-size: 16px; color: #007aff; cursor: pointer;">
-    <%= link_to "地図から探す", map_path %>
-  </p>
+  </div>
+</div>
 
