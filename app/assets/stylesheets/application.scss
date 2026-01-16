@@ -27,6 +27,7 @@
     display: grid;
     place-items: center;
     padding: 56px 16px;
+    padding: 80px;
     overflow: hidden;
 }
 
@@ -61,4 +62,25 @@
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid #e6e6e6;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hero-link {
+    color: #8b6f5a;
+    font-weight: 500;
+}
+
+.hero-nav {
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-nav .nav-link {
+  color: #6f5b4d;
+  font-weight: 500;
+}
+
+.hero-nav .nav-link:hover {
+  color: #4e4036;
 }
