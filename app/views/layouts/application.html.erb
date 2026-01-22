@@ -16,7 +16,7 @@
    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   </head>
 
-  <body>
+  <body class="<%= current_page?(root_path) ? 'is-home' : '' %>">
     <nav class="navbar navbar-expand fixed-top <%= current_page?(root_path) ? 'hero-nav' : 'bg-white shadow-sm' %> py-2">
       <div class="container">
         <%= link_to "DogTable", root_path, class: "navbar-brand fw-semibold" %>

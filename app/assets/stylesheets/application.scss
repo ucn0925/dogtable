@@ -84,3 +84,11 @@
 .hero-nav .nav-link:hover {
   color: #4e4036;
 }
+
+body {
+  padding-top: 72px;
+}
+
+body.is-home {
+  padding-top: 0;
+}
