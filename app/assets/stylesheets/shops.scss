@@ -9,7 +9,7 @@
 
 .shop-card:hover {
   background-color: #FAF8F5;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05)
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
 .shop-name {
@@ -31,4 +31,45 @@
 
 .shop-search-btn:hover {
   background-color: #A89783;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2rem;
+}
+
+.pagination a,
+.pagination .current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 38px;
+  padding: 0 12px;
+
+  border-radius: 10px;
+  border: 1px solid #E5E1DA;
+  background: #fff;
+
+  text-decoration: none;
+  color: #6f5b4d;
+}
+
+.pagination a:hover {
+  background-color: #FAF8F5;
+}
+
+.pagination .current {
+  background-color: #B8A995;
+  color: #fff;
+  border-color: #B8A995;
+}
+
+.pagination .next,
+.pagination .last,
+.pagination .prev,
+.pagination .first {
+  display: none !important;
 }

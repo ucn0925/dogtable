@@ -79,7 +79,11 @@
         </div>
       <% end %>
 
-      <%= paginate @shops %>
+      <%= paginate @shops,
+            previous_label: "前へ",
+            next_label: "次へ",
+            first_label: "最初",
+            last_label: "最後" %>
 
     <% else %>
       <!-- 該当０件 -->
