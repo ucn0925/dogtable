@@ -1,0 +1,23 @@
+.shop-card {
+  max-width: 700px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+  background-color: #ffffff;
+  border: 1px solid #E5E1DA;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-card:hover {
+  background-color: #FAF8F5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05)
+}
+
+.shop-name {
+  color: #6f5b4d;
+  font-weight: 600;
+}
+
+.shop-name:hover {
+  color: #4e4036;
+  text-decoration: underline;
+}

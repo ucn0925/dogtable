@@ -37,7 +37,7 @@
     <!-- 検索結果がある場合 -->
     <% if @shops.any? %>
       <% @shops.each do |shop| %>
-        <div class="card mb-3 p-3 px-4 mx-auto" style="max-width: 700px;">
+        <div class="card shop-card mb-3 mx-auto">
           <div class="d-flex align-items-start" style="gap:30px;">
 
           <!-- サムネイル写真 -->
@@ -64,7 +64,8 @@
           <!-- 店舗情報 -->
           <div>
             <h2 class="h5 mb-1">
-              <%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %>
+              <%= link_to shop.name, shop_path(shop), 
+                    class: "shop-name text-decoration-none" %>
             </h2>
             <p class="mb-1"><%= shop.address %></p>
             <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
@@ -88,7 +89,7 @@
     <% else %>
       <!-- 検索していないとき（通常の一覧表示） -->
       <% @shops.each do |shop| %>
-        <div class="card mb-3 p-3 px-4 mx-auto" style="max-width: 700px;">
+        <div class="card shop-card mb-3 mx-auto">
           <div class="d-flex align-items-start" style="gap:30px;">
 
             <!-- サムネイル写真 -->
@@ -117,7 +118,8 @@
           <!-- 店舗情報 -->
           <div>
             <h2 class="h5 mb-1">
-              <%= link_to shop.name, shop_path(shop), class: "text-decoration-none" %>
+              <%= link_to shop.name, shop_path(shop), 
+                    class: "shop-name text-decoration-none" %>
             </h2>
             <p class="mb-1"><%= shop.address %></p>
             <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
