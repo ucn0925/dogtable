@@ -69,3 +69,27 @@
 body.is-home {
   padding-top: 0;
 }
+
+.shop-search-btn {
+  background-color: #B8A995;
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+}
+
+.shop-search-btn:hover {
+  background: #A89783;
+  transform: translateY(-1px);
+}
+
+.shop-search-btn:active {
+  transform: translateY(0);
+}
+
+.hero h1 {
+  color: #2f2a26;
+}
+
+.hero p {
+  color: #555;
+}
