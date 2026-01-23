@@ -73,3 +73,36 @@
 .pagination .first {
   display: none !important;
 }
+
+.shop-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  padding: 1rem 1.8em;
+  border-radius: 10px;
+
+  background: #fff;
+  border: 1px solid #E5E1DA;
+  color: #6f5b4d;
+  text-decoration: none;
+
+  font-size: 1.05rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.shop-add-btn:hover {
+  background: #FAF8F5;
+  border-color: #D9D2C7;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+  color: #4e4036;
+  text-decoration: none;
+}
+
+.shop-add-btn:active {
+  transform: translateY(0);
+}
