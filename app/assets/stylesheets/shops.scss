@@ -63,6 +63,31 @@
   font-size: 12px;
 }
 
+.shop-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: #8b7a6a;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.meta-label {
+  font-size: 0.82rem;
+  color: #9b8f85;
+  letter-spacing: 0.02rem;
+}
+
+.meta-count {
+  font-weight: 600;
+  color: #6f5b4d;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

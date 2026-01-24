@@ -50,10 +50,20 @@
               <h2 class="h5 mb-1 shop-name"><%= shop.name %></h2>
               <p class="mb-1"><%= shop.address %></p>
               <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
-              <p class="text-muted mb-0">
-                ♡ <%= shop.shop_favorites.count %>
-                💬 <%= shop.posts.count %>
+
+              <p class="shop-meta mb-0">
+                <span class="meta-item">
+                  <span class="meta-label">いいね</span>
+                  <span class="meta-count"><%= shop.shop_favorites.count %></span>
+                </span>
+
+                <span class="meta-item">
+                  <span class="meta-label">コメント</span>
+                  <span class="meta-count"><%= shop.posts.count %></span>
+                </span>
+
               </p>
+
             </div>
 
             </div>
