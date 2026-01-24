@@ -106,3 +106,22 @@
 .shop-add-btn:active {
   transform: translateY(0);
 }
+
+.page-title {
+  color: #2f2a26;
+  font-weight: 500;
+}
+
+.reset-link {
+  font-size: 0.9rem;
+  color: #8b7a6a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.reset-link:hover {
+  color: #6f5b4d;
+  text-decoration-thickness: 2px;
+}

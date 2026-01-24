@@ -1,6 +1,6 @@
 <div class="container mt-4">
 
-  <h1>店鋪一覧</h1>
+  <h1 class="page-title">店鋪一覧</h1>
 
   <!-- 検索フォーム部分 -->
   <%= form_with url: shops_path, method: :get, local: true do %>
@@ -31,7 +31,7 @@
   <% if params[:keyword].present? || params[:genre_id].present? || params[:area_id].present? %>
     <div class="mt-3">
       <p>検索結果：<%= @shops.count %>件</p>
-      <%= link_to "検索条件をリセット", shops_path, class: "text-secondary text-decoration-underline" %>
+      <%= link_to "検索条件をリセット", shops_path, class: "reset-link" %>
     </div>
 
     <!-- 検索結果がある場合 -->
