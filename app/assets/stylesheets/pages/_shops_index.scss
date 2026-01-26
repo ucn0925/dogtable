@@ -107,20 +107,20 @@
 
     border-radius: 10px;
     border: 1px solid var(--dt-border);
-    background: var(--dt-main);
+    background: var(--dt-card);
 
     text-decoration: none;
     color: var(--dt-main);
   }
 
   .pagination a:hover {
-    background-color: var(--dt-card-hover);
+    background-color: var(--dt-accent);
+    color:#ffffff;
+    border: none;
   }
 
   .pagination .current {
-    background-color: var(--dt-main);
-    color: #fff;
-    border-color: var(--dt-accent);
+    font-weight: 600;
   }
 
   .pagination .next,
