@@ -112,5 +112,18 @@
     text-decoration: none;
   }
 
+  .dt-want-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--dt-text);
+  }
+
+  .dt-want-count i {
+    color: var(--dt-accent);
+    font-size: 0.9rem;
+  }
+
 
 }

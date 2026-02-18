@@ -93,23 +93,30 @@
 .dt-want-btn {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   padding: 6px 14px;
-  border-radius: 20px;
-  background-color: var(--dt-border);
+  border-radius: 999px;
+  border: 1px solid var(--dt-border);
+  background-color: #fff;
   color: var(--dt-text);
-  text-decoration: none;
   font-size: 0.9rem;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .dt-want-btn:hover {
-  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
-.dt-want-btn.active {
+.dt-want-btn i {
+  color: #c9c3ba;
+  transition: color 0.2s ease;
+}
+
+.dt-want-btn:hover i {
   color: var(--dt-accent);
 }
 
-.dt-want-btn:active {
-  transform: scale(0.95);
+.dt-want-btn.active i {
+  color: var(--dt-accent);
 }

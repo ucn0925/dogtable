@@ -1,10 +1,37 @@
 <div class="container my-4 shop-show">
 
-  <!-- 店舗名 &  お気に入り数 -->
-  <div class="d-flex justify-content-between align-items-center mb-1">
+  <!-- 店舗名 -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
     <h1 class="h3 m-0"><%= @shop.name %></h1>
-    <span class="text-muted">♡ <%= @shop.shop_favorites.count %> 件のお気に入り</span>
   </div>
+
+	<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <%= link_to "<< 一覧に戻る", shops_path, class: "text-muted small text-decoration-none" %>
+
+		<div class="d-flex align-items-center gap-3">
+
+			<span class="dt-want-count">
+				<i class="fa-solid fa-heart"></i>
+				<%= @shop.shop_favorites.count %>
+			</span>
+
+			<% if user_signed_in? %>
+				<% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+
+				<%= link_to shop_shop_favorite_path(@shop),
+							data: { turbo_method: wanted ? :delete : :post },
+							class: "dt-want-btn #{'active' if wanted}" do %>
+				
+					<i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+					<span class="ms-1">行きたい</span> 
+				
+				<% end %>      
+			<% end %>
+	
+		</div>
+	</div>
+
 
   <!-- 基本情報カード -->
   <div class="card mb-4">
@@ -98,6 +125,8 @@
 
       <hr class="my-3">
 
+			
+
       <!-- 店舗写真 -->
       <% if @shop.images.attached? %>
         <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">店舗写真</h4>
@@ -115,39 +144,11 @@
 
       <% end %>
 
-    </div>
-  </div>
+			<hr class="my-3">
 
-  <!-- 行きたいボタン -->
-  <% if user_signed_in? %>
-		<% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+			
+			
 
-		<%= link_to shop_shop_favorite_path(@shop),
-					data: { turbo_method: wanted ? :delete : :post },
-					class: "dt-want-btn #{'active' if wanted}" do %>
-		
-			<i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
-			<span class="ms-1">行きたい</span> 
-		
-		<% end %>      
-  <% end %>
-
-  <div class="mb-3">
-    <%= link_to "一覧に戻る", shops_path %>
-  </div>
-
-  <div class="card mb-4 border-secondary">
-    <div class="card-body">
-      <small class="text-muted d-block mb-2">この店舗の管理</small>
-      
-      <%= link_to "店舗情報を編集", 
-            edit_shop_path(@shop),
-            class: "dt-btn dt-btn-outline dt-btn-outline-soft dt-btn-sm me-2" %>
-
-      <%= link_to "店舗を削除", 
-            shop_path(@shop), 
-            data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
-            class: "dt-btn dt-btn-danger dt-btn-sm" %>
     </div>
   </div>
 
@@ -275,6 +276,21 @@
       <% else %>
         <p>口コミを投稿するにはログインが必要です。</p>
       <% end %>
+    </div>
+  </div>
+
+	<div class="card mt-4 border-secondary">
+    <div class="card-body">
+      <small class="text-muted d-block mb-2">この店舗の管理</small>
+      
+      <%= link_to "店舗情報を編集", 
+            edit_shop_path(@shop),
+            class: "dt-btn dt-btn-outline dt-btn-outline-soft dt-btn-sm me-2" %>
+
+      <%= link_to "店舗を削除", 
+            shop_path(@shop), 
+            data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
+            class: "dt-btn dt-btn-danger dt-btn-sm" %>
     </div>
   </div>
 
