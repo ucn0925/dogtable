@@ -99,7 +99,7 @@
             <% end %>
 
             <div class="d-grid mt-4 mb-3">
-              <%= f.submit "更新する", class: "btn btn-primary" %>
+              <%= f.submit "更新する", class: "dt-btn dt-btn-primary" %>
             </div>
 
           <% end %>
@@ -112,11 +112,11 @@
             <%= button_to "アカウントを削除する", registration_path(resource_name),
                 data: { confirm: "本当に削除しますか？" },
                 method: :delete,
-                class: "btn btn-outline-danger w-100" %>
+                class: "dt-btn dt-btn-danger w-100" %>
           </div>
 
           <div class="text-center mt-3">
-            <%= link_to "戻る", mypage_path, class: "btn btn-secondary" %>
+            <%= link_to "戻る", mypage_path, class: "dt-btn dt-btn-primary" %>
           </div>
 
 

@@ -8,6 +8,8 @@
 
     <%= favicon_link_tag "favicon.png" %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
@@ -40,7 +42,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-dark btn-sm px-3" %>
+              <%= link_to "新規登録", new_user_registration_path, class: "dt-btn dt-btn-primary btn-sm px-3" %>
             </li>
           <% end %>
         </ul>

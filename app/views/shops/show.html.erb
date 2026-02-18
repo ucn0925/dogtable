@@ -108,8 +108,7 @@
                   class: "glightbox",
                   data: { gallery: "shopt-#{@shop.id}" } do %>
               <%= image_tag image.variant(resize_to_fill: [250, 250]), 
-                    class: "rounded", 
-                    style: "width: 250px; height:250px; object-fit: cover;" %>
+                    class: "shop-photo" %>
             <% end %>
           <% end %>
         </div>
@@ -119,21 +118,18 @@
     </div>
   </div>
 
-  <!-- お気に入りボタン -->
+  <!-- 行きたいボタン -->
   <% if user_signed_in? %>
-    <% if current_user.shop_favorites.exists?(shop_id: @shop.id) %>
-      <%= link_to shop_shop_favorite_path(@shop), 
-            data: { turbo_method: :delete, turbo_confirm: "お気に入りを解除しますか？" },
-            class: "btn btn-outline-danger mb-3" do %>
-        ♥ お気に入り解除
-      <% end %>
-    <% else %>
-      <%= link_to shop_shop_favorite_path(@shop), 
-            data: { turbo_method: :post },
-            class: "btn btn-outline-primary mb-3" do %>
-        ♡ お気に入り登録
-      <% end %>
-    <% end %>  
+		<% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+
+		<%= link_to shop_shop_favorite_path(@shop),
+					data: { turbo_method: wanted ? :delete : :post },
+					class: "dt-want-btn #{'active' if wanted}" do %>
+		
+			<i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+			<span class="ms-1">行きたい</span> 
+		
+		<% end %>      
   <% end %>
 
   <div class="mb-3">
@@ -146,12 +142,12 @@
       
       <%= link_to "店舗情報を編集", 
             edit_shop_path(@shop),
-            class: "btn btn-outline-secondary btn-sm me-2" %>
+            class: "dt-btn dt-btn-outline dt-btn-outline-soft dt-btn-sm me-2" %>
 
       <%= link_to "店舗を削除", 
             shop_path(@shop), 
             data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
-            class: "btn btn-danger btn-sm" %>
+            class: "dt-btn dt-btn-danger dt-btn-sm" %>
     </div>
   </div>
 
@@ -162,7 +158,7 @@
     <h3 class="h4 mt-4">口コミ一覧</h3>
 
     <% if user_signed_in? %>
-      <a href="#new-post" class="btn btn-outline-primary btn-sm">
+      <a href="#new-post" class="dt-btn dt-btn-outline dt-btn-outline-accent dt-btn-sm">
         ＋ 口コミを投稿する
       </a>
     <% end %>
@@ -182,7 +178,7 @@
             <div>
               <strong>
                 <% if post.user.present? %>
-                  <%= link_to post.user.name, user_path(post.user), class: "text-primary text-decoration-none" %>
+                  <%= link_to post.user.name, user_path(post.user), class: "user-link" %>
                 <% else %>
                   退会ユーザー
                 <% end %>
@@ -241,8 +237,7 @@
                         class: "glightbox",
                         data: { gallery: "post-#{post.id}" } do %>
                     <%= image_tag image.variant(resize_to_fill: [250, 250]), 
-                        class: "rounded",
-                        style: "width: 250px; height: 250px; object-fit: cover;" %>
+                        class: "shop-photo" %>
                   <% end %>
                 <% end %>
               </div>

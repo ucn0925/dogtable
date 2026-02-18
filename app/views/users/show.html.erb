@@ -39,12 +39,12 @@
               <%= button_to "フォロー解除", 
                     user_relationships_path(@user), 
                     method: :delete, 
-                    class: "btn btn-outline-secondary btn-sm w-100 mt-2" %>
+                    class: "dt-btn dt-btn-outline dt-btn-outline-soft btn-sm" %>
             <% else %>
               <%= button_to "フォローする", 
                     user_relationships_path(@user), 
                     method: :post, 
-                    class: "btn btn-primary btn-sm w-100 mt-2" %>
+                    class: "dt-btn dt-btn-primary btn-sm" %>
               <% end %>
             <% end %>
       
@@ -82,7 +82,7 @@
           <% if current_user == @user %>
             <%= link_to "プロフィールを編集", 
                   edit_user_registration_path, 
-                  class: "btn btn-outline-primary btn-sm mt-2" %>
+                  class: "dt-btn dt-btn-outline dt-btn-outline-accent dt-btn-sm mt-2" %>
           <% end %>
           
         </div>

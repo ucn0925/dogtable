@@ -1,0 +1,116 @@
+.shop-show {
+  color: var(--dt-text);
+
+  h1, h2, h3, h4 {
+    color: var(--dt-text);
+  }
+
+  .text-muted {
+    color: var(--dt-muted) !important;
+  }
+
+  .text-secondary {
+    color: var(--dt-muted-2) !important;
+  }
+
+  .text-primary {
+    color: var(--dt-main) !important;
+  }
+
+  .text-warning {
+    color: var(--dt-accent) !important;
+  }
+
+  .card {
+    background: var(--dt-card);
+    border: 1px solid var(--dt-border);
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .border-secondary {
+    border-color: var(--dt-border) !important;
+  }
+
+  .border-start {
+    border-left-color: var(--dt-accent) !important;
+  }
+
+  dt {
+    color: var(--dt-muted-2);
+    font-weight: 600;
+  }
+
+  dd {
+    color: var(--dt-text);
+  }
+
+  hr,
+  .border,
+  .border-top,
+  .border-bottom {
+    border-color: var(--dt-border) !important;
+  }
+
+  a {
+    color: var(--dt-main);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--dt-main-dark);
+    text-decoration: underline;
+  }
+
+  .user-link {
+    color: var(--dt-main);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .user-link:hover {
+    color: var(--dt-main-dark);
+    text-decoration: underline;
+  }
+
+  .form-control,
+  .form-select {
+    background: var(--dt-card);
+    border-color: var(--dt-border);
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--dt-accent);
+    box-shadow: 0 0 0 0.2rem rgba(184, 169, 149, 0.25);
+  }
+
+  .shop-photo-link {
+    display: inline-block;
+  }
+
+  .shop-photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+
+    border-radius: 12px;
+    border: 1px solid var(--dt-border);
+
+    transition: transform 0.2s ease, 
+                box-shadow 0.2s ease, 
+                border-color 0.2s ease;
+  }
+
+  .shop-photo:hover {
+    transform: translateY(-1px);
+    border-color: var(--dt-border-hover);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .stretched-link {
+    text-decoration: none;
+  }
+
+
+}

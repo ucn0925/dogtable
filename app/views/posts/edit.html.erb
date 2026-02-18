@@ -32,7 +32,7 @@
                                 turbo_method: :delete, 
                                 turbo_confirm: "この画像を削除しますか？"
                               },
-                              class: "btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center position-absolute",
+                              class: "dt-btn dt-btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center position-absolute",
                               style: "top: -8px; right: -8px; width: 26px; height: 26px; padding: 0;"
                             }
                           ) do %>
@@ -48,7 +48,7 @@
 
           <!-- ボタン専用フォーム -->
           <div class="mt-3">
-            <%= f.submit "更新する", class: "btn btn-primary w-100" %>
+            <%= f.submit "更新する", class: "dt-btn dt-btn-primary w-100" %>
           </div>
 
         </div>
@@ -57,7 +57,7 @@
 
       <!-- 戻るリンク -->
       <div class="text-center">
-        <%= link_to "戻る", shop_path(@shop), class: "btn btn-outline-secondary" %>
+        <%= link_to "戻る", shop_path(@shop), class: "dt-btn dt-btn-outline dt-btn-outline-soft" %>
       </div>
 
     </div>

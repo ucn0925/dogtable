@@ -30,14 +30,14 @@
               <%= button_to "フォロー解除",
                     user_relationship_path(current_user, rel.id),
                     method: :delete,
-                    class: "btn btn-outline-secondary btn-sm",
+                    class: "dt-btn dt-btn-outline dt-btn-outline-soft btn-sm",
                     data: { turbo: false } %>
 
             <% else %>
               <%= button_to "フォローする",
                     user_relationships_path(current_user, followed_id: u.id),
                     method: :post,
-                    class: "btn btn-primary btn-sm",
+                    class: "dt-btn dt-btn-primary btn-sm",
                     data: { turbo: false } %>
             <% end %>
           </div>
