@@ -3,7 +3,7 @@
   <h2>口コミ詳細</h2>
 
   <div class="mb-3">
-    <%= link_to "←店舗ページに戻る", shop_path(@shop), style: "color: #0073bb;" %>
+    <%= link_to "<< 店舗ページに戻る", shop_path(@shop), style: "color: #0073bb;" %>
   </div>
 
   <div class="card shadow-sm">
@@ -96,27 +96,32 @@
 
     <div class="mb-2 text-muted small">コメント</div>
 
-
-    <div class="p-3 bg-light rounded mb-3">
+    <div class="dt-comment-box">
+      <div class="dt-comment-text">
       <%= simple_format(h(@post.content)) %>
-    </div>
+      </div>
 
-    <!--いいねボタン -->
-    <div class="mt-3">
-      <% if @post.favorited_by?(current_user) %>
+      <!--いいねボタン -->
+      <div class="dt-like-wrap">
+
         <%= button_to shop_post_post_favorite_path(@shop, @post),
-              method: :delete,
-              class: "btn btn-danger px-4 py-2 rounded-pill d-inline-flex align-items-center gap-1" do %>
-          ❤︎ <span>いいね済み</span>
+              method: @post.favorited_by?(current_user) ? :delete : :post,
+              class: "dt-like-btn" do %>
+        
+          <% if @post.favorited_by?(current_user) %>
+            <i class="fa-solid fa-heart"></i>
+          <% else %>
+            <i class="fa-regular fa-heart"></i>
+          <% end %>
+        
         <% end %>
-      <% else %>
-        <%= button_to shop_post_post_favorite_path(@shop, @post),
-              method: :post,
-              class: "btn btn-outline-danger px-4 py-2 rounded-pill d-inline-flex aline-items-center gap-1" do %>
-          ♡ <span>いいね</span>
-        <% end %>
-      <% end %>
-    </div>    
+
+        <span class="dt-like-count">
+          <%= @post.post_favorites.count %>
+        </span>
+
+      </div>
+    </div>   
 
     <!-- 投稿画像 -->
     <% if @post.images.attached? %>

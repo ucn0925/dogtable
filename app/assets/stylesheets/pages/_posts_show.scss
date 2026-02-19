@@ -1,0 +1,47 @@
+.dt-comment-box {
+  max-width: 560px;
+  padding: 16px 18px 16px 18px;
+  margin: 0 ;
+  background-color: #f3efeb;
+  border-radius: 14px;
+}
+
+.dt-like-wrap {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #8c7a6b;
+}
+
+.dt-like-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  color: var(--dt-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dt-like-btn:hover {
+  transform: scale(1.1);
+}
+
+.dt-like-btn .fa-heart {
+  transition: color 0.2s ease;
+}
+
+.dt-like-btn:hover .fa-heart {
+  color: var(--dt-accent);
+}
+
+.dt-like-count {
+  font-size: 14px;
+  color: var(--dt-text);
+}
+
