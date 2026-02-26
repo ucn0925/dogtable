@@ -109,11 +109,11 @@
 
           <% 5.times do |i| %>
             <% if i < full %>
-              <span class="text-warning">★</span>
+              <span class="dt-star">★</span>
             <% elsif i == full && frac >= 0.5 %>
-              <span class="text-warning">★</span>
+              <span class="dt-star">★</span>
             <% else %>
-              <span class="text-secondary">★</span>
+              <span class="dt-star-muted">★</span>
             <% end %>
           <% end %>
 
@@ -125,7 +125,6 @@
 
       <hr class="my-3">
 
-			
 
       <!-- 店舗写真 -->
       <% if @shop.images.attached? %>
@@ -145,9 +144,6 @@
       <% end %>
 
 			<hr class="my-3">
-
-			
-			
 
     </div>
   </div>
@@ -203,15 +199,15 @@
           <div class="mb-2">
             総合評価：
             <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_overall || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+              <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
             <% end %>
             ／ 料理：
             <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_food || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+              <span class="<%= i <= (post.rating_food || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
             <% end %>
             ／犬連れやすさ：
             <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'text-warning' : 'text-secondary' %>">★</span>
+              <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
             <% end %>
           </div>
 

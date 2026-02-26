@@ -35,7 +35,7 @@
 
       <!-- 総合評価 -->
       <div class="row align-items-center mb-1">
-        <div class="col-3 text-muted small">総合評価：</div>
+        <div class="col-3 text-muted">総合評価：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
             <span class="<%= i < @post.rating_overall.to_i ? 'text-warning' : 'text-muted' %>">★</span>
@@ -45,7 +45,7 @@
 
       <!-- 料理の評価 -->
       <div class="row align-items-center mb-1">
-        <div class="col-3 text-muted small">料理の評価：</div>
+        <div class="col-3 text-muted">料理の評価：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
             <span class="<%= i < @post.rating_food.to_i ? 'text-warning' : 'text-muted' %>">★</span>
@@ -55,7 +55,7 @@
 
       <!-- 犬連れやすさ -->
       <div class="row align-items-center mb-1">
-        <div class="col-3 text-muted small">犬連れやすさ：</div>
+        <div class="col-3 text-muted">犬連れやすさ：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
             <span class="<%= i < @post.rating_dog_friendliness.to_i ? 'text-warning' : 'text-muted' %>">★</span>
@@ -68,9 +68,7 @@
     <!-- 犬のサイズ -->
     <% if @post.dog_size.present? %>
       <div class="row align-items-center mb-1">
-        <div class="col-3 text-muted small">
-          一緒に行った犬のサイズ：
-        </div>
+        <div class="col-3 text-muted">一緒に行った犬のサイズ：</div>
         <div class="col-9">
           <%= case @post.dog_size
             when "small" then "小型犬"
@@ -84,7 +82,7 @@
     <!-- 訪問日 -->
     <% if @post.visited_on.present? %>
       <div class="row align-items-center mb-1">
-        <div class="col-3 text-muted small">訪問日：</div>
+        <div class="col-3 text-muted">訪問日：</div>
         <div class="col-9">
           <%= @post.visited_on.strftime("%Y/%m/%d") %>
         </div>
@@ -94,7 +92,7 @@
     <!-- コメント本文 -->
     <hr class="my-3">
 
-    <div class="mb-2 text-muted small">コメント</div>
+    <div class="mb-2 text-muted">コメント</div>
 
     <div class="dt-comment-box">
       <div class="dt-comment-text">
