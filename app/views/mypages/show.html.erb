@@ -35,11 +35,11 @@
           <strong><%= avg %></strong>
           <% 5.times do |i| %>
             <% if i <full %>
-              <span class="text-warning">★</span>
+              <span class="dt-star">★</span>
             <% elsif i == full && frac >= 0.5 %>
-              <span class="text-warning">☆</span>
+              <span class="dt-star">☆</span>
             <% else %>
-              <span class="text-muted">★</span>
+              <span class="dt-star-muted">★</span>
             <% end %>
           <% end %>
         <% else %>
@@ -164,7 +164,7 @@
               <p class="mb-2">
                 評価：
                 <% (1..5).each do |i| %>
-                  <span class="<%= i <= (post.rating_overall || 0) ? 'text-warning' : 'text-muted' %>">
+                  <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">
                     ★
                   </span>
                 <% end %>
