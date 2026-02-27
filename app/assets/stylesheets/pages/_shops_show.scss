@@ -157,8 +157,16 @@
 }
 
 .dt-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: #6b625c;
   font-weight: 590;
+}
+
+.dt-label-icon {
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
 

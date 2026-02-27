@@ -40,19 +40,34 @@
       <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">店舗情報</h4>
 
       <dl class="row mb-0">
-        <dt class="col-4 dt-label">住所</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-location-dot dt-label-icon me-1"></i>
+          住所
+        </dt>
         <dd class="col-8"><%= @shop.address %></dd>
 
-        <dt class="col-4 dt-label">ジャンル</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-utensils dt-label-icon me-1"></i>
+          ジャンル
+        </dt>
         <dd class="col-8"><%= @shop.genre.name %></dd>
 
-        <dt class="col-4 dt-label">営業時間</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-clock dt-label-icon me-1"></i>
+          営業時間
+        </dt>
         <dd class="col-8"><%= @shop.opening_hours.presence || "未登録" %></dd>
 
-        <dt class="col-4 dt-label">定休日</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-calendar-days dt-label-icon me-1"></i>
+          定休日
+        </dt>
         <dd class="col-8"><%= @shop.closed_days.presence || "未登録" %></dd>
 
-        <dt class="col-4 dt-label">駐車場</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-car dt-label-icon me-1"></i>
+          駐車場
+        </dt>
         <dd class="col-8"><%= @shop.parking ? "あり" : "なし" %></dd>
       </dl>
 
@@ -61,7 +76,10 @@
       <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">犬連れ情報</h4>
 
       <dl class="row mb-0">
-        <dt class="col-4 dt-label">店内同伴OK</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-house dt-label-icon me-1"></i>
+          店内同伴OK
+        </dt>
         <dd class="col-8">
           <% if @shop.inside_ok? %>
             <span class="dt-badge dt-badge-ok">可</span>
@@ -70,7 +88,10 @@
           <% end %>
         </dd>
 
-        <dt class="col-4 dt-label">テラスOK</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-leaf dt-label-icon me-1"></i>
+          テラスOK
+        </dt>
         <dd class="col-8">
           <% if @shop.terrace_ok? %>
             <span class="dt-badge dt-badge-ok">可</span>
@@ -79,7 +100,10 @@
           <% end %>
         </dd>
 
-        <dt class="col-4 dt-label">犬用メニューあり</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-bone dt-label-icon me-1"></i>
+          犬用メニューあり
+        </dt>
         <dd class="col-8">
           <% if @shop.dog_menu? %>
             <span class="dt-badge dt-badge-ok">可</span>
@@ -88,7 +112,10 @@
           <% end %>
         </dd>
 
-        <dt class="col-4 dt-label">リードフックあり</dt>
+        <dt class="col-4 dt-label">
+          <i class="fa-solid fa-link dt-label-icon me-1"></i>
+          リードフックあり
+        </dt>
         <dd class="col-8">
           <% if @shop.lead_hook? %>
             <span class="dt-badge dt-badge-ok">可</span>
