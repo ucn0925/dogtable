@@ -48,7 +48,7 @@
         <!-- 星評価 -->
         <div class="mb-2">
           <% 5.times do |i| %>
-            <span class="<%= i < post.rating_overall.to_i ? 'text-warning' : 'text-muted' %>">
+            <span class="<%= i < post.rating_overall.to_i ? 'dt-star' : 'dt-star-muted' %>">
               ★
             </span>
           <% end %>
