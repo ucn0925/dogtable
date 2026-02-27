@@ -1,43 +1,69 @@
-<div class="container my-4 shop-show">
+<div class="container mt-2 mb-4 shop-show">
 
-  <!-- 店舗名 -->
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <h1 class="h3 m-0"><%= @shop.name %></h1>
+  <!-- 戻るリンク -->
+  <div class="mb-2">
+    <%= link_to shops_path, 
+          class: "text-muted small text-decoration-none d-inline-flex align-items-center" do %>
+      << 一覧に戻る
+    <% end %>
   </div>
 
-	<div class="d-flex justify-content-between align-items-center mb-3">
+  <!-- 店名 -->
+  <h1 class="h3 mt-2 mb-2"><%= @shop.name %></h1>
 
-    <%= link_to "<< 一覧に戻る", shops_path, class: "text-muted small text-decoration-none" %>
-
-		<div class="d-flex align-items-center gap-3">
-
-			<span class="dt-want-count">
-				<i class="fa-solid fa-heart"></i>
-				<%= @shop.shop_favorites.count %>
-			</span>
-
-			<% if user_signed_in? %>
-				<% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
-
-				<%= link_to shop_shop_favorite_path(@shop),
-							data: { turbo_method: wanted ? :delete : :post },
-							class: "dt-want-btn #{'active' if wanted}" do %>
-				
-					<i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
-					<span class="ms-1">行きたい</span> 
-				
-				<% end %>      
-			<% end %>
-	
-		</div>
-	</div>
-
+  
 
   <!-- 基本情報カード -->
-  <div class="card mb-4">
+  <div class="card mt-3 mb-4">
     <div class="card-body">
 
-      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">店舗情報</h4>
+      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mt-2 mb-4">店舗情報</h4>
+
+      <!-- 情報バー -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <!-- 左側：評価・お気に入り・コメント -->
+        <div class="dt-meta-bar d-flex align-items-center gap-4 text-muted small">
+
+          <% if @average_rating.present? %>
+            <div class="d-flex align-items-center">
+              <% 5.times do |i| %>
+                <span class="<%= i < @average_rating.floor ? 'dt-star' : 'dt-star-muted' %>">★</span>
+              <% end %>
+              <span class="ms-1"><%= @average_rating %></span>
+            </div>
+          <% end %>
+
+          <div>
+            <i class="fa-regular fa-heart me-1"></i>
+            <%= @shop.shop_favorites.count %>
+          </div>
+
+          <div>
+            <i class="fa-regular fa-comment me-1"></i>
+            <%= @shop.posts.count %>
+          </div>
+
+        </div>
+
+        <!-- 右側：行きたいボタン -->
+        <% if user_signed_in? %>
+          <% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+              
+          <%= link_to shop_shop_favorite_path(@shop),
+                data: { turbo_method: wanted ? :delete : :post },
+                class: "dt-want-btn #{'active' if wanted}" do %>
+              
+            <i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+            <span class="ms-1">行きたい</span> 
+              
+          <% end %>      
+        <% end %>
+
+      </div>
+
+      <hr class="my-3">
+
 
       <dl class="row mb-0">
         <dt class="col-4 dt-label">
@@ -148,31 +174,6 @@
           <% end %>
         </dd>
       </dl>
-
-      <hr class="my-3">
-
-      <!-- 平均評価 -->
-      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">平均評価</h4>
-      <p>
-        <% if @average_rating.present? %>
-          <% full = @average_rating.floor %>
-          <% frac = @average_rating - full %>
-
-          <% 5.times do |i| %>
-            <% if i < full %>
-              <span class="dt-star">★</span>
-            <% elsif i == full && frac >= 0.5 %>
-              <span class="dt-star">★</span>
-            <% else %>
-              <span class="dt-star-muted">★</span>
-            <% end %>
-          <% end %>
-
-          <%= @average_rating %>点
-        <% else %>
-          まだ評価がありません
-        <% end %>
-      </p>
 
       <hr class="my-3">
 
