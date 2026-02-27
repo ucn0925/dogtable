@@ -38,7 +38,7 @@
         <div class="col-3 text-muted">総合評価：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
-            <span class="<%= i < @post.rating_overall.to_i ? 'text-warning' : 'text-muted' %>">★</span>
+            <span class="<%= i < @post.rating_overall.to_i ? 'dt-star' : 'dt-star-muted' %>">★</span>
           <% end %>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class="col-3 text-muted">料理の評価：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
-            <span class="<%= i < @post.rating_food.to_i ? 'text-warning' : 'text-muted' %>">★</span>
+            <span class="<%= i < @post.rating_food.to_i ? 'dt-star' : 'dt-star-muted' %>">★</span>
           <% end %>
         </div>
       </div>
@@ -58,7 +58,7 @@
         <div class="col-3 text-muted">犬連れやすさ：</div>
         <div class="col-9 text-start">
           <% 5.times do |i| %>
-            <span class="<%= i < @post.rating_dog_friendliness.to_i ? 'text-warning' : 'text-muted' %>">★</span>
+            <span class="<%= i < @post.rating_dog_friendliness.to_i ? 'dt-star' : 'dt-star-muted' %>">★</span>
           <% end %>
         </div>
       </div>
