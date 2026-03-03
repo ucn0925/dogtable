@@ -248,33 +248,50 @@
           </div>
     
           <!-- 評価表示 -->
-          <div class="mb-2">
-            総合評価：
-            <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
-            <% end %>
-            ／ 料理：
-            <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_food || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
-            <% end %>
-            ／犬連れやすさ：
-            <% (1..5).each do |i| %>
-              <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
-            <% end %>
+          <div class="dt-rating-block mb-2">
+            
+            <div class="dt-overall-rating">
+              <% (1..5).each do |i| %>
+                <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+              <% end %>
+              <span class="dt-score ms-2">
+                <%= post.rating_overall %>
+              </span>
+            </div>
+
+            <div class="dt-sub-rating">
+
+              <div class="dt-sub-item">
+                <span class="dt-sub-label">料理</span>
+                <% (1..5).each do |i| %>
+                  <span class="<%= i <= (post.rating_food || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                <% end %>
+              </div>
+
+              <div class="dt-sub-item">
+                <span class="dt-sub-label">犬連れ</span>
+                <% (1..5).each do |i| %>
+                  <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                <% end %>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- 犬サイズ -->
           <% if post.dog_size.present? %>
-            <p>🐶 一緒に行った犬のサイズ：
+            <span class="dt-dog-badge">
+              <i class="fa-solid fa-dog me-1"></i>
               <%=
                 case post.dog_size
                 when "small" then "小型犬"
                 when "medium" then "中型犬"
                 when "large" then "大型犬"
-                else "未選択"
+                else ""
                 end
               %>
-            </p>
+            </span>
           <% end %>
 
           <!-- コメント内容 -->

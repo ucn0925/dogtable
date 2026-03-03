@@ -126,55 +126,111 @@
   }
 
   .dt-want-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--dt-border);
-  background-color: #fff;
-  color: var(--dt-text);
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--dt-border);
+    background-color: #fff;
+    color: var(--dt-text);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
 
-.dt-want-btn:hover {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
+  .dt-want-btn:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
 
-.dt-want-btn i {
-  color: #c9c3ba;
-  transition: color 0.2s ease;
-}
+  .dt-want-btn i {
+    color: #c9c3ba;
+    transition: color 0.2s ease;
+  }
 
-.dt-want-btn:hover i {
-  color: var(--dt-accent);
-}
+  .dt-want-btn:hover i {
+    color: var(--dt-accent);
+  }
 
-.dt-want-btn.active i {
-  color: var(--dt-accent);
-}
+  .dt-want-btn.active i {
+    color: var(--dt-accent);
+  }
 
-.dt-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #6b625c;
-  font-weight: 590;
-}
+  .dt-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b625c;
+    font-weight: 590;
+  }
 
-.dt-label-icon {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
+  .dt-label-icon {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
 
-.dt-meta-bar {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 0.9rem;
-}
+  .dt-meta-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+  }
+
+  .dt-dog-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--dt-card);
+    border: 1px solid var(--dt-border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+  }
+
+  .dt-rating-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dt-overall-rating {
+    font-size: 1.15rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+
+  .dt-score {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .dt-sub-rating {
+    margin-top: 4px;
+    font-size: 0.8rem;
+    color: #777;
+  }
+
+  .dt-sub-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .dt-sub-label {
+    width: 50px;
+  }
+
+  .dt-star-small {
+    font-size: 0.8rem;
+    color: var(--dt-main);
+  }
+
+  .dt-star-muted-small {
+    font-size: 0.8rem;
+    color: #ddd;
+  }
+
+
 
 
 }
