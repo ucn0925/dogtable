@@ -30,7 +30,9 @@
               <% 5.times do |i| %>
                 <span class="<%= i < @average_rating.floor ? 'dt-star' : 'dt-star-muted' %>">★</span>
               <% end %>
-              <span class="ms-1"><%= @average_rating %></span>
+              <span class="ms-1">
+                <%= number_with_precision(@average_rating, precision: 2) %>
+              </span>
             </div>
           <% end %>
 
@@ -255,7 +257,7 @@
                 <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
               <% end %>
               <span class="dt-score ms-2">
-                <%= post.rating_overall %>
+                <%= number_with_precision(post.rating_overall, precision: 1) %>
               </span>
             </div>
 
