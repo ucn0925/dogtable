@@ -72,11 +72,11 @@
           <% if @user.profile_image.attached? %>
             <%= image_tag @user.profile_image, 
                 size: "150x150", 
-                class: "img-fluid rounded-circle circle-image mb-2" %>
+                class: "avatar avatar-lg mb-3" %>
           <% else %>
             <%= image_tag "default_user.png",
                 size: "150x150",
-                class: "img-fluid rounded-circle circle-image mb-2" %>
+                class: "avatar avatar-lg mb-3" %>
           <% end %>
         </div>
 
@@ -106,11 +106,11 @@
           <% if @user.dog&.dog_image&.attached? %>
             <%= image_tag @user.dog.dog_image, 
                 size: "150x150",
-                class: "img-fluid rounded-circle circle-image mb-2" %>
+                class: "avatar avatar-lg mb-2" %>
           <% else %>
             <%= image_tag "default_user.png",
                 size: "150x150",
-                class: "img-fluid rounded-circle circle-image mb-2" %>
+                class: "avatar avatar-lg mb-2" %>
           <% end %>
         </div>
 

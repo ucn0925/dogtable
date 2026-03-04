@@ -1,8 +1,29 @@
-.circle-image {
-  width: 150px !important;
-  height: 150px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  max-width: none !important;
-  max-height: none !important;
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+}
+
+.avatar-md {
+  width: 80px;
+  height: 80px;
+}
+
+.avatar-lg {
+  width: 150px;
+  height: 150px;
+}
+
+.avatar-placeholder {
+  border-radius: 50%;
+  background: #f3efe9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
 }

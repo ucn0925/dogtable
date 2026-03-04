@@ -24,9 +24,9 @@
 
           <!-- プロフ画像 -->
           <%  if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image, class: "rounded-circle circle-image mb-3" %>
+            <%= image_tag @user.profile_image, class: "avatar avatar-lg mb-3" %>
           <% else %>
-            <%= image_tag "default_user.png", class: "rounded-circle circle-image mb-3" %>
+            <%= image_tag "default_user.png", class: "avatar avatar-lg mb-3" %>
           <% end %>
 
           <!-- 数字サマリー -->
@@ -98,9 +98,9 @@
 
               <!-- 犬のアイコン -->
               <% if @user.dog.dog_image.attached? %>
-                <%= image_tag @user.dog.dog_image, class: "rounded-circle circle-image" %>
+                <%= image_tag @user.dog.dog_image, class: "avatar avatar-lg" %>
               <% else %>
-                <%= image_tag "default_user.png", class: "rounded-circle circle-image" %>
+                <%= image_tag "default_user.png", class: "avatar avatar-lg" %>
               <% end %>
 
               <!-- 犬テキスト情報 -->

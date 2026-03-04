@@ -226,17 +226,31 @@
 
           <!-- ユーザー名 & 投稿日 -->
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <div>
-              <strong>
-                <% if post.user.present? %>
-                  <%= link_to post.user.name, user_path(post.user), class: "user-link" %>
-                <% else %>
-                  退会ユーザー
-                <% end %>
-              </strong>
-              <span class="text-muted ms-2" style="font-size: 0.9em;">
-                <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
-              </span>
+            <div class="d-flex align-items-center">
+
+              <% if post.user&.profile_image&.attached? %>
+                <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
+                      class: "avatar avatar-sm me-2"%>
+              <% else %>
+                <div class="avatar avatar-sm avatar-placeholder me-2">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+              <% end %>
+              
+              <div>
+                <strong>
+                  <% if post.user.present? %>
+                    <%= link_to post.user.name, user_path(post.user), class: "user-link" %>
+                  <% else %>
+                    退会ユーザー
+                  <% end %>
+                </strong>
+                
+                <div class="text-muted small">
+                  <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+                </div>
+              </div>
+            
             </div>
 
             <% if post.user == current_user %>

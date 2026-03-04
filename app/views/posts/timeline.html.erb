@@ -17,13 +17,11 @@
           <!-- アイコン -->
           <% if post.user.profile_image.attached? %>
             <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
-                  class: "rounded-circle me-2",
-                  style: "width: 40px; height: 40px; object-fit: cover;" %>
+                  class: "avatar avatar-sm me-2" %>
           <% else %>
             <!-- デフォルトアイコン -->
             <%= image_tag "default_user.png",
-                  class: "rounded-circle me-2",
-                  style: "width: 40px; height: 40px; object-fit: cover;" %>
+                  class: "avatar avatar-sm me-2" %>
           <% end %>
 
           <!-- ユーザー名-->
