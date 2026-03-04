@@ -226,8 +226,8 @@
 
           <!-- ユーザー名 & 投稿日 -->
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="d-flex align-items-center">
 
+            <div class="d-flex align-items-center">
               <% if post.user&.profile_image&.attached? %>
                 <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
                       class: "avatar avatar-sm me-2"%>
@@ -249,8 +249,8 @@
                 <div class="text-muted small">
                   <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
                 </div>
+
               </div>
-            
             </div>
 
             <% if post.user == current_user %>
@@ -295,21 +295,6 @@
 
           </div>
 
-          <!-- 犬サイズ -->
-          <% if post.dog_size.present? %>
-            <span class="dt-dog-badge">
-              <i class="fa-solid fa-dog me-1"></i>
-              <%=
-                case post.dog_size
-                when "small" then "小型犬"
-                when "medium" then "中型犬"
-                when "large" then "大型犬"
-                else ""
-                end
-              %>
-            </span>
-          <% end %>
-
           <!-- コメント内容 -->
           <div class="mt-2">
             <% if post.images.attached? %>
@@ -329,16 +314,33 @@
                   class: "text-dark text-decoration-none" do %>
               <%= simple_format(h(post.content)) %>
             <% end %>
-          </div>
+          </div> 
 
           <% if post.visited_on.present? %>
-            <p class="mt-2">訪問日：<%= post.visited_on.strftime("%Y/%m/%d") %></p>
+            <div class="review-meta mt-2 small text-muted d-flex align-items-center gap-3">
+              <span>
+                <i class="fa-solid fa-calendar-day me-1"></i>
+                <%= post.visited_on.strftime("%Y/%m/%d") %>
+              </span>
+
+              <% if post.dog_size.present? %>
+                with
+                <%= case post.dog_size
+                    when "small" then "小型犬"
+                    when "medium" then "中型犬"
+                    when "large" then "大型犬"
+                    else ""
+                    end %>
+              <% end %>
+
+            </div>
           <% end %>
 
         </div>
       </div>
 
     <% end %>
+
   <% else %>
     <p>まだ口コミはありません。</p>
   <% end %>
