@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shops = Shop.page(params[:page]).per(5)
+    @shops = Shop.all
 
     if params[:keyword].present?
       @shops = @shops.where("name LIKE ?", "%#{params[:keyword]}%")
@@ -23,6 +23,26 @@ class ShopsController < ApplicationController
         @shops = @shops.where(city_id: id)
       end
     end
+
+    case params[:sort]
+    when "rating"
+      @shops = @shops.left_joins(:posts)
+                     .group("shops.id")
+                     .order("AVG(posts.rating_overall) DESC")
+    
+    when "posts"
+      @shops = @shops.left_joins(:posts)
+                     .group("shops.id")
+                     .order("COUNT(posts.id) DESC")
+    
+    when "new"
+      @shops = @shops.order(created_at: :desc)
+    end
+
+    @shops = @shops.page(params[:page]).per(5)
+
+
+    
   end
 
   def map

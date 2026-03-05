@@ -5,15 +5,28 @@
   <!-- 検索フォーム -->
   <%= form_with url: shops_path, method: :get, local: true do %>
     <div class="d-flex gap-2 align-items-center my-3">
-      <%= text_field_tag :keyword, params[:keyword],
-          placeholder: "店名で検索",
+
+      <%= text_field_tag :keyword, 
+          params[:keyword],
+          placeholder: "店名検索",
           class: "form-control",
           style: "max-width: 200px;" %>
-
-      <%= select_tag :genre_id, 
-          options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), 
+      
+      <%= select_tag :genre_id,
+          options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
           include_blank: "ジャンルを選択",
           class: "form-select",
+          style: "max-width: 180px;" %>
+
+      <%= select_tag :sort, 
+          options_for_select([
+            ['並び替え', ''],
+            ['評価が高い順', 'rating'],
+            ['口コミが多い順', 'posts'],
+            ['新着順', 'new']
+          ], params[:sort]),
+          class: "form-select",
+          id: "sort-select",
           style: "max-width: 180px;" %>  
 
       <%= submit_tag "検索", class: "dt-btn dt-btn-primary dt-btn-search" %>
@@ -60,7 +73,7 @@
                     <span class="<%= i < avg.round ? 'dt-star' : 'dt-star-muted' %>">★</span>
                   <% end %>
 
-                  <span class="ms-1">
+                  <span class="rating-number">
                     <%= number_with_precision(avg, precision: 1) %>
                   </span>
 
