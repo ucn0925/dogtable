@@ -297,20 +297,19 @@
 
           <!-- コメント -->
           <div class="review-comment mb-3">
-            <%= simple_format(h(post.content)) %>
+            <%= truncate(post.content, length:80) %>
+            <%= link_to "...詳細を見る", shop_post_path(@shop, post), class: "small text-muted" %>
           </div>
 
           <!-- 写真 -->
           <% if post.images.attached? %>
             <div class="d-flex flex-wrap gap-2 mb-2">
-              <% post.images.each do |image| %>
-                <%= link_to url_for(image), 
-                      class: "glightbox",
-                      data: { gallery: "post-#{post.id}" } do %>
-                  <%= image_tag image.variant(resize_to_fill: [250, 250]), 
+
+              <% post.images.first(3).each do |image| %>
+                <%= image_tag image.variant(resize_to_fill: [150, 150]), 
                       class: "shop-photo" %>
-                <% end %>
               <% end %>
+
             </div>
           <% end %>
 

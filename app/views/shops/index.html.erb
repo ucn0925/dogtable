@@ -42,23 +42,60 @@
               <%= image_tag shop.images.first.variant(resize_to_fill: [120, 120]),
                     class: "shop-thumbnail" %>
             <% else %>
-              <div class="shop-no-image">NO IMAGE</div>
+              <div class="shop-no-image">
+                <i class="fa-solid fa-image"></i>
+                <span>NO IMAGE</span>
+              </div>
             <% end %>
 
             <!-- 店舗情報 -->
             <div>
               <h2 class="h5 mb-1 shop-name"><%= shop.name %></h2>
+
+                <% avg = shop.posts.average(:rating_overall).to_f %>
+
+                <div class="shop-rating mb-1">
+
+                  <% 5.times do |i| %>
+                    <span class="<%= i < avg.round ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                  <% end %>
+
+                  <span class="ms-1">
+                    <%= number_with_precision(avg, precision: 1) %>
+                  </span>
+
+                </div>
+
               <p class="mb-1"><%= shop.address %></p>
+
               <p class="mb-1"><%= shop.genre.name %> ／ <%= shop.block.name %></p>
+
+              <div class="dog-info mb-1">
+              
+                <% if shop.inside_ok? %>
+                  <span class="dog-badge">
+                    <i class="fa-solid fa-house"></i>
+                      店内OK
+                  </span>
+                <% end %>
+
+                <% if shop.terrace_ok? %>
+                  <span class="dog-badge">
+                    <i class="fa-solid fa-leaf"></i>
+                      テラスOK
+                  </span>
+                <% end %>
+
+              </div>
 
               <p class="shop-meta mb-0">
                 <span class="meta-item">
-                  <span class="meta-label">いいね</span>
+                  <i class="fa-regular fa-heart"></i>
                   <span class="meta-count"><%= shop.shop_favorites.count %></span>
                 </span>
 
-                <span class="meta-item">
-                  <span class="meta-label">コメント</span>
+                <span class="meta-item ms-3">
+                  <i class="fa-regular fa-comment"></i>
                   <span class="meta-count"><%= shop.posts.count %></span>
                 </span>
 
