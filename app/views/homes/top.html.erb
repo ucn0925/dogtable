@@ -51,3 +51,35 @@
   </div>
 </div>
 
+<div class="container mt-5">
+
+  <h2 class="mb-3">新着口コミ</h2>
+
+  <% if @recent_posts.present? %>
+
+    <% @recent_posts.each do |post| %>
+      <div class="card mb-3 p-3">
+
+        <h5>
+          <%= link_to post.shop.name, shop_path(post.shop) %>
+        </h5>
+
+        <p class="mb-1">
+          <%= post.content %>
+        </p>
+
+        <small class="text-muted">
+          <%= post.user.name %> ・ <%= post.created_at.strftime("%Y/%m/%d") %>
+        </small>
+
+      </div>
+    <% end %>
+  
+  <% else %>
+
+    <p class="text-muted">まだ口コミがありません</p>
+
+  <% end %>
+
+</div>
+

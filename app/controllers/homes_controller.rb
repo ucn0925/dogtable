@@ -9,5 +9,7 @@ class HomesController < ApplicationController
         @area_options << [" ├ #{city.name}", "city_#{city.id}"]
       end
     end
+
+    @recent_posts = Post.includes(:shop, :user).order(created_at: :desc).limit(5)
   end
 end
