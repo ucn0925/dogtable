@@ -49,7 +49,10 @@
       </div>
     </nav>
 
-    <div class="container mt-2">
+    <% unless current_page?(root_path) %>
+      <div class="container mt-2">
+    <% end %>
+
       <% if notice %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <%= notice %>
@@ -63,7 +66,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <% end %>
-    </div>
+    
+    <% unless current_page?(root_path) %>
+      </div>
+    <% end %>
 
     <%= yield %>
 

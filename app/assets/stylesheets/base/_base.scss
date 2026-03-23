@@ -14,3 +14,11 @@ a {
   color: #2f2a26;
   text-decoration: none;
 }
+
+.top-page .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
