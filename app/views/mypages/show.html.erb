@@ -1,4 +1,4 @@
-<div class="container py-4">
+<div class="container py-4 mypage">
   <div class="card mb-4">
     <div class="card-body text-center">
       <h2 class="mb-3"><%= @user.name %>さんのマイページ</h2>
@@ -22,11 +22,17 @@
 
       <h3 class="card-title">アクティビティ</h3>
 
-      <p class="mb-1">💬投稿数：<strong><%= @posts.count %></strong>件</p>
-      <p class="mb-1">♡お気に入り店舗数：<strong><%= @favorites.count %></strong>件</p>
+      <p class="mb-1">
+        <i class="fa-regular fa-comment"></i>
+        投稿数：<strong><%= @posts.count %></strong>件</p>
+
+      <p class="mb-1">
+        <i class="fa-regular fa-heart"></i>
+        お気に入り店舗数：<strong><%= @favorites.count %></strong>件</p>
 
       <p class="mb-0">
-        ⭐️平均評価：
+        <i class="fa-regular fa-star"></i>
+        平均評価：
         <% if @posts.any? %>
           <% avg = @posts.average(:rating_overall).to_f.round(1) %>
           <% full = avg.floor %>
@@ -58,10 +64,12 @@
 
       <div class="row align-items-center">
         <div class="col-md-9">
-          <p class="mb-2">
-            <strong>自己紹介</strong><br>
-            <%= @user.profile.presence || "未設定" %>
-          </p>
+          <div class="mypage-box">
+            <small class="text-muted d-block mb-1">自己紹介</small>
+            <p class="mb-0">
+              <%= @user.profile.presence || "未設定" %>
+            </p>
+          </div>
 
           <%= link_to "プロフィールを編集する", 
               edit_user_registration_path, 
@@ -179,7 +187,7 @@
                   </p>
 
                   <div class="text-end">
-                    <%= link_to "投稿詳細を見る →",
+                    <%= link_to "投稿詳細を見る >>",
                         shop_post_path(post.shop, post),
                         class: "small text-decoration-none" %>
                   </div>

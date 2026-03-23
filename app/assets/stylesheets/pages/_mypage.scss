@@ -1,0 +1,121 @@
+.mypage {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* カード */
+.mypage .card {
+  border-radius: 16px;
+  border: 1px solid var(--dt-border);
+  background: var(--dt-card);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  transition: 0.2s;
+}
+
+.mypage .card-body {
+  padding: 24px;
+}
+
+/* タイトル・文字 */
+.mypage h2 {
+  color: var(--dt-text);
+  font-weight: 600;
+}
+
+.mypage h3 {
+  color: var(--dt-text);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.mypage p {
+  color: var(--dt-muted);
+}
+
+/* リンク */
+.mypage a {
+  color: var(--dt-main);
+  text-decoration: none;
+}
+
+.mypage a:hover {
+  color: var(--dt-main-dark);
+}
+
+.mypage p,
+.mypage strong,
+.mypage small {
+  cursor: default;
+}
+
+.mypage a:not(:hover) {
+  transition: color 0.2s;
+}
+
+/* 区切り線 */
+.mypage hr {
+  display: none;
+}
+
+/* アイコン */
+.mypage .avatar {
+  border: 2px solid var(--dt-border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.mypage i {
+  color: var(--dt-accent);
+  margin-right: 6px;
+}
+
+/*　投稿カード */
+.mypage .card .card {
+  border-radius: 12px;
+  background: var(--dt-card);
+  border: 1px solid var(--dt-border);
+}
+
+.mypage .card .card .bg-light {
+  background: #faf8f5 !important;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+/* お気に入り */
+.mypage .list-group-item {
+  border: none;
+  border-bottom: 1px solid var(--dt-border);
+  padding: 12px 0;
+  background: transparent;
+}
+
+/* 投稿コメント */
+.mypage .bg-light {
+  background: #faf8f5 !important;
+  border: 1px solid var(--dt-border);
+}
+
+.mypage .dt-btn-primary {
+  color: #fff;
+}
+
+.mypage .dt-btn-primary:hover {
+  color: #fff;
+}
+
+.mypage .mypage-box {
+  background: #faf8f5;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.mypage .mypage-box small {
+  color: var(--dt-muted);
+}
+
+.mypage .mypage-box p {
+  margin: 0;
+  color: var(--dt-text);
+}

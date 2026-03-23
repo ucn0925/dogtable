@@ -1,14 +1,10 @@
 /* ページ全体 */
 body.is-home {
-  padding-top: 0;
-}
-
-body {
   background-image: url("/assets/hero_latte.jpg");
   background-size: 110%;
   background-position: center 35%;
   background-attachment: fixed;
-  color: var(--dt-text);
+  padding-top: 0;
 }
 
 .top-page {
