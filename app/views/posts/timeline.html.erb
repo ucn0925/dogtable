@@ -1,84 +1,73 @@
 <div class="container py-4">
-<h2>タイムライン</h2>
 
   <% if @posts.any? %>
     <% @posts.each do |post| %>
-      <div class="card mb-4 shadow-sm position-relative">
+      <div class="timeline-card">
 
-        <!-- カード全体クリック用リンク -->
-        <%= link_to shop_post_path(post.shop, post),
-              class: "stretched-link" do %>
-        <% end  %>
+        <div class="timeline-shop">
+          <%= link_to post.shop.name, shop_path(post.shop) %>
+          <span class="shop-area">
+            （<%= post.shop.city.name %>）
+          </span>
+        </div>
 
-        <div class="card-body">
-
-        <!-- ユーザー名 -->
-        <div class="d-flex align-items-center mb-2">
-          <!-- アイコン -->
+        <div class="timeline-header">
           <% if post.user.profile_image.attached? %>
-            <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
-                  class: "avatar avatar-sm me-2" %>
+            <%= image_tag post.user.profile_image, class: "avatar avatar-sm" %>
           <% else %>
-            <!-- デフォルトアイコン -->
-            <%= image_tag "default_user.png",
-                  class: "avatar avatar-sm me-2" %>
+            <%= image_tag "default_user.png", class: "avatar avatar-sm" %>
           <% end %>
 
-          <!-- ユーザー名-->
-          <strong>
-            <%= link_to post.user.name, 
-                  user_path(post.user), 
-                  class: "text-decoration-none",
-                  style: "color: #333;" %>
-          </strong>
-        </div>
-
-        <!-- 店舗名 -->
-        <h5 class="card-subtitle mb-2  text-muted">
-          <%= link_to post.shop.name, shop_path(post.shop), class: "text-decoration-none" %>
-        </h5>
-
-        <!-- 投稿日 -->
-        <p class="text-muted small mb-2">
-          投稿日：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
-        </p>
-
-        <!-- 星評価 -->
-        <div class="mb-2">
-          <% 5.times do |i| %>
-            <span class="<%= i < post.rating_overall.to_i ? 'dt-star' : 'dt-star-muted' %>">
-              ★
-            </span>
-          <% end %>
-        </div>
-
-        <!-- 本文（短くして表示） -->
-        <% if post.images.attached? %>
-          <div class="d-flex gap-2 flex-wrap mb-3">
-            <% post.images.first(3).each do |img| %>
-              <%= image_tag img.variant(resize_to_limit: [250, 250]),
-                    class: "img-fluid rounded shadow-sm",
-                    style: "max-width: 200px" %>
-            <% end %>
+          <div>
+            <strong><%= post.user.name %></strong><br>
+            <small class="text-muted">
+              <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+            </small>
           </div>
-        <% end %>
-
-        <!-- いいねボタン -->
-        <div>
-          <% if post.favorited_by?(current_user) %>
-            <%= button_to shop_post_post_favorite_path(post.shop, post),
-                  method: :delete,
-                  class: "btn btn-danger btn-sm rounded-pill" do %>
-              ❤︎ いいね済み
-            <% end %>
-          <% else %>
-            <%= button_to shop_post_post_favorite_path(post.shop, post),
-                  method: :post,
-                  class: "btn btn-outline-danger btn-sm rounded-pill" do %>
-              ♡いいね
-            <% end %>
-          <% end %>
         </div>
+
+        <div class="timeline-body">
+
+          <div class="timeline-content">
+
+            <div class="timeline-rating">
+              <% 5.times do |i| %>
+                <span class="<%= i < post.rating_overall.to_i ? 'dt-star' : 'dt-star-muted' %>">★</span>
+              <% end %>
+            </div>
+
+            <% if post.content.present? %>
+              <p class="timeline-comment">
+                <%= truncate(post.content, length: 60) %>
+              </p>
+            <% end %>
+
+
+            <div class="timeline-like">
+              <% if post.favorited_by?(current_user) %>
+                <%= button_to shop_post_post_favorite_path(post.shop, post),
+                      method: :delete,
+                      class: "btn btn-danger btn-sm rounded-pill" do %>
+                  ❤︎ いいね済み
+                <% end %>
+              <% else %>
+                <%= button_to shop_post_post_favorite_path(post.shop, post),
+                      method: :post,
+                      class: "btn btn-outline-danger btn-sm rounded-pill" do %>
+                  ♡いいね
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+
+          <% if post.images.attached? %>
+            <div class="timeline-images">
+              <% post.images.first(2). each do |image| %>
+                <%= image_tag image %>
+              <% end %>
+            </div>
+          <% end %>
 
         </div>
       </div>
