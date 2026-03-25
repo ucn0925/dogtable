@@ -1,11 +1,14 @@
-<div class="container py-4">
+<div class="container py-4"> 
 
-  <% if @posts.any? %>
+  <% if @posts.any? %> 
     <% @posts.each do |post| %>
-      <div class="timeline-card">
+      
+      <div class="timeline-card position-relative">
+
+        <%= link_to "", shop_post_path(post.shop, post), class: "stretched-link" %>
 
         <div class="timeline-shop">
-          <%= link_to post.shop.name, shop_path(post.shop) %>
+          <%= link_to post.shop.name, shop_path(post.shop), onclick: "event.stopPropagation();" %>
           <span class="shop-area">
             （<%= post.shop.city.name %>）
           </span>
@@ -71,9 +74,11 @@
 
         </div>
       </div>
+      
+    
     <% end %>
 
   <% else %>
     <p>フォローしている人の投稿はまだありません。</p>
-  <% end %>
+  <% end %> 
 </div>
