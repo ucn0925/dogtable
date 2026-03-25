@@ -71,6 +71,8 @@
   font-size: 17px;
   color: var(--dt-main);
   font-weight: 700;
+  position: relative;
+  z-index: 2;
 }
 
 .shop-area {
@@ -95,6 +97,8 @@
   padding: 6px 14px;
   font-size: 13px;
   transition: 0.2s;
+  position: relative;
+  z-index: 2;
 }
 
 .timeline-like button:hover {
