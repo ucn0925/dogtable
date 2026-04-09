@@ -1,9 +1,114 @@
+.post-detail-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+  background: var(--dt-card);
+  border: 1px solid var(--dt-border);
+  border-radius: 16px;
+}
+
+.back-link {
+  color: var(--dt-main);
+  text-decoration: none;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.post-user {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dt-main);
+}
+
+.post-user a {
+  color: var(--dt-main);
+  text-decoration: none;
+}
+
+.post-user-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-date {
+  font-size: 13px;
+  color: #999;
+}
+
+.post-action-link {
+  color: var(--dt-main);
+}
+
+.post-delete-link {
+  color: #bb0000;
+}
+
+.post-rating {
+  margin-bottom: 16px;
+}
+
+.post-rating-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  align-items: flex-start;
+}
+
+.post-rating-label {
+  width: 120px;
+  color: #888;
+}
+
+.post-sub-info {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.dog-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dog-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: conver;
+}
+
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment-title {
+  gap: 16px;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 3px;
+  align-items: flex-start;
+}
+
 .dt-comment-box {
   max-width: 560px;
-  padding: 16px 18px 16px 18px;
-  margin: 0 ;
-  background-color: #f3efeb;
+  padding: 16px 18px;
+  margin-top: 3px;
+  background-color: var(--dt-card-hover);
   border-radius: 14px;
+}
+
+.dt-comment-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dt-text);
 }
 
 .dt-like-wrap {
@@ -43,5 +148,18 @@
 .dt-like-count {
   font-size: 14px;
   color: var(--dt-text);
+}
+
+.post-images {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.post-images img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
