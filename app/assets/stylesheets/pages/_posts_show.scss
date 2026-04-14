@@ -153,17 +153,28 @@
 }
 
 .dt-like-btn {
-  background: none;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
   border: none;
-  padding: 0;
-  font-size: 16px;
+  padding: 6px;
+  font-size: 18px;
   color: var(--dt-main);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .dt-like-btn:hover {
-  transform: scale(1.05);
+  background: var(--dt-card-hover);
+  transform: scale(1.1);
+}
+
+.dt-like-btn:active {
+  transform: scale(0.95);
 }
 
 .dt-like-btn .fa-heart {
