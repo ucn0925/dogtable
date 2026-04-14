@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 24px;
   background: var(--dt-card);
+  border: 1px solid var(--dt-border);
   border-radius: 16px;
 }
 
@@ -50,7 +51,9 @@
 }
 
 .post-rating {
-  margin-bottom: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--dt-border);
 }
 
 .post-rating-item {
@@ -95,10 +98,10 @@
 
 .dt-comment-box {
   max-width: 560px;
-  padding: 16px 18px;
-  margin-top: 3px;
-  background-color: var(--dt-card-hover);
-  border-radius: 14px;
+  padding: 12px 0;
+  margin-top: 8px;
+  background: none;
+  border-radius: 0;
 }
 
 .dt-comment-text {
@@ -108,15 +111,11 @@
 }
 
 .dt-like-wrap {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--dt-border);
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #8c7a6b;
+  padding-top: 0;
 }
 
 .dt-like-btn {
