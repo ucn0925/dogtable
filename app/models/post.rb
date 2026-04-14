@@ -8,6 +8,8 @@ class Post < ApplicationRecord
 
   enum dog_size: { small: 0, medium: 1, large: 2 } 
 
+  enum visit_scene: { lunch: 0, cafe: 1, dinner: 2 }
+
   validates :content, presence: true
 
   def favorited_by?(user)
