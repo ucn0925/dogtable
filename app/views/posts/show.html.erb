@@ -1,7 +1,5 @@
 <div class="container py-4">
 
-  <h2>口コミ詳細</h2>
-
   <div class="mb-3">
     <%= link_to "<< 店舗ページに戻る", shop_path(@shop), class: "back-link" %>
   </div>
@@ -24,9 +22,6 @@
             <%= link_to @post.user.name, user_path(@post.user) %>
           </strong>
 
-          <span class="post-date">
-            <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
-          </span>
         </div>
       </div>
 
@@ -94,7 +89,6 @@
 
     <!-- コメント -->
     <div class="comment-section">
-      <div class="comment-title">コメント</div>
 
       <div class="dt-comment-box">
         <div class="dt-comment-text">
@@ -102,21 +96,26 @@
         </div>
 
         <div class="dt-like-wrap">
-
-          <%= button_to shop_post_post_favorite_path(@shop, @post),
-                method: @post.favorited_by?(current_user) ? :delete : :post,
-                class: "dt-like-btn" do %>
-          
-            <% if @post.favorited_by?(current_user) %>
-              <i class="fa-solid fa-heart"></i>
-            <% else %>
-              <i class="fa-regular fa-heart"></i>
+          <div class="dt-like-left">
+            <%= button_to shop_post_post_favorite_path(@shop, @post),
+                  method: @post.favorited_by?(current_user) ? :delete : :post,
+                  class: "dt-like-btn" do %>
+            
+              <% if @post.favorited_by?(current_user) %>
+                <i class="fa-solid fa-heart"></i>
+              <% else %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            
             <% end %>
-          
-          <% end %>
 
-          <span class="dt-like-count">
-            <%= @post.post_favorites.count %>
+            <span class="dt-like-count">
+              <%= @post.post_favorites.count %>
+            </span>
+          </div>
+
+          <span class="dt-post-date">
+            <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
           </span>
 
         </div>
