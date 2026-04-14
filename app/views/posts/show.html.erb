@@ -50,13 +50,19 @@
       </div>
 
       <% if current_user == @post.user %>
-        <div>
-          <%= link_to "編集", edit_shop_post_path(@shop, @post), class: "post-action-link" %>
-          <%= link_to "削除", shop_post_path(@shop, @post),
+        <div class="post-actions">
+          <%= link_to edit_shop_post_path(@shop, @post), class: "post-action-icon" do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+
+          <%= link_to shop_post_path(@shop, @post),
                 data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか？" },
-                class: "post-delete-link" %>
+                class: "post-delete-icon" do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
         </div>
       <% end %>
+
     </div>
 
     <!-- 評価 -->

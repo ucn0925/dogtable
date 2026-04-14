@@ -42,12 +42,46 @@
   justify-content: center;
 }
 
-.post-action-link {
-  color: var(--dt-main);
+.post-actions {
+  display: flex;
+  gap: 14px;
 }
 
-.post-delete-link {
+.post-action-icon {
+  color: var(--dt-muted);
+  font-size: 14px;
+  transition: 0.15s;
+}
+
+.post-delete-icon {
+  color: #c26b6b;
+  font-size: 14px;
+  transition: 0.15s;
+}
+
+.post-action-icon:hover {
+  color: var(--dt-main);
+  transform: scale(1.1);
+}
+
+.post-delete-icon:hover {
   color: #bb0000;
+  transform: scale(1.1);
+}
+
+.post-action-icon,
+.post-delete-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-action-icon:hover,
+.post-delete-icon:hover {
+  background: var(--dt-card-hover);
 }
 
 .post-rating {
