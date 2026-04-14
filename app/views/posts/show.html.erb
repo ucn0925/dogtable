@@ -12,15 +12,39 @@
       <div class="post-user-wrap">
 
         <% if @post.user.profile_image.attached? %>
-          <%= image_tag @post.user.profile_image, class: "avatar avatar-sm" %>
+          <%= image_tag @post.user.profile_image, class: "avatar avatar-md" %>
         <% else %>
-          <%= image_tag "default_user.png", class: "avatar avatar-sm" %>
+          <%= image_tag "default_user.png", class: "avatar avatar-md" %>
         <% end %>
 
-        <div>
+        <div class="post-user-meta">
           <strong class="post-user">
             <%= link_to @post.user.name, user_path(@post.user) %>
           </strong>
+
+          <% if @post.visited_on.present? %>
+            <div class="post-visit-info">
+              <%= @post.visited_on.strftime("%Y/%m") %>訪問
+
+              <% if @post.dog_size.present? %>
+                <span class="dog-info ms-2">
+                  with
+                  <%= case @post.dog_size
+                    when "small" then "小型犬"
+                    when "medium" then "中型犬"
+                    when "large" then "大型犬"
+                  end %>
+
+                  <% if @post.user.dog&.dog_image&.attached? %>
+                    <%= image_tag @post.user.dog.dog_image, class: "dog-icon" %>
+                  <% else %>
+                    <%= image_tag "default_dog.png", class: "dog-icon" %>
+                  <% end %>
+                </span>
+              <% end %>
+
+            </div>
+          <% end %>
 
         </div>
       </div>
@@ -39,8 +63,8 @@
     <div class="post-rating">
 
       <% [["総合評価", @post.rating_overall],
-          ["料理の評価", @post.rating_food],
-          ["犬連れやすさ", @post.rating_dog_friendliness]].each do |label, rating| %>
+          ["料理", @post.rating_food],
+          ["dog friendly", @post.rating_dog_friendliness]].each do |label, rating| %>
         
         <div class="post-rating-item">
           <div class="post-rating-label"><%= label %>：</div>
@@ -53,38 +77,6 @@
 
       <% end %>
     
-    </div>
-
-    <!-- 補足情報 -->
-    <div class="post-sub-info">
-
-      <% if @post.visited_on.present? %>
-        <div class="post-rating-item">
-          <div class="post-rating-label">訪問日：</div>
-          <div>
-            <%= @post.visited_on.strftime("%Y/%m/%d") %>
-
-            <% if @post.dog_size.present? %>
-              <% dog_image = @post.user.dog&.dog_image %>
-
-              <span class="ms-2 text-muted">
-                with
-
-                <%= case @post.dog_size
-                  when "small" then "小型犬"
-                  when "medium" then "中型犬"
-                  when "large" then "大型犬"
-                end %>
-
-                 <i class="fa-solid fa-paw ms-1"></i>
-
-              </span>
-            <% end %>
-          </div>
-
-        </div>
-      <% end %>
-
     </div>
 
     <!-- コメント -->

@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 24px;
   background: var(--dt-card);
-  border: 1px solid var(--dt-border);
   border-radius: 16px;
 }
 
@@ -15,7 +14,7 @@
 .post-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 16px;
 }
 
@@ -32,8 +31,14 @@
 
 .post-user-wrap {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.post-user-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .post-action-link {
@@ -58,38 +63,34 @@
 
 .post-rating-label {
   width: 120px;
-  color: #888;
+  color: var(--dt-muted-2);
 }
 
-.post-sub-info {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(0,0,0,0.05);
-}
-
-.dog-info {
+.post-visit-info {
+  font-size: 15px;
   display: flex;
   align-items: center;
   gap: 6px;
+  color: var(--dt-muted);
+}
+
+.dog-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--dt-muted);
 }
 
 .dog-icon {
-  width: 26px;
-  height: 26px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  object-fit: conver;
+  object-fit: cover;
+  margin-left: 4px;
 }
 
 .comment-section {
   margin-top: 20px;
-}
-
-.comment-title {
-  gap: 16px;
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 3px;
-  align-items: flex-start;
 }
 
 .dt-comment-box {
@@ -109,7 +110,7 @@
 .dt-like-wrap {
   margin-top: 10px;
   padding-top: 8px;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid var(--dt-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,7 +130,7 @@
 }
 
 .dt-like-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .dt-like-btn .fa-heart {
@@ -153,7 +154,7 @@
 
 .dt-post-date {
   font-size: 13px;
-  color: #999;
+  color: var(--dt-muted-2);
   margin-right: 4px;
 }
 
