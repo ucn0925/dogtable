@@ -76,6 +76,8 @@ class PostsController < ApplicationController
       :rating_dog_friendliness,
       :dog_size,
       :visited_on,
+      :visit_scene,
+      :ordered_items,
       images: []
       )
   end

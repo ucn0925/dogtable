@@ -12,3 +12,10 @@ ja:
     errors:
       messages:
         blank: "を入力してください"
+
+  enums:
+    post:
+      visit_scene:
+        lunch: "ランチ"
+        cafe: "カフェ"
+        dinner: "ディナー"

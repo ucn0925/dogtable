@@ -68,6 +68,21 @@
       <%= f.date_field :visited_on, class: "form-control" %>
     </div>
 
+    <!-- 利用シーン -->
+    <div class="mb-3">
+      <%= f.label :visit_scene, "利用シーン", class: "form-label" %>
+      <%= f.select :visit_scene,
+        Post.visit_scenes.keys.map { |k| [I18n.t("enums.post.visit_scene.#{k}"), k] },
+        { prompt: "選択してください" },
+        class: "form-select" %>
+    </div>
+
+    <!-- 注文したもの -->
+    <div class="mb-3">
+      <%= f.label :ordered_items, "注文したもの", class: "form-label" %>
+      <%= f.text_area :ordered_items, rows: 3, class: "form-control" %>
+    </div>
+
     <!-- 送信ボタン -->
     <div class="mt-4 d-grid gap-2">
       <%= f.submit post.new_record? ? "投稿する" : "更新する",
