@@ -215,3 +215,12 @@
   border-radius: 12px;
 }
 
+.visit-scene {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dt-muted-2);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
