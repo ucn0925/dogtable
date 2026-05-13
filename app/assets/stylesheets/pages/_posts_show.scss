@@ -1,39 +1,43 @@
+/* 1. Layout */
 .post-detail-card {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 28px;
   background: var(--dt-card);
   border: 1px solid var(--dt-border);
   border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(75, 63, 50, 0.06);
 }
 
+/* 2. Back link */
 .back-link {
+  font-size: 14px;
+  gap: 6px;
+  color: var(--muted-2);
+  text-decoration: none;
+}
+
+.back-link:hover {
   color: var(--dt-main);
   text-decoration: none;
 }
 
+/* 3. Header */
 .post-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 16px;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--dt-border);
 }
 
-.post-user {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--dt-main);
-}
-
-.post-user a {
-  color: var(--dt-main);
-  text-decoration: none;
-}
-
+/*4. User */
 .post-user-wrap {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
 }
 
 .post-user-meta {
@@ -42,31 +46,100 @@
   justify-content: center;
 }
 
+.post-user {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dt-main);
+}
+
+.post-user a {
+  color: var(--dt-text);
+  text-decoration: none;
+}
+
+.post-user a:hover {
+  color: var(--dt-main);
+}
+
+
+/* 5. Meta */
+.post-visit-info {
+  margin-top: 8px;
+  font-size: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--dt-muted);
+}
+
+.post-meta-pill,
+.visit-scene,
+.dog-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid var(--dt-border);
+  border-radius: 999px;
+  background: var(--dt-card-hover);
+  color: var(--dt-muted);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.visit-scene {
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.dog-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 4px;
+}
+
+/* 6. Actions */
 .post-actions {
   display: flex;
-  gap: 14px;
+  gap: 10px;
+}
+
+.post-action-icon,
+.post-delete-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: 0.15s;
 }
 
 .post-action-icon {
   color: var(--dt-muted);
-  font-size: 14px;
-  transition: 0.15s;
 }
 
 .post-delete-icon {
   color: #c26b6b;
-  font-size: 14px;
-  transition: 0.15s;
+}
+
+.post-action-icon:hover,
+.post-delete-icon:hover {
+  background: var(--dt-card-hover);
+  transform: scale(1.08);
 }
 
 .post-action-icon:hover {
   color: var(--dt-main);
-  transform: scale(1.1);
 }
 
 .post-delete-icon:hover {
   color: #bb0000;
-  transform: scale(1.1);
 }
 
 .post-action-icon,
@@ -84,72 +157,71 @@
   background: var(--dt-card-hover);
 }
 
+/*7. Rating */
 .post-rating {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--dt-border);
+  margin-top: 20px;
+  display: grid;
+  gap: 8px;
 }
 
 .post-rating-item {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 6px;
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  align-items: center;
   font-size: 14px;
-  align-items: flex-start;
 }
 
 .post-rating-label {
-  width: 120px;
   color: var(--dt-muted-2);
+  font-weight: 600;
 }
 
-.post-visit-info {
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--dt-muted);
-}
-
-.dog-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--dt-muted);
-}
-
-.dog-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-left: 4px;
-}
-
+/* 8. Comment */
 .comment-section {
   margin-top: 20px;
 }
 
 .dt-comment-box {
-  max-width: 560px;
-  padding: 12px 0;
-  margin-top: 8px;
-  background: none;
-  border-radius: 0;
+  padding: 18px;
+  background: var(--dt-card-hover);
+  border-radius: 12px;
 }
 
 .dt-comment-text {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.75;
   color: var(--dt-text);
 }
 
+.dt-comment-text p {
+  margin-bottom: 0;
+}
+
+.ordered-items {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--dt-border);
+}
+
+.ordered-items-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ordered-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 9. Like */
 .dt-like-wrap {
-  margin-top: 8px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 0;
+  gap: 6px;
 }
 
 .dt-like-btn {
@@ -158,19 +230,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--dt-border);
   border-radius: 50%;
-  background: transparent;
-  border: none;
-  padding: 6px;
-  font-size: 18px;
+  background: var(--dt-card);
+  padding: 0px;
+  font-size: 16px;
   color: var(--dt-main);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .dt-like-btn:hover {
-  background: var(--dt-card-hover);
-  transform: scale(1.1);
+  color: var(--dt-accent);
+  transform: scale(1.06);
 }
 
 .dt-like-btn:active {
@@ -199,28 +271,21 @@
 .dt-post-date {
   font-size: 13px;
   color: var(--dt-muted-2);
-  margin-right: 4px;
 }
 
+/* 10. Images */
 .post-images {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
 }
 
 .post-images img {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
+  border: 1px solid var(--dt-border);
   border-radius: 12px;
 }
 
-.visit-scene {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--dt-muted-2);
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-}

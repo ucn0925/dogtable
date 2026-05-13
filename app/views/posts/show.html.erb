@@ -1,7 +1,10 @@
-<div class="container py-4">
+<div class="container py-4 post-detail-page">
 
   <div class="mb-3">
-    <%= link_to "<< 店舗ページに戻る", shop_path(@shop), class: "back-link" %>
+    <%= link_to shop_path(@shop), class: "back-link" do %>
+      <i class="fa-solid fa-chevron-left"></i>
+      店舗ページに戻る
+    <% end %>
   </div>
 
   <div class="post-detail-card">
@@ -24,19 +27,20 @@
 
           <% if @post.visited_on.present? %>
             <div class="post-visit-info">
-              <i class="fa-solid fa-calendar-check"></i>
-              <%= @post.visited_on.strftime("%Y/%m") %>
+              <span class="post-meta-pill">
+                <i class="fa-solid fa-calendar-check"></i>
+                <%= @post.visited_on.strftime("%Y/%m") %>
+              </span>
 
-              <div class="d-flex align-items-center gap-2 mt-1">
-                <% if @post.visit_scene.present? %>
-                  <span class="visit-scene">
-                    <%= @post.visit_scene %>
-                  </span>
-                <% end %>
-              </div>
+              <% if @post.visit_scene.present? %>
+                <span class="post-meta-pill">
+                  <%= @post.visit_scene %>
+                </span>
+              <% end %>
+              
 
               <% if @post.dog_size.present? %>
-                <span class="dog-info ms-2">
+                <span class="post-meta-pill dog-info">
                   with
                   <%= case @post.dog_size
                     when "small" then "小型犬"
@@ -103,16 +107,20 @@
         </div>
 
         <% if @post.ordered_items.present? %>
-          <div class="mt-3">
-            <div class="fw-bold mb-1">注文したもの</div>
+          <div class="ordered-items">
+            <div class="ordered-items-title">
+              <i class="fa-solid fa-utensils"></i>
+              注文したもの
+            </div>
 
-            <div class="d-flex flex-wrap gap-2">
-              <% @post.ordered_items.split(",").each do |item| %>
-                <span class="badge bg-light text-dark border">
-                  <%= item.strip %>
+            <div class="ordered-items-list">
+              <% @post.ordered_items.split(",").map(&:strip).reject(&:blank?).each do |item| %>
+                <span class="ordered-item-badge">
+                  <%= item %>
                 </span>
               <% end %>
             </div>
+
           </div>
         <% end %>
 
@@ -151,8 +159,7 @@
                 class: "glightbox",
                 data: { gallery: "post-#{@post.id}" } do %>
             <%= image_tag image.variant(resize_to_limit: [250, 250]),
-                  class: "img-fluid rounded shadow-sm",
-                  style: "width: 250px; height: 250px; object-fit: cover;" %>
+                  class: "post-image" %>
           <% end %>
         <% end %>
       </div>
