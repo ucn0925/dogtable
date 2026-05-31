@@ -83,7 +83,7 @@
 
       <% [["総合評価", @post.rating_overall],
           ["料理", @post.rating_food],
-          ["dog friendly", @post.rating_dog_friendliness]].each do |label, rating| %>
+          ["Dog Friendly", @post.rating_dog_friendliness]].each do |label, rating| %>
         
         <div class="post-rating-item">
           <div class="post-rating-label"><%= label %>：</div>
@@ -124,6 +124,28 @@
           </div>
         <% end %>
 
+        <!-- 投稿画像 -->
+        <% if @post.images.attached? %>
+          <div class="post-images">
+            <% @post.images.first(2).each do |image| %>
+              <%= link_to url_for(image),
+                    class: "glightbox",
+                    data: { gallery: "post-#{@post.id}" } do %>
+                <%= image_tag image.variant(resize_to_limit: [250, 250]),
+                      class: "post-image" %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <% if @post.images.count > 2 %>
+            <div class="mt-2">
+              <%= link_to "写真をすべて見る（#{@post.images.count}枚）",
+                  photos_shop_post_path(@shop, @post),
+                  class: "btn btn-outline-secondary btn-sm" %>
+            </div>
+          <% end %>
+        <% end %>
+
         <div class="dt-like-wrap">
           <div class="dt-like-left">
             <%= button_to shop_post_post_favorite_path(@shop, @post),
@@ -146,32 +168,10 @@
           <span class="dt-post-date">
             <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
           </span>
-
         </div>
+
       </div>   
     </div>
-
-    <!-- 投稿画像 -->
-    <% if @post.images.attached? %>
-      <div class="post-images">
-        <% @post.images.first(2).each do |image| %>
-          <%= link_to url_for(image),
-                class: "glightbox",
-                data: { gallery: "post-#{@post.id}" } do %>
-            <%= image_tag image.variant(resize_to_limit: [250, 250]),
-                  class: "post-image" %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <% if @post.images.count > 2 %>
-        <div class="mt-2">
-          <%= link_to "写真をすべて見る（#{@post.images.count}枚）",
-              photos_shop_post_path(@shop, @post),
-              class: "btn btn-outline-secondary btn-sm" %>
-        </div>
-      <% end %>
-    <% end %>
 
   </div>
 </div>

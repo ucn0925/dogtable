@@ -166,7 +166,7 @@
 
 .post-rating-item {
   display: grid;
-  grid-template-columns: 112px 1fr;
+  grid-template-columns: 110px auto;
   align-items: center;
   font-size: 14px;
 }
@@ -217,11 +217,13 @@
 
 /* 9. Like */
 .dt-like-wrap {
-  margin-top: 18px;
+  margin-top: 16px;
+  padding-top: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 6px;
+  border-top: 1px solid var(--dt-border);
 }
 
 .dt-like-btn {
@@ -276,14 +278,15 @@
 /* 10. Images */
 .post-images {
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .post-images img {
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border: 1px solid var(--dt-border);
   border-radius: 12px;
