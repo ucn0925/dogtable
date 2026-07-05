@@ -292,3 +292,34 @@
   border-radius: 12px;
 }
 
+.photo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: var(--dt-card);
+  font-size: 40px;
+  font-weight: 400;
+
+  border-radius: 12px;
+}
+
+.hidden-gallery {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+}

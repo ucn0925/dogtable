@@ -127,23 +127,37 @@
         <!-- 投稿画像 -->
         <% if @post.images.attached? %>
           <div class="post-images">
-            <% @post.images.first(2).each do |image| %>
+
+            <% images = @post.images.first(2) %>
+
+            <% images.each_with_index do |image, index| %>
+
               <%= link_to url_for(image),
-                    class: "glightbox",
+                    class: "glightbox photo-wrapper",
                     data: { gallery: "post-#{@post.id}" } do %>
+                    
                 <%= image_tag image.variant(resize_to_limit: [250, 250]),
                       class: "post-image" %>
+                
+                <% if index == 1 && @post.images.count > 2 %>
+                  <div class="photo-overlay">
+                    + <%= @post.images.count - 2 %>
+                  </div>
+                <% end %>
+
               <% end %>
             <% end %>
-          </div>
 
-          <% if @post.images.count > 2 %>
-            <div class="mt-2">
-              <%= link_to "写真をすべて見る（#{@post.images.count}枚）",
-                  photos_shop_post_path(@shop, @post),
-                  class: "btn btn-outline-secondary btn-sm" %>
-            </div>
-          <% end %>
+            <% @post.images.drop(2).each do |image| %>
+              <%= link_to "",
+                    url_for(image),
+                    class: "glightbox hidden-gallery",
+                    data: { gallery: "post-#{@post.id}" } %>
+  
+            <% end %>
+
+          </div>
+          
         <% end %>
 
         <div class="dt-like-wrap">

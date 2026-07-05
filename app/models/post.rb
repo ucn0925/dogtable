@@ -13,6 +13,10 @@ class Post < ApplicationRecord
   validates :content, presence: true
 
   def favorited_by?(user)
+    if user == nil
+      return false
+    end
+
     post_favorites.exists?(user_id: user.id)
   end
 end
