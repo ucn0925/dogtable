@@ -63,14 +63,14 @@
       </div>
 
       <% if current_user == @post.user %>
-        <div class="post-actions">
-          <%= link_to edit_shop_post_path(@shop, @post), class: "post-action-icon" do %>
+        <div class="action-icons">
+          <%= link_to edit_shop_post_path(@shop, @post), class: "action-icon" do %>
             <i class="fa-regular fa-pen-to-square"></i>
           <% end %>
 
           <%= link_to shop_post_path(@shop, @post),
                 data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか？" },
-                class: "post-delete-icon" do %>
+                class: "action-icon delete-icon" do %>
             <i class="fa-regular fa-trash-can"></i>
           <% end %>
         </div>
@@ -200,7 +200,7 @@
           </div>
 
           <span class="dt-post-date">
-            <%= @post.created_at.strftime("%Y/%m/%d") %>
+            <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
           </span>
         </div>
 

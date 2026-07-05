@@ -15,9 +15,20 @@
 
   <!-- 基本情報カード -->
   <div class="card mt-3 mb-4">
-    <div class="card-body">
+    <div class="card-body position-relative">
 
-      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mt-2 mb-4">店舗情報</h4>
+      <% if user_signed_in? %>
+        <%= link_to edit_shop_path(@shop), class: "action-icon shop-edit-icon" do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+      <% end %>
+
+      <div class="section-header">
+        <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-2 mt-3">
+          店舗情報
+        </h4>
+
+      </div>
 
       <!-- 情報バー -->
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -197,12 +208,8 @@
 
       <% end %>
 
-			<hr class="my-3">
-
     </div>
   </div>
-
-  <hr>
 
   <!-- 口コミ一覧 -->
   <div class="d-flex justify-content-between align-items-center mt-4">
@@ -359,19 +366,5 @@
     </div>
   </div>
 
-	<div class="card mt-4 border-secondary">
-    <div class="card-body">
-      <small class="text-muted d-block mb-2">この店舗の管理</small>
-      
-      <%= link_to "店舗情報を編集", 
-            edit_shop_path(@shop),
-            class: "dt-btn dt-btn-outline dt-btn-outline-soft dt-btn-sm me-2" %>
-
-      <%= link_to "店舗を削除", 
-            shop_path(@shop), 
-            data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"},
-            class: "dt-btn dt-btn-danger dt-btn-sm" %>
-    </div>
-  </div>
-
+  
 </div>
