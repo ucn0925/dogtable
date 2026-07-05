@@ -162,21 +162,39 @@
 
         <div class="dt-like-wrap">
           <div class="dt-like-left">
-            <%= button_to shop_post_post_favorite_path(@shop, @post),
-                  method: @post.favorited_by?(current_user) ? :delete : :post,
-                  class: "dt-like-btn" do %>
-            
-              <% if @post.favorited_by?(current_user) %>
-                <i class="fa-solid fa-heart"></i>
-              <% else %>
-                <i class="fa-regular fa-heart"></i>
+          
+            <% if user_signed_in? %>
+
+              <%= button_to shop_post_post_favorite_path(@shop, @post),
+                    method: @post.favorited_by?(current_user) ? :delete : :post,
+                    class: "dt-like-btn" do %>
+              
+                <% if @post.favorited_by?(current_user) %>
+                  <i class="fa-solid fa-heart"></i>
+                <% else %>
+                  <i class="fa-regular fa-heart"></i>
+                <% end %>
+              
               <% end %>
+
+            <% else %>
+
+              <button class="dt-like-btn" disabled>
+                <i class="fa-regular fa-heart"></i>
+              </button>
             
             <% end %>
 
             <span class="dt-like-count">
               <%= @post.post_favorites.count %>
             </span>
+
+            <% unless user_signed_in? %>
+              <small class="text-muted ms-2">
+                お気に入り登録にはログインが必要です
+              </small>
+            <% end %>
+
           </div>
 
           <span class="dt-post-date">
