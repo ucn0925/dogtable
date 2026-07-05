@@ -275,6 +275,23 @@
   color: var(--dt-muted-2);
 }
 
+.login-message {
+  margin-left: 8px;
+  font-size: 14px;
+  color: var(--dt-muted);
+}
+
+.login-link {
+  color: var(--dt-main);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link:hover {
+  color: var(--dt-main-dark);
+  text-decoration: underline;
+}
+
 /* 10. Images */
 .post-images {
   display: flex;

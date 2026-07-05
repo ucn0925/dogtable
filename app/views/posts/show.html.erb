@@ -190,15 +190,17 @@
             </span>
 
             <% unless user_signed_in? %>
-              <small class="text-muted ms-2">
-                お気に入り登録にはログインが必要です
-              </small>
+              <span class="login-message">
+                お気に入り登録には
+                <%= link_to "ログイン", new_user_session_path, class: "login-link" %>
+                が必要です
+              </span>
             <% end %>
 
           </div>
 
           <span class="dt-post-date">
-            <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
+            <%= @post.created_at.strftime("%Y/%m/%d") %>
           </span>
         </div>
 
