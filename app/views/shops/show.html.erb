@@ -225,8 +225,8 @@
   <% if @shop.posts.any? %>
     <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
     
-      <div class="card mb-3 position-relative">
-        <div class="card-body">
+      <div class="card mb-3">
+        <div class="card-body position-relative">
 
           <!-- カード全体クリック -->
           <%= link_to "", shop_post_path(@shop, post), class: "stretched-link" %>
@@ -261,11 +261,20 @@
             </div>
 
             <% if post.user == current_user %>
-              <div>
-                <%= link_to "編集", edit_shop_post_path(@shop, post), class: "text-primary me-2" %>
-                <%= link_to "削除", shop_post_path(@shop, post), 
-                      data: { turbo_method: :delete, turbo_confirm: "この投稿を削除しますか？" },
-                      class: "text-danger" %>
+              <div class="action-icons">
+
+                <%= link_to edit_shop_post_path(@shop, post), 
+                      class: "action-icon" do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
+
+                <%= link_to shop_post_path(@shop, post), 
+                      data: { turbo_method: :delete, 
+                              turbo_confirm: "この投稿を削除しますか？" },
+                      class: "action-icon delete-icon" do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
+
               </div>
             <% end %>
           </div>

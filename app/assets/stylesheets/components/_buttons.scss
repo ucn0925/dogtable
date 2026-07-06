@@ -105,22 +105,20 @@
   justify-content: center;
   font-size: 14px;
   color: var(--dt-muted);
-  transition: 0.15s;
+  transition: all 0.15s ease;
 }
 
 .delete-icon {
   color: #c26b6b;
 }
 
+.action-icon:hover,
 .delete-icon:hover {
   background: var(--dt-card-hover);
   transform: scale(1.08);
 }
 
-.action-icon:hover {
-  color: var(--dt-main);
-}
-
 .delete-icon:hover {
   color: #bb0000;
+  transform: scale(1.08);
 }

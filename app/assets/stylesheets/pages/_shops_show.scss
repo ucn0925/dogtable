@@ -52,12 +52,12 @@
     border-color: var(--dt-border) !important;
   }
 
-  a {
+  a:not(.action-icon) {
     color: var(--dt-main);
     text-decoration: none;
   }
 
-  a:hover {
+  a:not(.action-icon):hover {
     color: var(--dt-main-dark);
     text-decoration: underline;
   }
@@ -252,7 +252,10 @@
     right: 10px;
   }
 
-
+  .action-icons {
+    position: relative;
+    z-index: 10;
+  }
 
 
 }
