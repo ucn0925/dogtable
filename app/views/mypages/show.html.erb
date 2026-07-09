@@ -133,19 +133,29 @@
 
   <div class="card mb-4">
     <div class="card-body">
-      <h3 class="card-title">お気に入り店舗一覧</h3>
+      <h3 class="card-title">行きたいお店一覧</h3>
         <% if @favorites.any? %>
           <ul class="list-group list-group-flush">
             <% @favorites.each do |favorite| %>
+              <% shop = favorite.shop %>
+
               <li class="list-group-item">
-                <%= link_to favorite.shop.name, 
-                    shop_path(favorite.shop),
-                    class: "text-decoration-none" %>
+                <%= link_to shop_path(shop),
+                    class: "favorite-shop-link" do %>
+                
+                  <div class="favorite-shop-name">
+                    <%= shop.name %>
+                  </div>
+                  
+                  <div class="text-muted">
+                    <%= shop.genre.name %> ／ <%= shop.city.name %>
+                  </div>
+                <% end %>
               </li>
            <% end %>
           </ul>
         <% else %>
-          <p class="text-muted mb-0">お気に入り登録した店舗はまだありません。</p>
+          <p class="text-muted mb-0">行きたいお店はまだありません。</p>
         <% end %>
 
     </div>

@@ -96,8 +96,26 @@
 .mypage .list-group-item {
   border: none;
   border-bottom: 1px solid var(--dt-border);
-  padding: 12px 0;
+  padding: 8px 0;
   background: transparent;
+}
+
+.favorite-shop-link {
+  display: block;
+  padding: 8px 8px;
+  color: inherit;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.favorite-shop-link:hover {
+  background: var(--dt-card-hover);
+  border-radius: 8px;
+}
+
+.favorite-shop-name {
+  font-weight: 500;
+  color: var(--dt-text);
 }
 
 /* 投稿コメント */
