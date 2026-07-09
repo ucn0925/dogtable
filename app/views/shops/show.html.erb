@@ -268,13 +268,6 @@
                   <i class="fa-regular fa-pen-to-square"></i>
                 <% end %>
 
-                <%= link_to shop_post_path(@shop, post), 
-                      data: { turbo_method: :delete, 
-                              turbo_confirm: "この投稿を削除しますか？" },
-                      class: "action-icon delete-icon" do %>
-                  <i class="fa-regular fa-trash-can"></i>
-                <% end %>
-
               </div>
             <% end %>
           </div>
