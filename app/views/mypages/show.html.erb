@@ -62,6 +62,12 @@
     <div class="card-body">
       <h3 class="card-title">プロフィール</h3>
 
+      <%= link_to edit_user_registration_path,
+          class: "action-icon",
+          title: "プロフィールを編集" do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+      <% end %>
+
       <div class="row align-items-center">
         <div class="col-md-9">
           <div class="mypage-box">
@@ -70,10 +76,6 @@
               <%= @user.profile.presence || "未設定" %>
             </p>
           </div>
-
-          <%= link_to "プロフィールを編集する", 
-              edit_user_registration_path, 
-              class: "dt-btn dt-btn-outline dt-btn-outline-soft btn-sm" %>
         </div>
       
         <div class="col-md-3 text-center">

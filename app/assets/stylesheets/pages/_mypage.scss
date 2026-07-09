@@ -16,6 +16,10 @@
   padding: 24px;
 }
 
+.card-body {
+  position: relative;
+}
+
 /* タイトル・文字 */
 .mypage h2 {
   color: var(--dt-text);
@@ -50,6 +54,12 @@
 
 .mypage a:not(:hover) {
   transition: color 0.2s;
+}
+
+.action-icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 
 /* 区切り線 */
