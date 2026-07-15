@@ -361,6 +361,11 @@
 
         <%= form_with(model: [@shop, new_post], local: true) do |f| %>
           <%= render "posts/form", post:new_post, shop: @shop, f: f %>
+
+          <div class="mt-4 d-grid">
+            <%= f.submit "口コミを投稿する",
+                  class: "dt-btn dt-btn-primary dt-btn-lg" %>
+          </div>
         <% end %>
       <% else %>
         <p>口コミを投稿するにはログインが必要です。</p>
