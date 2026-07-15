@@ -191,19 +191,19 @@
               </p>
 
               <% if post.content.present? %>
-                <div class="mt-2 p-3 bg-light rounded">
-                  <small class="text-muted d-block mb-1">コメント</small>
 
-                  <p class="mb-1">
-                    <%= truncate(post.content, length: 80) %>
-                  </p>
+                <%= link_to shop_post_path(post.shop, post),
+                    class: "mypage-post-link" do %>
 
-                  <div class="text-end">
-                    <%= link_to "投稿詳細を見る >>",
-                        shop_post_path(post.shop, post),
-                        class: "small text-decoration-none" %>
+                  <div class="mypage-comment-card mt-2 p-3 rounded">
+                    <small class="text-muted d-block mb-1">コメント</small>
+
+                    <p class="mb-1">
+                      <%= truncate(post.content, length: 80) %>
+                    </p>
                   </div>
-                </div>
+
+                <% end %>
               <% end %>
  
             </div>

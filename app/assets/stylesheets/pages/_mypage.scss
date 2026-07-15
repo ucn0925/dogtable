@@ -20,6 +20,17 @@
   position: relative;
 }
 
+.mypage-comment-card {
+  background: var(--dt-card-hover);
+  transition: all 0.2s ease;
+}
+
+.mypage-post-link:hover .mypage-comment-card {
+  background: var(--dt-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
 /* タイトル・文字 */
 .mypage h2 {
   color: var(--dt-text);
@@ -60,6 +71,11 @@
   position: absolute;
   right: 15px;
   top: 15px;
+}
+
+.mypage-post-link {
+  display: block;
+  text-decoration: none;
 }
 
 /* 区切り線 */
