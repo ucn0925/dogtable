@@ -1,9 +1,9 @@
-<div class="container mt-4">
+<div class="container mt-4 post-form">
   <div class="row-justify-content-center">
     <div class="col-md-8 col-lg-6">
 
       <!-- 編集タイトル -->
-      <h2 class="text-center mb-4">投稿を編集する</h2>
+      <h2 class="text-center mb-4">口コミを編集する</h2>
 
       <%= form_with(model: [@shop, @post], local: true) do |f| %>
 
@@ -14,8 +14,7 @@
 
           <!-- 投稿済み画像 -->
           <% if @post.images.attached? %>
-            <div class="card p-3 shadow-sm mb-4">
-              <h5 class="mb-3">投稿済みの画像</h3>
+            <h5 class="mb-3">投稿済みの画像</h3>
 
               <div class="row g-3">
                 <% @post.images.each do |image| %>
@@ -43,12 +42,21 @@
                   </div>
                 <% end %>
               </div>
-            </div>
           <% end %>
 
           <!-- ボタン専用フォーム -->
-          <div class="mt-3">
-            <%= f.submit "更新する", class: "dt-btn dt-btn-primary w-100" %>
+          <div class="d-grid gap-2 mt-4">
+            <%= f.submit "更新する", 
+                class: "dt-btn dt-btn-primary" %>
+            
+            
+            <%= link_to "この口コミを削除",
+                shop_post_path(@shop, @post),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "この口コミを削除しますか？"
+                },
+                class: "dt-btn dt-btn-danger dt-btn-sm delete-post" %>
           </div>
 
         </div>

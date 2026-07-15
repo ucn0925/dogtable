@@ -11,15 +11,15 @@
   <!-- 店名 -->
   <h1 class="h3 mt-2 mb-2"><%= @shop.name %></h1>
 
-  
-
   <!-- 基本情報カード -->
   <div class="card mt-3 mb-4">
     <div class="card-body position-relative">
 
       <% if user_signed_in? %>
-        <%= link_to edit_shop_path(@shop), class: "action-icon shop-edit-icon" do %>
-          <i class="fa-regular fa-pen-to-square"></i>
+        <%= link_to edit_shop_path(@shop), 
+            class: "action-icon shop-edit-icon",
+            title: "店舗情報を編集する" do %>
+          <i class="fa-regular fa-pen-to-square""></i>
         <% end %>
       <% end %>
 
