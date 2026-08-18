@@ -56,14 +56,19 @@
       <% if notice %>
         <div class="alert alert-success alert-dismissible fade show <%= 'flash-home' if current_page?(root_path) %>" role="alert">
           <%= notice %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <button 
+            type="button" 
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close">
+          </button>
         </div>
       <% end %>
 
       <% if alert %>
         <div class="alert alert-danger alert-dismissible fade show <%= 'flash-home' if current_page?(root_path) %>" role="alert">
           <%= alert %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"</button>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
       <% end %>
     

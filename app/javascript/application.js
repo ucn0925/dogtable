@@ -2,13 +2,14 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "geocode"
+import "bootstrap"
 
 document.addEventListener("DOMContentLoaded", () => {
   const sortSelect = document.getElementById("sort-select");
 
   if (sortSelect) {
     sortSelect.addEventListener("change", () => {
-      sortSelect.formdata.submit();
+      sortSelect.form.submit();
     });
   }
 });
