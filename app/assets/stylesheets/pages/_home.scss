@@ -153,3 +153,10 @@ body.is-home {
 .hero-nav .nav-link:hover {
   color: #4e4036;
 }
+
+@media (max-width: 998px) {
+  body.is-home {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
