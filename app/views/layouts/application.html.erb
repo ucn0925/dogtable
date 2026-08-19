@@ -25,7 +25,12 @@
       <div class="container">
         <%= link_to "DogTable", root_path, class: "navbar-brand fw-semibold" %>
 
-        <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <!-- ハンバーガーボタン -->
+        <button class="hamburger-btn" type="button" aria-label="メニューを開く">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="navbar-nav ms-auto align-items-center gap-2 desktop-nav">
           <li class="nav-item">
             <%= link_to "トップページ", root_path, class: "nav-link" %>
           </li>

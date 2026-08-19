@@ -13,3 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("turbo:load", () => {
+  const hamburgerBtn = document.querySelector(".hamburger-btn");
+  const navMenu = document.querySelector(".desktop-nav");
+
+  if (!hamburgerBtn || !navMenu) return;
+
+  hamburgerBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("is-open");
+
+    const icon = hamburgerBtn.querySelector("i");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-xmark");
+  });
+});

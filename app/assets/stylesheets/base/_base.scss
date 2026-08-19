@@ -22,3 +22,43 @@ a {
   width: 100%;
   z-index: 10;
 }
+
+
+.hamburger-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--dt-border);
+  border-radius: 8px;
+  background: var(--dt-card);
+}
+
+.hamburger-btn:hover {
+  background: var(--dt-card-hover);
+}
+
+@media (max-width: 991.98px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .desktop-nav.is-open {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--dt-card);
+    padding: 8px 16px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .desktop-nav.is-open .nav-link {
+    padding: 10px 8px;
+  }
+}
