@@ -1,9 +1,6 @@
 let openInfoWindow = null;
 
-console.log("geocode.js loaded");
-
 function initMap() {
-    console.log("Google Maps セット完了！");
 
     const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 35.663, lng: 138.568 },
@@ -100,7 +97,6 @@ function geocodeAddress() {
             document.getElementById("shop-latitude").value = lat;
             document.getElementById("shop-longitude").value = lng;
 
-            console.log(`セット完了！！ 緯度：${lat} 緯度：${lng}`);
         } else {
             console.error("ジオコーディング失敗：" + status);
         }
