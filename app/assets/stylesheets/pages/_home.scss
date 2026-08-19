@@ -88,18 +88,54 @@ body.is-home {
   z-index: 1;
 }
 
-.reviews .card {
-  border: none;
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-card {
+  display: flex;
+  overflow: hidden;
   border-radius: 16px;
-
   background: rgba(255,255,255,0.85);
-
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-
   transition: all 0.2sease;
+}
+
+.review-card__image {
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.review-card__body {
+  padding: 18px;
+}
+
+.review-card__no-image {
+  width: 240px;
+  height: 180px;
+  flex-shrink: 0;
+
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #aaa;
+  font-size: 12px;
+}
+
+.review-card__no-image i {
+  font-size: 24px;
+  margin-bottom: 4px;
 }
 
 .reviews h5 a {

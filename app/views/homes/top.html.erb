@@ -59,23 +59,44 @@
 
       <% if @recent_posts.present? %>
 
-        <% @recent_posts.each do |post| %>
-          <div class="card mb-3 p-3">
+        <div class="review-list">
 
-            <h5>
-              <%= link_to post.shop.name, shop_path(post.shop) %>
-            </h5>
+          <% @recent_posts.each do |post| %>
 
-            <p class="mb-1">
-              <%= post.content %>
-            </p>
+            <div class="review-card">
 
-            <small class="text-muted">
-              <%= post.user.name %> ・ <%= post.created_at.strftime("%Y/%m/%d") %>
-            </small>
+              <!-- 投稿画像-->
+              <% if post.images.attached? %>
+                <%= image_tag post.images.first.variant(resize_to_limit: [400, 300]),
+                      class: "review-card__image" %>
+              <% else %>
 
-          </div>
-        <% end %>
+                <div class="review-card__no-image">
+                  <i class="fa-solid fa-image"></i>
+                  <span>NO IMAGE</span>
+                </div>
+              <% end %>
+
+              <!-- 口コミ内容 -->
+              <div class="review-card__body">
+
+                <h5>
+                  <%= link_to post.shop.name, shop_path(post.shop) %>
+                </h5>
+
+                <p class="mb-1">
+                  <%= post.content %>
+                </p>
+
+                <small>
+                  <%= post.user.name %> ・ <%= post.created_at.strftime("%Y/%m/%d") %>
+                </small>
+
+              </div>
+
+            </div>
+          <% end %>
+        </div>
       
       <% else %>
 
