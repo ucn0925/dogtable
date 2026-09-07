@@ -18,16 +18,17 @@
 
   <!-- 店名 -->
   <div class="dt-form-group">
-    <%= f.label :name, "店名", class: "dt-form-label" %>
-    <span class="dt-required"> *</span>
-
+    <%= f.label :name, class: "dt-form-label" do %>
+      店名<span class="dt-required"> *</span>
+    <% end %>
     <%= f.text_field :name, class: "dt-form-control" %>
   </div>
 
   <!-- 住所 -->
   <div class="dt-form-group">
-    <%= f.label :address, "住所", class: "dt-form-label" %>
-    <span class="dt-required"> *</span>
+    <%= f.label :address, class: "dt-form-label" do %>
+      住所<span class="dt-required"> *</span>
+    <% end %>
     <%= f.text_field :address, 
           class: "dt-form-control",
           id: "shop-address" %>
@@ -39,8 +40,9 @@
 
     <!-- ジャンル -->
     <div class="dt-form-group">
-      <%= f.label :genre_id, "ジャンル", class: "dt-form-label" %>
-      <span class="dt-required"> *</span>
+      <%= f.label :genre_id, class: "dt-form-label" do %>
+        ジャンル<span class="dt-required"> *</span>
+      <% end %>
 
       <%= f.collection_select :genre_id, 
             Genre.all, :id, :name, 
@@ -60,8 +62,9 @@
 
     <!-- エリア -->
     <div class="dt-form-group">
-      <%= f.label :block_id, "エリア", class: "dt-form-label" %>
-      <span class="dt-required"> *</span>
+      <%= f.label :block_id, class: "dt-form-label" do %>
+        エリア<span class="dt-required"> *</span>
+      <% end %>
 
       <%= f.collection_select :block_id, 
             Block.all, :id, :name, 

@@ -17,13 +17,15 @@
                 <%= image_tag image.variant(resize_to_limit: [200, 200]).processed,
                               class: "shop-edit-image" %>
 
-                <%= link_to "×", 
-                      destroy_image_shop_path(image.id),
+                <%= link_to destroy_image_shop_path(image.id),
                       data: { 
                         turbo_method: :delete, 
                         turbo_confirm: "この画像を削除してよろしいですか？" 
                       },
-                      class: "shop-image-delete" %>
+                      class: "shop-image-delete" do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+
               </div>
           <% end %>
         </div>
@@ -33,7 +35,11 @@
     </div>
 
     <div class="shop-edit-back">
-      <%= link_to "← 店舗詳細に戻る", shop_path(@shop), class: "shop-back-link" %>
+      <%= link_to shop_path(@shop), 
+            class: "shop-back-link" do %>
+        <i class="fa-solid fa-chevron-left"></i>
+        戻る
+      <% end %>
     </div>
 
   </div>

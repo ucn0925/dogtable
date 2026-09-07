@@ -1,0 +1,102 @@
+/* 店舗編集ページ全体 */
+.shop-edit-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+/* 編集画面のカード */
+.shop-edit-card {
+  background: var(--dt-card);
+  border: 1px solid var(--dt-border);
+  border-radius: 16px;
+  padding: 40px 48px;
+}
+
+/* ページタイトル */
+.shop-edit-title {
+  margin: 0 0 36px;
+  text-align: center;
+  color: var(--dt-text);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* 区切り線 */
+.shop-edit-divider {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--dt-border);
+  opacity: 1;
+}
+
+/* 登録済み画像 */
+.shop-images-section {
+  margin-top: 0;
+}
+
+.shop-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.shop-image-item {
+  position: relative;
+}
+
+.shop-edit-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 画像削除ボタン */
+.shop-image-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--dt-border);
+  border-radius: 50%;
+  background: var(--dt-card);
+  color: var(--dt-main);
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.shop-image-delete:hover {
+  color: var(--dt-main-dark);
+}
+
+/* 画像がない場合 */
+.shop-no-images {
+  margin: 0;
+  color: var(--dt-noimg-text);
+  font-size: 14px;
+}
+
+/* 店舗詳細に戻る */
+.shop-edit-back {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.shop-back-link {
+  color: var(--dt-muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.shop-back-link:hover {
+  color: var(--dt-main);
+}
