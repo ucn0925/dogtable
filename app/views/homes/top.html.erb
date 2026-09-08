@@ -16,8 +16,7 @@
           <div class="d-flex justify-content-center mb-3">
             <%= text_field_tag :keyword, params[:keyword],
                 placeholder: "店名で検索",
-                class: "form-control",
-                style: "max-width: 520px;"
+                class: "form-control search-keyword"
             %>
           </div>
         
@@ -28,16 +27,14 @@
             <%= select_tag :area_id,
                   options_for_select(@area_options, params[:area_id]),
                   include_blank: "エリア",
-                  class: "form-select",
-                  style: "width: 170px;" 
+                  class: "form-select search-filter"
             %>
 
             <!-- ジャンル選択 -->
             <%= select_tag :genre_id,
                   options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
                   include_blank: "ジャンル",
-                  class: "form-select",
-                  style: "width: 170px;"
+                  class: "form-select search-filter"
             %>
 
             <!-- 検索ボタン -->

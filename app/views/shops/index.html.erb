@@ -9,14 +9,12 @@
       <%= text_field_tag :keyword, 
           params[:keyword],
           placeholder: "店名検索",
-          class: "form-control",
-          style: "max-width: 200px;" %>
+          class: "form-control shop-search-keyword" %>
       
       <%= select_tag :genre_id,
           options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
           include_blank: "ジャンルを選択",
-          class: "form-select",
-          style: "max-width: 180px;" %>
+          class: "form-select shop-search-genre" %>
 
       <%= select_tag :sort, 
           options_for_select([
@@ -25,9 +23,8 @@
             ['口コミが多い順', 'posts'],
             ['新着順', 'new']
           ], params[:sort]),
-          class: "form-select",
-          id: "sort-select",
-          style: "max-width: 180px;" %>  
+          class: "form-select shop-search-sort",
+          id: "sort-select" %>  
 
       <%= submit_tag "検索", class: "dt-btn dt-btn-primary dt-btn-search" %>
     </div>
