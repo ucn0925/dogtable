@@ -54,19 +54,7 @@
     text-decoration: none;
   }
 
-  /* フォーム */
-  .form-control,
-  .form-select {
-    background: var(--dt-card);
-    border-color: var(--dt-border);
-  }
-
-  .form-control:focus,
-  .form-select:focus {
-    border-color: var(--dt-accent);
-    box-shadow: 0 0 0 0.2rem rgba(184, 169, 149, 0.25);
-  }
-
+  
   /* 店舗写真 */
   .shop-photo {
     width: 250px;
