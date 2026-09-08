@@ -17,9 +17,9 @@
 
       <% if user_signed_in? %>
         <%= link_to edit_shop_path(@shop), 
-            class: "action-icon shop-edit-icon",
+            class: "edit-icon shop-edit-icon",
             title: "店舗情報を編集する" do %>
-          <i class="fa-regular fa-pen-to-square""></i>
+          <i class="fa-regular fa-pen-to-square"></i>
         <% end %>
       <% end %>
 
@@ -121,7 +121,7 @@
         </dt>
         <dd class="col-8">
           <% if @shop.inside_ok? %>
-            <i class="fa-regular fa-circlw dt-ok"></i>
+            <i class="fa-regular fa-circle dt-ok"></i>
           <% else %>
             <i class="fa-solid fa-xmark dt-ng"></i>
           <% end %>
@@ -240,7 +240,7 @@
               <div class="action-icons">
 
                 <%= link_to edit_shop_post_path(@shop, post), 
-                      class: "action-icon" do %>
+                      class: "edit-icon" do %>
                   <i class="fa-regular fa-pen-to-square"></i>
                 <% end %>
 

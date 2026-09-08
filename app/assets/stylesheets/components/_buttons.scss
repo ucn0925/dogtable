@@ -91,7 +91,7 @@
   gap: 10px;
 }
 
-.action-icon {
+.edit-icon {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -107,7 +107,7 @@
   color: #c26b6b;
 }
 
-.action-icon:hover,
+.edit-icon:hover,
 .delete-icon:hover {
   background: var(--dt-card-hover);
   transform: scale(1.08);
@@ -142,5 +142,6 @@
 
 .image-delete:hover {
   color: var(--dt-main-dark);
+  transform: scale(1.05);
 }
 
