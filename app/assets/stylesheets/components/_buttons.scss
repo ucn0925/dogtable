@@ -1,3 +1,4 @@
+/* Base Button */
 .dt-btn {
   display: inline-flex;
   align-items: center;
@@ -15,22 +16,11 @@
               transform 0.2s ease;
 }
 
+/* Button Variants */
  .dt-btn-primary {
   background-color: var(--dt-accent);
   border: 1px solid var(--dt-border);
   color: #ffffff;
- }
-
- .dt-btn-primary:hover {
-  background: var(--dt-accent-hover);
- }
-
- .dt-btn:active {
-  transform: translateY(0);
- }
-
- .dt-btn:hover {
-  transform: translateY(-1px);
  }
 
  .dt-btn-search {
@@ -46,23 +36,11 @@
   border: 1px solid var(--dt-border);
  }
 
- .dt-btn-outline-accent:hover {
-  background: var(--dt-accent);
-  border-color: var(--dt-accent);
-  color: #ffffff;
- }
-
- .dt-btn-outline-soft:hover {
-  background: var(--dt-card-hover);
-  border-color: var(--dt-border-hover);
-  color: var(--dt-main-dark);
- }
-
- .dt-btn-danger {
+.dt-btn-danger {
   background: #fff;
   border: 1px solid #c86b6b;
   color: #c86b6b;
- }
+}
 
  .dt-btn-danger:hover {
   background: #c86b6b;
@@ -70,6 +48,7 @@
   color: #fff;
 }
 
+/* Button Sizes*/
 .dt-btn-sm {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
@@ -85,7 +64,34 @@
   font-size: 1.05rem;
 }
 
-/*  Actions */
+/* Button States */
+
+.dt-btn:hover {
+  transform: translateY(-1px);
+}
+
+.dt-btn:active {
+  transform: translateY(0);
+}
+
+.dt-btn-primary:hover {
+  background: var(--dt-accent-hover);
+}
+
+.dt-btn-outline-accent:hover {
+  background: var(--dt-accent);
+  border-color: var(--dt-accent);
+  color: #ffffff;
+}
+
+.dt-btn-outline-soft:hover {
+  background: var(--dt-card-hover);
+  border-color: var(--dt-border-hover);
+  color: var(--dt-main-dark);
+}
+
+
+/*  Action Icons */
 .action-icons {
   display: flex;
   gap: 10px;
@@ -103,45 +109,7 @@
   transition: all 0.15s ease;
 }
 
-.delete-icon {
-  color: #c26b6b;
-}
-
-.edit-icon:hover,
-.delete-icon:hover {
+.edit-icon:hover {
   background: var(--dt-card-hover);
   transform: scale(1.08);
 }
-
-.delete-icon:hover {
-  color: #bb0000;
-  transform: scale(1.08);
-}
-
-/* 画像削除ボタン */
-.image-delete {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-
-  width: 30px;
-  height: 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid var(--dt-border);
-  border-radius: 50%;
-  background: var(--dt-card);
-  color: var(--dt-main);
-  font-size: 15px;
-  text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.image-delete:hover {
-  color: var(--dt-main-dark);
-  transform: scale(1.05);
-}
-
