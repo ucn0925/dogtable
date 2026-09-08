@@ -2,8 +2,10 @@
 
   <h3>写真一覧</h3>
 
-  <%=link_to "← 投稿詳細に戻る", shop_post_path(@shop, @post),
-       class: "text-primary" %>
+  <%=link_to shop_post_path(@shop, @post),　class: "text-primary" do %>
+    <i class="fa-solid fa-chevron-left"></i>
+    戻る
+  <% end %>
   
   <div class="row g-3 mt-3">
     <% @post.images.each do |image| %>
