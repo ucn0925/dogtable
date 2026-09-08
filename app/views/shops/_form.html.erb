@@ -24,6 +24,30 @@
     <%= f.text_field :name, class: "dt-form-control" %>
   </div>
 
+   <!-- エリア -->
+  <div class="dt-form-group">
+    <%= f.label :block_id, class: "dt-form-label" do %>
+      エリア<span class="dt-required"> *</span>
+    <% end %>
+
+    <%= f.collection_select :block_id, 
+          Block.all, :id, :name, 
+          { prompt: "エリアを選択してください" },
+          { class: "dt-form-select" } %>
+  </div>
+
+  <!-- 市町村 -->
+  <div class="dt-form-group">
+    <%= f.label :city_id, class: "dt-form-label" do %>
+      市町村<span class="dt-required"> *</span>
+    <% end %>
+
+    <%= f.collection_select :city_id, 
+          City.all, :id, :name, 
+          { prompt: "市町村を選択してください" },
+          { class: "dt-form-select" } %>
+  </div>
+
   <!-- 住所 -->
   <div class="dt-form-group">
     <%= f.label :address, class: "dt-form-label" do %>
@@ -60,28 +84,7 @@
             class: "dt-form-control" %>
     </div>
 
-    <!-- エリア -->
-    <div class="dt-form-group">
-      <%= f.label :block_id, class: "dt-form-label" do %>
-        エリア<span class="dt-required"> *</span>
-      <% end %>
-
-      <%= f.collection_select :block_id, 
-            Block.all, :id, :name, 
-            { prompt: "エリアを選択してください" },
-            { class: "dt-form-select" } %>
-    </div>
-
-    <!-- 市町村 -->
-    <div class="dt-form-group">
-      <%= f.label :city_id, "市町村", class: "dt-form-label" %>
-
-      <%= f.collection_select :city_id, 
-            City.all, :id, :name, 
-            { prompt: "市町村を選択してください" },
-            { class: "dt-form-select" } %>
-    </div>
-
+   
     <!-- 営業時間 -->
     <div class="dt-form-group">
       <%= f.label :opening_hours, "営業時間", class: "dt-form-label" %>

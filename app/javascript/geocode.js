@@ -1,4 +1,5 @@
 let openInfoWindow = null;
+let markers = [];
 
 function initMap() {
 
@@ -38,6 +39,9 @@ function initMap() {
         });
     }
 
+    markers.forEach((marker) => marker.setMap(null));
+    markers = [];
+
     if (typeof shops !== "undefined") {
         window.shops.forEach((shop) => {
             if (shop.latitude && shop.longitude) {
@@ -47,6 +51,8 @@ function initMap() {
                     map: map,
                     title: shop.name
                 });
+
+                markers.push(marker);
 
                 const infoWindow = new google.maps.InfoWindow({
                     content: `
@@ -82,34 +88,56 @@ function initMap() {
 }
 
 function geocodeAddress() {
+  return new Promise ((resolve, reject) => {
     const addressField = document.getElementById("shop-address");
-    if (!addressField) return;
+    const cityField = document.getElementById("shop_city_id");
 
+    if (!addressField || !cityField) return;
+
+    const cityName = cityField.options[cityField.selectedIndex].text;
     const address = addressField.value;
+
     if (!address) return;
 
+    const fullAddress = `山梨県${cityName}${address}`;
+
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: address }, (results, status) => {
+    geocoder.geocode({ address: fullAddress }, (results, status) => {
         if (status === "OK") {
+          
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
 
             document.getElementById("shop-latitude").value = lat;
             document.getElementById("shop-longitude").value = lng;
 
+            resolve();
+
         } else {
             console.error("ジオコーディング失敗：" + status);
+            reject();
         }
     });
+  });
 }
 
 document.addEventListener("turbo:load", () => {
+
+  const form = document.querySelector("form");
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await geocodeAddress();
+      form.submit();
+  });
+
+  }
+
     if (document.getElementById("map") && window.google) {
         initMap();
     }
 
-    const addressField = document.getElementById("shop-address");
-    if (addressField) addressField.addEventListener("change", geocodeAddress);
 });
 
 window.initMap = initMap;
