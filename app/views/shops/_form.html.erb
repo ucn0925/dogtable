@@ -42,8 +42,17 @@
       市町村<span class="dt-required"> *</span>
     <% end %>
 
-    <%= f.collection_select :city_id, 
-          City.all, :id, :name, 
+    <%= f.select :city_id, 
+          options_for_select(
+              City.all.map { |city|
+                [
+                  city.name,
+                  city.id,
+                  { data: { block_id: city.block_id } }
+                ]
+              },
+              shop.city_id
+          ),
           { prompt: "市町村を選択してください" },
           { class: "dt-form-select" } %>
   </div>

@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "geocode"
+import "shop_form"
 import "bootstrap"
 
 document.addEventListener("DOMContentLoaded", () => {
