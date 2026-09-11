@@ -1,0 +1,75 @@
+/* 口コミ編集ページ全体 */
+.post-edit-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+/* 編集画面カード */
+.post-edit-card {
+  background: var(--dt-card);
+  border: 1px solid var(--dt-border);
+  border-radius: 16px;
+  padding: 40px 48px;
+}
+
+/* ページタイトル */
+.post-edit-title {
+  margin: 0 0 36px;
+  text-align: center;
+  color: var(--dt-text);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* 区切り線 */
+.post-edit-divider {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--dt-border);
+  opacity: 1;
+}
+
+/* 投稿済み画像 */
+.post-images-section {
+  margin-top: 0;
+}
+
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post-image-item {
+  position: relative;
+}
+
+.post-edit-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.post-edit-buttons {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+/* 戻る */
+.post-edit-back {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.post-back-link {
+  color: var(--dt-muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.post-back-link:hover {
+  color: var(--dt-main);
+}

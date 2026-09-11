@@ -1,72 +1,67 @@
-<div class="container mt-4 post-form">
-  <div class="row-justify-content-center">
-    <div class="col-md-8 col-lg-6">
+<div class="container post-edit-page">
+  <div class="post-edit-card">
 
-      <!-- 編集タイトル -->
-      <h2 class="text-center mb-4">口コミを編集する</h2>
+    <h1 class="post-edit-title">口コミを編集する</h1> 
 
-      <%= form_with(model: [@shop, @post], local: true) do |f| %>
+    <%= form_with(model: [@shop, @post], local: true) do |f| %>
 
-        <div class="card shadow-sm p-4 mb-4">
+      <!-- 入力フォーム -->  
+      <%= render "form", post: @post, shop: @shop, f: f %>
 
-          <!-- 入力フォーム -->  
-          <%= render "form", post: @post, shop: @shop, f: f %>
+      <!-- 投稿済み画像 -->
+      <% if @post.images.attached? %>
+        <hr class="post-edit-divider">
 
-          <!-- 投稿済み画像 -->
-          <% if @post.images.attached? %>
-            <h5 class="mb-3">投稿済みの画像</h3>
+        <div class="post-images-section">
+          <h5 class="mb-3">投稿済みの画像</h5>
 
-              <div class="row g-3">
-                <% @post.images.each do |image| %>
-                  <div class="col-6 col-md-4">
-                    <div class="position-relative">
+            <div class="post-images">
+              <% @post.images.each do |image| %>
+                <div class="post-image-item">
+                  <%= image_tag image.variant(resize_to_limit: [200, 200]),
+                        class: "post-edit-image" %>
 
-                      <%= image_tag image.variant(resize_to_limit: [200, 200]),
-                            class: "img-fluid rounded" %>
-
-                      <%= link_to(
-                            destroy_image_shop_post_path(@post.shop, @post, image_id: image.id),
-                            {
-                              data: { 
-                                turbo_method: :delete, 
-                                turbo_confirm: "この画像を削除しますか？"
-                              },
-                              class: "image-delete"
-                            }
-                          ) do %>
-                        <i class="fa-solid fa-trash"></i>
-                      <% end %>                  
-
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-          <% end %>
-
-          <!-- ボタン専用フォーム -->
-          <div class="d-grid gap-2 mt-4">
-            <%= f.submit "更新する", 
-                class: "dt-btn dt-btn-primary" %>
-            
-            
-            <%= link_to "この口コミを削除",
-                shop_post_path(@shop, @post),
-                data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "この口コミを削除しますか？"
-                },
-                class: "dt-btn dt-btn-danger dt-btn-sm delete-post" %>
-          </div>
-
+                  <%= link_to(
+                        destroy_image_shop_post_path(@post.shop, @post, image_id: image.id),
+                        {
+                          data: { 
+                            turbo_method: :delete, 
+                            turbo_confirm: "この画像を削除しますか？"
+                          },
+                          class: "image-delete"
+                        }
+                      ) do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>                  
+                </div>
+              <% end %>
+            </div>
         </div>
-      
       <% end %>
 
-      <!-- 戻るリンク -->
-      <div class="text-center">
-        <%= link_to "戻る", shop_path(@shop), class: "dt-btn dt-btn-outline dt-btn-outline-soft" %>
+      <!-- ボタン専用フォーム -->
+      <div class="post-edit-buttons">
+        <%= f.submit "更新する", 
+            class: "dt-btn dt-btn-primary" %>
+        
+        <%= link_to "この口コミを削除",
+            shop_post_path(@shop, @post),
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "この口コミを削除しますか？"
+            },
+            class: "dt-btn dt-btn-danger dt-btn-sm delete-post" %>
       </div>
+    <% end %>
 
+    <!-- 戻るリンク -->
+    <div class="post-edit-back">
+      <%= link_to shop_path(@shop), 
+          class: "post-back-link" do %>
+        <i class="fa-solid fa-chevron-left"></i>
+        戻る
+      <% end %>
     </div>
+
   </div>
 </div>
