@@ -123,7 +123,7 @@ function geocodeAddress() {
 
 document.addEventListener("turbo:load", () => {
 
-  const form = document.querySelector("form");
+  const form = document.querySelector("#shop-form");
 
   if (form) {
     form.addEventListener("submit", async (event) => {
