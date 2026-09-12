@@ -230,6 +230,30 @@
     right: 10px;
   }
 
+  /* 口コミ投稿 */
+  .post-create-card {
+    max-width: 720px;
+    margin: 48px auto 0;
+
+    background: var(--dt-card);
+    border: 1px solid var(--dt-border);
+    border-radius: 16px;
+  }
+
+  .post-create-card .card-body {
+    padding: 40px 48px;
+  }
+
+  .post-create-title {
+    margin: 0 0 28px;
+    color: var(--dt-text);
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+    
+
+
 }
 
 @media (max-width: 576px) {
@@ -252,6 +276,18 @@
     .shop-dog-info > dd.col-8 {
       flex: 0 0 50% !important;
       max-width: 50% !important;
+    }
+
+    .post-create-card {
+      margin-top: 32px;
+    }
+
+    .post-create-card .card-body {
+      padding: 28px 16px;
+    }
+
+    .post-create-title {
+      font-size: 22px;
     }
   }
 }

@@ -194,7 +194,8 @@
 
     <% if user_signed_in? %>
       <a href="#new-post" class="dt-btn dt-btn-outline dt-btn-outline-accent dt-btn-sm">
-        ＋ 口コミを投稿する
+        <i class="fa-solid fa-pen"></i>
+        口コミを書く
       </a>
     <% end %>
   </div>
@@ -329,9 +330,9 @@
   <% end %>
 
   <!-- 新規投稿 -->
-  <div class="card mt-5 post-form" id="new-post">
+  <div class="post-create-card mt-5" id="new-post">
     <div class="card-body">
-      <h2 class="h4 mb-3">口コミを投稿する</h2>
+      <h2 class="h4 mb-3">口コミを書く</h2>
 
       <% if user_signed_in? %>
         <% new_post = @shop.posts.build %>
