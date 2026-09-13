@@ -1,0 +1,30 @@
+.post-new-card {
+  max-width: 720px;
+  margin: 48px auto 0;
+
+  background: var(--dt-card);
+  border: 1px solid var(--dt-border);
+  border-radius: 16px;
+}
+
+.post-new-card .card-body {
+  padding: 40px 48px;
+}
+
+.post-new-title {
+  margin: 0 0 28px;
+  color: var(--dt-text);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.post-shop-name {
+  background: var(--dt-bg);
+  color: var(--dt-muted-2);
+
+}
+
+.post-new-back {
+  margin-top: 20px;
+  text-align: center;
+}

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :shops, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :shop_favorite, only: [:create, :destroy]
 
-    resources :posts, only: [:create, :destroy, :edit, :update, :show] do
+    resources :posts, only: [:new, :create, :destroy, :edit, :update, :show] do
       member do
         get :photos
         delete :destroy_image

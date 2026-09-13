@@ -193,10 +193,11 @@
     <h3 class="h4 mt-4">口コミ一覧</h3>
 
     <% if user_signed_in? %>
-      <a href="#new-post" class="dt-btn dt-btn-outline dt-btn-outline-accent dt-btn-sm">
+      <%= link_to new_shop_post_path(@shop),
+            class: "dt-btn dt-btn-outline dt-btn-outline-accent bt-btn-sm" do %>
         <i class="fa-solid fa-pen"></i>
         口コミを書く
-      </a>
+      <% end %>
     <% end %>
   </div>
 
@@ -328,28 +329,5 @@
   <% else %>
     <p>まだ口コミはありません。</p>
   <% end %>
-
-  <!-- 新規投稿 -->
-  <div class="post-create-card mt-5" id="new-post">
-    <div class="card-body">
-      <h2 class="h4 mb-3">口コミを書く</h2>
-
-      <% if user_signed_in? %>
-        <% new_post = @shop.posts.build %>
-
-        <%= form_with(model: [@shop, new_post], local: true) do |f| %>
-          <%= render "posts/form", post:new_post, shop: @shop, f: f %>
-
-          <div class="mt-4 d-grid">
-            <%= f.submit "口コミを投稿する",
-                  class: "dt-btn dt-btn-primary dt-btn-lg" %>
-          </div>
-        <% end %>
-      <% else %>
-        <p>口コミを投稿するにはログインが必要です。</p>
-      <% end %>
-    </div>
-  </div>
-
   
 </div>

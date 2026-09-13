@@ -5,6 +5,14 @@
 
     <%= form_with(model: [@shop, @post], local: true) do |f| %>
 
+      <div class="mb-3">
+        <%= f.label :shop, "店舗名", class:"form-label" %>
+
+        <div class="form-control post-shop-name">
+            <%= @shop.name %>
+        </div>
+      </div>
+
       <!-- 入力フォーム -->  
       <%= render "form", post: @post, shop: @shop, f: f %>
 

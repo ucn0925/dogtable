@@ -1,0 +1,39 @@
+<div class="container post-new-page">
+  <div class="post-new-card">
+    <div class="card-body">
+
+      <h1 class="post-new-title">口コミを書く</h1>
+
+      <% if user_signed_in? %>
+        <%= form_with(model: [@shop, @post], local: true) do |f| %>
+
+          <div class="mb-3">
+            <%= f.label :shop, "店舗名", class: "form-label" %>
+
+            <div class="form-control post-shop-name">
+              <%= @shop.name %>
+            </div>
+          </div>
+
+          <%= render "posts/form", post: @post, shop: @shop, f: f %>
+
+          <div class="mt-4 d-grid">
+            <%= f.submit "口コミを投稿する",
+                  class: "dt-btn dt-btn-primary dt-btn-lg" %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>口コミを投稿するにはログインが必要です。</p>
+      <% end %>
+
+      <div class="post-new-back">
+        <%= link_to shop_path(@shop),
+            class: "post-back-link" do %>
+          <i class="fa-solid fa-chevron-left"></i>
+          店舗詳細に戻る
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
