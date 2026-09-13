@@ -72,6 +72,7 @@ function initMap() {
 
                 marker.addListener("mouseover", () => {
                     if (openInfoWindow) openInfoWindow.close();
+
                     infoWindow.open({
                         anchor: marker,
                         map,
@@ -80,7 +81,13 @@ function initMap() {
                 });
 
                 marker.addListener("click", () => {
-                    window.location.href = `/shops/${shop.id}`;
+                    if (openInfoWindow) openInfoWindow.close();
+
+                    infoWindow.open({
+                      anchor: marker,
+                      map,
+                    });
+                    openInfoWindow = infoWindow;
                 });
             }
         });
