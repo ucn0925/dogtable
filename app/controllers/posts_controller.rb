@@ -63,6 +63,12 @@ class PostsController < ApplicationController
 
   def destroy_image
     @post = Post.find(params[:id])
+
+    unless @post.user == current_user
+      redirect_to shop_path(@post.shop), alert: "削除権限がありません。"
+      return
+    end
+    
     image = @post.images.find(params[:image_id])
     image.purge
     redirect_to edit_shop_post_path(@post.shop, @post), notice: "画像を削除しました"
