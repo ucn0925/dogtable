@@ -34,11 +34,20 @@ class PostsController < ApplicationController
   def edit
     @shop = Shop.find(params[:shop_id])
     @post = @shop.posts.find(params[:id])
+
+    unless @post.user == current_user
+      redirect_to shop_path(@shop), alert: "編集権限がありません。"
+    end
   end
 
   def update
     @shop = Shop.find(params[:shop_id])
     @post = @shop.posts.find(params[:id])
+
+    unless @post.user == current_user
+      redirect_to shop_path(@shop), alert: "編集権限がありません。"
+      return
+    end
 
     if @post.update(post_params)
       redirect_to shop_path(@shop), notice: "コメントを更新しました"
