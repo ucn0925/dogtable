@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     if @post.save 
       redirect_to shop_path(@shop), notice: "コメントを投稿しました。"
     else
-      redirect_to shop_path(@shop), alert: "コメントを投稿できませんでした。"
+      render :new, status: :unprocessable_entity
     end
   end
 

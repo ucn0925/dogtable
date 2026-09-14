@@ -18,27 +18,6 @@
   cursor: pointer;
 }
 
-/* エラーメッセージ */
-.shop-form-errors {
-  margin-bottom: 28px;
-  padding: 16px 18px;
-  border: 1px solid var(--dt-border);
-  border-radius: 10px;
-  background: var(--dt-card-hover);
-  color: var(--dt-text);
-}
-
-.shop-form-errors-title {
-  margin: 0 0 8px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.shop-form-errors-list {
-  margin: 0;
-  padding-left: 20px;
-  font-size: 14px;
-}
 
 /* 送信ボタン */
 .shop-submit {

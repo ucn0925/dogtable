@@ -1,12 +1,12 @@
 <%# app/views/shops/_form.html.erb %>
 
 <% if shop.errors.any? %>
-  <div class="shop-form-errors">
-    <h2 class="shop-form-errors-title">
+  <div class="dt-form-errors">
+    <h2 class="dt-form-errors-title">
       <%= shop.errors.count %>件のエラーがあります
     </h2>
 
-    <ul class="shop-form-errors-list">
+    <ul class="dt-form-errors-list">
       <% shop.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
@@ -65,11 +65,12 @@
   <!-- 住所 -->
   <div class="dt-form-group">
     <%= f.label :address, class: "dt-form-label" do %>
-      住所<span class="dt-required"> *</span>
+      住所（市町村以下）<span class="dt-required"> *</span>
     <% end %>
     <%= f.text_field :address, 
           class: "dt-form-control",
-          id: "shop-address" %>
+          id: "shop-address",
+          placeholder: "例）丸の内1-1-1" %>
   </div>
 
     <%# 緯度・経度（hidden） %>

@@ -16,6 +16,18 @@ ja:
         genre_id: ジャンル
         block_id: エリア
         city_id: 市町村
+        
+      post:
+        content: コメント
+        rating_overall: 総合評価
+        rating_food: 料理の評価
+        rating_dog_friendliness: 犬連れやすさ
+        visited_on: 訪問日
+        dog_size: 一緒に行った犬のサイズ
+        visit_scene: 利用シーン
+        orderd_items: 注文したもの
+
+
     errors:
       messages:
         blank: "を入力してください"
