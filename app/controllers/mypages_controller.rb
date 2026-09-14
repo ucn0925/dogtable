@@ -4,6 +4,7 @@ class MypagesController < ApplicationController
   def show
     @user = current_user
     @posts = @user.posts.includes(:shop)
+    @drafts = @user.posts.draft.includes(:shop)
     @favorites = @user.shop_favorites.includes(:shop)
   end
 end

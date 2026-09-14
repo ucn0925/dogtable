@@ -6,8 +6,12 @@ class PostsController < ApplicationController
 
     @post.status = params[:save_as] == "draft" ? :draft : :published
 
-    if @post.save 
-      redirect_to shop_path(@shop), notice: "コメントを投稿しました。"
+    if @post.save
+      if @post.draft?
+        redirect_to mypage_path, notice: "下書きを保存しました"
+      else
+      redirect_to shop_path(@shop), notice: "口コミを投稿しました"
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +31,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.user == current_user
       @post.destroy
-      redirect_to shop_path(@post.shop), notice: "コメントを削除しました。"
+      redirect_to shop_path(@post.shop), notice: "口コミを削除しました。"
     else
       redirect_to shop_path(@post.shop), alert: "削除権限がありません。"
     end
@@ -51,8 +55,13 @@ class PostsController < ApplicationController
       return
     end
 
+    @post.status = params[:save_as] == "draft" ? :draft : :published
     if @post.update(post_params)
-      redirect_to shop_path(@shop), notice: "コメントを更新しました"
+      if @post.draft?
+        redirect_to mypage_path, notice: "下書きを保存しました"
+      else
+      redirect_to shop_path(@shop), notice: "口コミを投稿しました"
+      end
     else
       render :edit, status: :unprocessable_entity
     end

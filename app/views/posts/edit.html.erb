@@ -41,7 +41,17 @@
 
       <!-- ボタン専用フォーム -->
       <div class="post-edit-buttons">
-        <%= f.submit "更新する", 
+
+        <%= button_tag "下書き保存",
+            type: "submit",
+            name: "save_as",
+            value: "draft",
+            class: "dt-btn dt-btn-outline" %>
+
+        <%= button_tag "投稿する", 
+            type: "submit",
+            name: "save_as",
+            value: "published",
             class: "dt-btn dt-btn-primary" %>
         
         <%= link_to "この口コミを削除",

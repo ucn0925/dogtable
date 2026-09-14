@@ -201,8 +201,8 @@
     <% end %>
   </div>
 
-  <% if @shop.posts.any? %>
-    <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
+  <% if @shop.posts.published.any? %>
+    <% @shop.posts.published.includes(:user).order(created_at: :desc).each do |post| %>
     
       <div class="card mb-3">
         <div class="card-body position-relative">
