@@ -99,16 +99,22 @@ function geocodeAddress() {
     const addressField = document.getElementById("shop-address");
     const cityField = document.getElementById("shop_city_id");
 
-    if (!addressField || !cityField) return;
+    if (!addressField || !cityField) {
+      resolve();
+      return;
+    }
 
     const cityName = cityField.options[cityField.selectedIndex].text;
     const address = addressField.value;
 
-    if (!address) return;
+    if (!address) {
+      resolve();
+      return;
+    }
 
     const fullAddress = `山梨県${cityName}${address}`;
-
     const geocoder = new google.maps.Geocoder();
+    
     geocoder.geocode({ address: fullAddress }, (results, status) => {
         if (status === "OK") {
           

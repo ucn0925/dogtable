@@ -3,12 +3,19 @@ ja:
     models:
       shop: 店舗
       genre: ジャンル
+      block: エリア
+      city: 市町村
+
     attributes:
       shop:
         name: 店名
         address: 住所
+        genre: ジャンル
+        block: エリア
+        city: 市町村
         genre_id: ジャンル
         block_id: エリア
+        city_id: 市町村
     errors:
       messages:
         blank: "を入力してください"

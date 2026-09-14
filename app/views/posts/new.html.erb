@@ -7,6 +7,11 @@
       <% if user_signed_in? %>
         <%= form_with(model: [@shop, @post], local: true) do |f| %>
 
+          <!-- 必須項目 -->
+          <p class="dt-required-note">
+            <span class="dt-required">* </span>は必須項目です
+          </p>
+
           <div class="mb-3">
             <%= f.label :shop, "店舗名", class: "form-label" %>
 
