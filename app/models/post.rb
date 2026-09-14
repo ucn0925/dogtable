@@ -7,14 +7,16 @@ class Post < ApplicationRecord
   has_many :favorited_users, through: :post_favorites, source: :user
 
   enum dog_size: { small: 0, medium: 1, large: 2 } 
-
   enum visit_scene: { lunch: 0, cafe: 1, dinner: 2 }
+  enum status: { draft: 0, published: 1 }
 
-  validates :content, presence: true
-  validates :rating_overall, presence: true
-  validates :rating_food, presence: true
-  validates :rating_dog_friendliness, presence: true
-  validates :visited_on, presence: true
+  with_options if: :published? do
+    validates :content, presence: true
+    validates :rating_overall, presence: true
+    validates :rating_food, presence: true
+    validates :rating_dog_friendliness, presence: true
+    validates :visited_on, presence: true
+  end
 
   def favorited_by?(user)
     if user == nil

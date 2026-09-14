@@ -4,6 +4,8 @@ class PostsController < ApplicationController
     @post = @shop.posts.build(post_params)
     @post.user = current_user
 
+    @post.status = params[:save_as] == "draft" ? :draft : :published
+
     if @post.save 
       redirect_to shop_path(@shop), notice: "コメントを投稿しました。"
     else

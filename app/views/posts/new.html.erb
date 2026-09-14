@@ -9,8 +9,17 @@
 
           <%= render "posts/form", post: @post, shop: @shop, f: f %>
 
-          <div class="mt-4 d-grid">
-            <%= f.submit "口コミを投稿する",
+          <div class="mt-4 d-grid gap-2">
+            <%= button_tag "下書き保存",
+                  type: "submit",
+                  name: "save_as",
+                  value: "draft",
+                  class: "dt-btn dt-btn-outline dt-btn-lg" %>
+
+            <%= button_tag "投稿する",
+                  type:"submit",
+                  name: "save_as",
+                  value: "published",
                   class: "dt-btn dt-btn-primary dt-btn-lg" %>
           </div>
         <% end %>
