@@ -1,12 +1,22 @@
 .shop-show {
   color: var(--dt-text);
 
-  h1, h2, h3, h4 {
-    color: var(--dt-text);
+  /* レイアウト */
+  .shop-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
-  .text-muted {
-    color: var(--dt-muted) !important;
+  .review-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* 見出し */
+  h1, h2, h3, h4 {
+    color: var(--dt-text);
   }
 
   /*　カード */
@@ -17,6 +27,16 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   }
 
+  .shop-info-card {
+    width: 100%;
+  }
+
+  .shop-info-card .card-body,
+  .review-content .card-body {
+    padding: 32px 40px;
+  }
+
+  /* 境界線 */
   .border-start {
     border-left-color: var(--dt-accent) !important;
   }
@@ -54,6 +74,9 @@
     text-decoration: none;
   }
 
+  .text-muted {
+    color: var(--dt-muted) !important;
+  }
   
   /* 店舗写真 */
   .shop-photo {
@@ -75,7 +98,7 @@
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
   }
 
-  /* 行きたい */
+  /* 行きたいボタン */
   .dt-want-count {
     display: inline-flex;
     align-items: center;
@@ -135,6 +158,16 @@
     opacity: 0.7;
   }
 
+  dt {
+    color: var(--dt-muted-2);
+    font-weight: 600;
+  }
+
+  dd {
+    color: var(--dt-text);
+  }
+
+
   .dt-meta-bar {
     display: inline-flex;
     align-items: center;
@@ -155,15 +188,7 @@
     color: var(--dt-muted-2);
   }
 
-  dt {
-    color: var(--dt-muted-2);
-    font-weight: 600;
-  }
-
-  dd {
-    color: var(--dt-text);
-  }
-
+  
   /* 評価 */
   .dt-rating-block {
     display: flex;
@@ -200,7 +225,7 @@
     width: 50px;
   }
 
-  /* レビュー */
+  /* 口コミ */
   .review-meta {
     font-size: 0.85rem;
     color: #666;
@@ -234,6 +259,12 @@
 
 @media (max-width: 576px) {
   .shop-show {
+
+    .shop-info-card .card-body,
+    .review-content .card-body {
+      padding: 24px 16px;
+    }
+    
     dl.row > dt.col-4 {
       flex: 0 0 40%;
       max-width: 40%;

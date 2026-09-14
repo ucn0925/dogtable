@@ -1,333 +1,337 @@
 <div class="container mt-2 mb-4 shop-show">
 
-  <!-- 戻るリンク -->
-  <div class="mb-2">
-    <%= link_to shops_path, 
-          class: "text-muted small text-decoration-none d-inline-flex align-items-center" do %>
-      <i class="fa-solid fa-chevron-left"></i>
-      一覧に戻る
-    <% end %>
-  </div>
+  <div class="shop-content">
 
-  <!-- 店名 -->
-  <h1 class="h3 mt-2 mb-2"><%= @shop.name %></h1>
-
-  <!-- 基本情報カード -->
-  <div class="card mt-3 mb-4">
-    <div class="card-body position-relative">
-
-      <% if user_signed_in? %>
-        <%= link_to edit_shop_path(@shop), 
-            class: "edit-icon shop-edit-icon",
-            title: "店舗情報を編集する" do %>
-          <i class="fa-regular fa-pen-to-square"></i>
-        <% end %>
+    <!-- 戻るリンク -->
+    <div class="mb-2">
+      <%= link_to shops_path, 
+            class: "text-muted small text-decoration-none d-inline-flex align-items-center" do %>
+        <i class="fa-solid fa-chevron-left"></i>
+        一覧に戻る
       <% end %>
+    </div>
 
-      <div class="section-header">
-        <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-2 mt-3">
-          店舗情報
-        </h4>
+    <!-- 店名 -->
+    <h1 class="h3 mt-2 mb-2"><%= @shop.name %></h1>
 
-      </div>
+    <!-- 基本情報カード -->
+    <div class="card shop-info-card mt-3 mb-4">
+      <div class="card-body position-relative">
 
-      <!-- 情報バー -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
-
-        <!-- 左側：評価・お気に入り・コメント -->
-        <div class="dt-meta-bar d-flex align-items-center gap-2 text-muted small">
-
-          <% if @average_rating.present? %>
-            <div class="d-flex align-items-center">
-              <% 5.times do |i| %>
-                <span class="<%= i < @average_rating.floor ? 'dt-star' : 'dt-star-muted' %>">★</span>
-              <% end %>
-              <span class="ms-1">
-                <%= number_with_precision(@average_rating, precision: 2) %>
-              </span>
-            </div>
-          <% end %>
-
-          <div>
-            <i class="fa-regular fa-heart me-1"></i>
-            <%= @shop.shop_favorites.count %>
-          </div>
-
-          <div>
-            <i class="fa-regular fa-comment me-1"></i>
-            <%= @shop.posts.count %>
-          </div>
-
-        </div>
-
-        <!-- 右側：行きたいボタン -->
         <% if user_signed_in? %>
-          <% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
-              
-          <%= link_to shop_shop_favorite_path(@shop),
-                data: { turbo_method: wanted ? :delete : :post },
-                class: "dt-want-btn #{'active' if wanted}" do %>
-              
-            <i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
-            <span class="ms-1">行きたい</span> 
-              
-          <% end %>      
+          <%= link_to edit_shop_path(@shop), 
+              class: "edit-icon shop-edit-icon",
+              title: "店舗情報を編集する" do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        <% end %>
+
+        <div class="section-header">
+          <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-2 mt-3">
+            店舗情報
+          </h4>
+
+        </div>
+
+        <!-- 情報バー -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+          <!-- 左側：評価・お気に入り・コメント -->
+          <div class="dt-meta-bar d-flex align-items-center gap-2 text-muted small">
+
+            <% if @average_rating.present? %>
+              <div class="d-flex align-items-center">
+                <% 5.times do |i| %>
+                  <span class="<%= i < @average_rating.floor ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                <% end %>
+                <span class="ms-1">
+                  <%= number_with_precision(@average_rating, precision: 2) %>
+                </span>
+              </div>
+            <% end %>
+
+            <div>
+              <i class="fa-regular fa-heart me-1"></i>
+              <%= @shop.shop_favorites.count %>
+            </div>
+
+            <div>
+              <i class="fa-regular fa-comment me-1"></i>
+              <%= @shop.posts.count %>
+            </div>
+
+          </div>
+
+          <!-- 右側：行きたいボタン -->
+          <% if user_signed_in? %>
+            <% wanted = current_user.shop_favorites.exists?(shop_id: @shop.id) %>
+                
+            <%= link_to shop_shop_favorite_path(@shop),
+                  data: { turbo_method: wanted ? :delete : :post },
+                  class: "dt-want-btn #{'active' if wanted}" do %>
+                
+              <i class="<%= wanted ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+              <span class="ms-1">行きたい</span> 
+                
+            <% end %>      
+          <% end %>
+
+        </div>
+
+        <hr class="my-3">
+
+
+        <dl class="row mb-0">
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-location-dot dt-label-icon me-1"></i>
+            住所
+          </dt>
+          <dd class="col-8"><%= @shop.city.name %><%= @shop.address %></dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-utensils dt-label-icon me-1"></i>
+            ジャンル
+          </dt>
+          <dd class="col-8"><%= @shop.genre.name %></dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-clock dt-label-icon me-1"></i>
+            営業時間
+          </dt>
+          <dd class="col-8"><%= @shop.opening_hours.presence || "未登録" %></dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-calendar-days dt-label-icon me-1"></i>
+            定休日
+          </dt>
+          <dd class="col-8"><%= @shop.closed_days.presence || "未登録" %></dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-car dt-label-icon me-1"></i>
+            駐車場
+          </dt>
+          <dd class="col-8"><%= @shop.parking ? "あり" : "なし" %></dd>
+        </dl>
+
+        <hr class="my-3">
+
+        <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">犬連れ情報</h4>
+
+        <dl class="row mb-0 shop-dog-info">
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-house dt-label-icon me-1"></i>
+            店内利用
+          </dt>
+          <dd class="col-8">
+            <% if @shop.inside_ok? %>
+              <i class="fa-regular fa-circle dt-ok"></i>
+            <% else %>
+              <i class="fa-solid fa-xmark dt-ng"></i>
+            <% end %>
+          </dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-leaf dt-label-icon me-1"></i>
+            テラス利用
+          </dt>
+          <dd class="col-8">
+            <% if @shop.terrace_ok? %>
+              <i class="fa-regular fa-circle dt-ok"></i>
+            <% else %>
+              <i class="fa-solid fa-xmark dt-ng"></i>
+            <% end %>
+          </dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-bone dt-label-icon me-1"></i>
+            犬用Menu
+          </dt>
+          <dd class="col-8">
+            <% if @shop.dog_menu? %>
+              <i class="fa-regular fa-circle dt-ok"></i>
+            <% else %>
+              <i class="fa-solid fa-xmark dt-ng"></i>
+            <% end %>
+          </dd>
+
+          <dt class="col-4 dt-label">
+            <i class="fa-solid fa-link dt-label-icon me-1"></i>
+            リードフック
+          </dt>
+          <dd class="col-8">
+            <% if @shop.lead_hook? %>
+              <i class="fa-regular fa-circle dt-ok"></i>
+            <% else %>
+              <i class="fa-solid fa-xmark dt-ng"></i>
+            <% end %>
+          </dd>
+        </dl>
+
+        <hr class="my-3">
+
+
+        <!-- 店舗写真 -->
+        <% if @shop.images.attached? %>
+          <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-3">店舗写真</h4>
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <% @shop.images.each do |image| %>
+              <%= link_to url_for(image), 
+                    class: "glightbox",
+                    data: { gallery: "shopt-#{@shop.id}" } do %>
+                <%= image_tag image.variant(resize_to_fill: [250, 250]), 
+                      class: "shop-photo" %>
+              <% end %>
+            <% end %>
+          </div>
+
         <% end %>
 
       </div>
-
-      <hr class="my-3">
-
-
-      <dl class="row mb-0">
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-location-dot dt-label-icon me-1"></i>
-          住所
-        </dt>
-        <dd class="col-8"><%= @shop.city.name %><%= @shop.address %></dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-utensils dt-label-icon me-1"></i>
-          ジャンル
-        </dt>
-        <dd class="col-8"><%= @shop.genre.name %></dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-clock dt-label-icon me-1"></i>
-          営業時間
-        </dt>
-        <dd class="col-8"><%= @shop.opening_hours.presence || "未登録" %></dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-calendar-days dt-label-icon me-1"></i>
-          定休日
-        </dt>
-        <dd class="col-8"><%= @shop.closed_days.presence || "未登録" %></dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-car dt-label-icon me-1"></i>
-          駐車場
-        </dt>
-        <dd class="col-8"><%= @shop.parking ? "あり" : "なし" %></dd>
-      </dl>
-
-      <hr class="my-3">
-
-      <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-4">犬連れ情報</h4>
-
-      <dl class="row mb-0 shop-dog-info">
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-house dt-label-icon me-1"></i>
-          店内利用
-        </dt>
-        <dd class="col-8">
-          <% if @shop.inside_ok? %>
-            <i class="fa-regular fa-circle dt-ok"></i>
-          <% else %>
-            <i class="fa-solid fa-xmark dt-ng"></i>
-          <% end %>
-        </dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-leaf dt-label-icon me-1"></i>
-          テラス利用
-        </dt>
-        <dd class="col-8">
-          <% if @shop.terrace_ok? %>
-            <i class="fa-regular fa-circle dt-ok"></i>
-          <% else %>
-            <i class="fa-solid fa-xmark dt-ng"></i>
-          <% end %>
-        </dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-bone dt-label-icon me-1"></i>
-          犬用Menu
-        </dt>
-        <dd class="col-8">
-          <% if @shop.dog_menu? %>
-            <i class="fa-regular fa-circle dt-ok"></i>
-          <% else %>
-            <i class="fa-solid fa-xmark dt-ng"></i>
-          <% end %>
-        </dd>
-
-        <dt class="col-4 dt-label">
-          <i class="fa-solid fa-link dt-label-icon me-1"></i>
-          リードフック
-        </dt>
-        <dd class="col-8">
-          <% if @shop.lead_hook? %>
-            <i class="fa-regular fa-circle dt-ok"></i>
-          <% else %>
-            <i class="fa-solid fa-xmark dt-ng"></i>
-          <% end %>
-        </dd>
-      </dl>
-
-      <hr class="my-3">
-
-
-      <!-- 店舗写真 -->
-      <% if @shop.images.attached? %>
-        <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-3">店舗写真</h4>
-
-        <div class="d-flex flex-wrap gap-2 mb-4">
-          <% @shop.images.each do |image| %>
-            <%= link_to url_for(image), 
-                  class: "glightbox",
-                  data: { gallery: "shopt-#{@shop.id}" } do %>
-              <%= image_tag image.variant(resize_to_fill: [250, 250]), 
-                    class: "shop-photo" %>
-            <% end %>
-          <% end %>
-        </div>
-
-      <% end %>
-
     </div>
   </div>
 
   <!-- 口コミ一覧 -->
-  <div class="d-flex justify-content-between align-items-center mt-4">
-    <h3 class="h4 mt-4">口コミ一覧</h3>
+  <div class="review-content">
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <h3 class="h4 mt-4">口コミ一覧</h3>
 
-    <% if user_signed_in? %>
-      <%= link_to new_shop_post_path(@shop),
-            class: "dt-btn dt-btn-outline dt-btn-outline-accent bt-btn-sm" do %>
-        <i class="fa-solid fa-pen"></i>
-        口コミを書く
+      <% if user_signed_in? %>
+        <%= link_to new_shop_post_path(@shop),
+              class: "dt-btn dt-btn-outline dt-btn-outline-accent bt-btn-sm" do %>
+          <i class="fa-solid fa-pen"></i>
+          口コミを書く
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-  <% if @shop.posts.published.any? %>
-    <% @shop.posts.published.includes(:user).order(created_at: :desc).each do |post| %>
-    
-      <div class="card mb-3">
-        <div class="card-body position-relative">
+    <% if @shop.posts.published.any? %>
+      <% @shop.posts.includes(:user).order(created_at: :desc).each do |post| %>
+      
+        <div class="card mb-3">
+          <div class="card-body position-relative">
 
-          <!-- カード全体クリック -->
-          <%= link_to "", shop_post_path(@shop, post), class: "stretched-link" %>
+            <!-- カード全体クリック -->
+            <%= link_to "", shop_post_path(@shop, post), class: "stretched-link" %>
 
-          <!-- ユーザー名 & 投稿日 -->
-          <div class="d-flex justify-content-between align-items-center mb-2">
+            <!-- ユーザー名 & 投稿日 -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
 
-            <div class="d-flex align-items-center">
-              <% if post.user&.profile_image&.attached? %>
-                <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
-                      class: "avatar avatar-sm me-2"%>
-              <% else %>
-                <div class="avatar avatar-sm avatar-placeholder me-2">
-                  <i class="fa-solid fa-user"></i>
+              <div class="d-flex align-items-center">
+                <% if post.user&.profile_image&.attached? %>
+                  <%= image_tag post.user.profile_image.variant(resize_to_fill: [40, 40]),
+                        class: "avatar avatar-sm me-2"%>
+                <% else %>
+                  <div class="avatar avatar-sm avatar-placeholder me-2">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                <% end %>
+                
+                <div>
+                  <strong>
+                    <% if post.user.present? %>
+                      <%= link_to post.user.name, user_path(post.user), class: "user-link" %>
+                    <% else %>
+                      退会ユーザー
+                    <% end %>
+                  </strong>
+                  
+                  <div class="text-muted small">
+                    <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+                  </div>
+
+                </div>
+              </div>
+
+              <% if post.user == current_user %>
+                <div class="action-icons">
+
+                  <%= link_to edit_shop_post_path(@shop, post), 
+                        class: "edit-icon" do %>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  <% end %>
+
                 </div>
               <% end %>
+            </div>
+      
+            <!-- 評価表示 -->
+            <div class="dt-rating-block mb-2">
               
-              <div>
-                <strong>
-                  <% if post.user.present? %>
-                    <%= link_to post.user.name, user_path(post.user), class: "user-link" %>
-                  <% else %>
-                    退会ユーザー
+              <div class="dt-overall-rating">
+                <% (1..5).each do |i| %>
+                  <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                <% end %>
+                <span class="dt-score ms-2">
+                  <%= number_with_precision(post.rating_overall, precision: 1) %>
+                </span>
+              </div>
+
+              <div class="dt-sub-rating">
+
+                <div class="dt-sub-item">
+                  <span class="dt-sub-label">料理</span>
+                  <% (1..5).each do |i| %>
+                    <span class="<%= i <= (post.rating_food || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
                   <% end %>
-                </strong>
-                
-                <div class="text-muted small">
-                  <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+                </div>
+
+                <div class="dt-sub-item">
+                  <span class="dt-sub-label">犬連れ</span>
+                  <% (1..5).each do |i| %>
+                    <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                  <% end %>
                 </div>
 
               </div>
+
             </div>
 
-            <% if post.user == current_user %>
-              <div class="action-icons">
+            <!-- コメント -->
+            <div class="review-comment mb-3">
+              <%= truncate(post.content, length:80) %>
+              <%= link_to "...詳細を見る", shop_post_path(@shop, post), class: "small text-muted" %>
+            </div>
 
-                <%= link_to edit_shop_post_path(@shop, post), 
-                      class: "edit-icon" do %>
-                  <i class="fa-regular fa-pen-to-square"></i>
+            <!-- 写真 -->
+            <% if post.images.attached? %>
+              <div class="d-flex flex-wrap gap-2 mb-2">
+
+                <% post.images.first(3).each do |image| %>
+                  <%= image_tag image.variant(resize_to_fill: [150, 150]), 
+                        class: "shop-photo" %>
                 <% end %>
 
               </div>
             <% end %>
-          </div>
-    
-          <!-- 評価表示 -->
-          <div class="dt-rating-block mb-2">
-            
-            <div class="dt-overall-rating">
-              <% (1..5).each do |i| %>
-                <span class="<%= i <= (post.rating_overall || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
-              <% end %>
-              <span class="dt-score ms-2">
-                <%= number_with_precision(post.rating_overall, precision: 1) %>
-              </span>
-            </div>
 
-            <div class="dt-sub-rating">
+            <% if post.visited_on.present? %>
+              <div class="review-meta mt-2 small text-muted d-flex align-items-center gap-3">
+                <span>
+                  <i class="fa-solid fa-calendar-day me-1"></i>
+                  <%= post.visited_on.strftime("%Y/%m/%d") %>
+                </span>
 
-              <div class="dt-sub-item">
-                <span class="dt-sub-label">料理</span>
-                <% (1..5).each do |i| %>
-                  <span class="<%= i <= (post.rating_food || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
+                <% if post.dog_size.present? %>
+                  with
+                  <%= case post.dog_size
+                      when "small" then "小型犬"
+                      when "medium" then "中型犬"
+                      when "large" then "大型犬"
+                      else ""
+                      end %>
                 <% end %>
-              </div>
 
-              <div class="dt-sub-item">
-                <span class="dt-sub-label">犬連れ</span>
-                <% (1..5).each do |i| %>
-                  <span class="<%= i <= (post.rating_dog_friendliness || 0) ? 'dt-star' : 'dt-star-muted' %>">★</span>
-                <% end %>
               </div>
-
-            </div>
+            <% end %>
 
           </div>
-
-          <!-- コメント -->
-          <div class="review-comment mb-3">
-            <%= truncate(post.content, length:80) %>
-            <%= link_to "...詳細を見る", shop_post_path(@shop, post), class: "small text-muted" %>
-          </div>
-
-          <!-- 写真 -->
-          <% if post.images.attached? %>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-
-              <% post.images.first(3).each do |image| %>
-                <%= image_tag image.variant(resize_to_fill: [150, 150]), 
-                      class: "shop-photo" %>
-              <% end %>
-
-            </div>
-          <% end %>
-
-          <% if post.visited_on.present? %>
-            <div class="review-meta mt-2 small text-muted d-flex align-items-center gap-3">
-              <span>
-                <i class="fa-solid fa-calendar-day me-1"></i>
-                <%= post.visited_on.strftime("%Y/%m/%d") %>
-              </span>
-
-              <% if post.dog_size.present? %>
-                with
-                <%= case post.dog_size
-                    when "small" then "小型犬"
-                    when "medium" then "中型犬"
-                    when "large" then "大型犬"
-                    else ""
-                    end %>
-              <% end %>
-
-            </div>
-          <% end %>
-
         </div>
-      </div>
 
+      <% end %>
+
+    <% else %>
+      <p>まだ口コミはありません。</p>
     <% end %>
-
-  <% else %>
-    <p>まだ口コミはありません。</p>
-  <% end %>
-  
+  </div>
 </div>
