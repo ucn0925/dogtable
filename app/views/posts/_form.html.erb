@@ -1,38 +1,49 @@
 <%# app/views/posts/_form.html.erb %>
 
+  <!-- 必須項目 -->
+  <p class="dt-required-note">
+    <span class="dt-required">* </span>は必須項目です
+  </p>
+
   <!-- 総合評価 -->
-  <div class="mb-3">
-    <%= f.label :rating_overall, "総合評価", class: "form-label" %>
+  <div class="dt-form-group">
+    <%= f.label :rating_overall, class: "dt-form-label" do %>
+      総合評価<span class="dt-required">*</span>
+    <% end %>
     <%= f.select :rating_overall, 
         options_for_select(1..5, post.rating_overall), 
         { prompt: "選択してください" },
-        class: "form-select"
+        class: "dt-form-select"
     %>
   </div>
 
   <!-- 料理の評価 -->
-  <div class="mb-3">
-    <%= f.label :rating_food, "料理の評価", class: "form-label" %>
+  <div class="dt-form-group">
+    <%= f.label :rating_food, class: "dt-form-label" do %>
+      料理の評価<span class="dt-required">*</span>
+    <% end %>
     <%= f.select :rating_food, 
         options_for_select(1..5, post.rating_food), 
         { prompt: "選択してください" },
-        class: "form-select" 
+        class: "dt-form-select" 
     %>
   </div>
 
   <!-- 犬連れやすさ -->
-  <div class="mb-3">
-    <%= f.label :rating_dog_friendliness, "犬連れやすさ", class: "form-label" %>
+  <div class="dt-form-group">
+    <%= f.label :rating_dog_friendliness, class: "dt-form-label" do %>
+      犬連れやすさ<span class="dt-required">*</span>
+    <% end %>
     <%= f.select :rating_dog_friendliness, 
         options_for_select(1..5, post.rating_dog_friendliness), 
         { prompt: "選択してください" },
-        class: "form-select" 
+        class: "dt-form-select" 
     %>
   </div>
 
   <!-- 犬のサイズ-->
-  <div class="mb-3">
-      <p class="form-label">一緒に行った犬のサイズ</p>
+  <div class="dt-form-group">
+      <p class="dt-form-label">一緒に行った犬のサイズ</p>
       
       <div class="form-check">
         <%= f.radio_button :dog_size, :small, class: "form-check-input", id: "dog_size_small" %>
@@ -51,34 +62,38 @@
     </div>
 
     <!-- コメント -->
-    <div class="mb-3">
-      <%= f.label :content, "コメント", class: "form-label" %>
-      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください", class: "form-control" %>
+    <div class="dt-form-group">
+      <%= f.label :content, class: "dt-form-label" do %>
+        コメント<span class="dt-required">*</span>
+      <% end %>
+      <%= f.text_area :content, rows: 3, placeholder: "コメントを入力してください", class: "dt-form-control" %>
     </div>
 
     <!-- 写真アップロード -->
-    <div class="mb-3">
-      <%= f.label :images, "写真をアップロード（複数可）", class: "form-label" %>
-      <%= f.file_field :images, multiple: true, accept: "image/*", class: "form-control" %>
+    <div class="dt-form-group">
+      <%= f.label :images, "写真をアップロード（複数可）", class: "dt-form-label" %>
+      <%= f.file_field :images, multiple: true, accept: "image/*", class: "dt-form-control" %>
     </div>
 
     <!-- 訪問日 -->
-    <div class="mb-3">
-      <%= f.label :visited_on, "訪問日", class: "form-label"%>
-      <%= f.date_field :visited_on, class: "form-control" %>
+    <div class="dt-form-group">
+      <%= f.label :visited_on, class: "dt-form-label" do %>
+        訪問日<span class="dt-required">*</span>
+      <% end %>
+      <%= f.date_field :visited_on, class: "dt-form-control" %>
     </div>
 
     <!-- 利用シーン -->
-    <div class="mb-3">
-      <%= f.label :visit_scene, "利用シーン", class: "form-label" %>
+    <div class="dt-form-group">
+      <%= f.label :visit_scene, "利用シーン", class: "dt-form-label" %>
       <%= f.select :visit_scene,
         Post.visit_scenes.keys.map { |k| [I18n.t("enums.post.visit_scene.#{k}"), k] },
         { prompt: "選択してください" },
-        class: "form-select" %>
+        class: "dt-form-select" %>
     </div>
 
     <!-- 注文したもの -->
-    <div class="mb-3">
-      <%= f.label :ordered_items, "注文したもの", class: "form-label" %>
-      <%= f.text_area :ordered_items, rows: 3, class: "form-control" %>
+    <div class="dt-form-group">
+      <%= f.label :ordered_items, "注文したもの", class: "dt-form-label" %>
+      <%= f.text_area :ordered_items, rows: 3, class: "dt-form-control" %>
     </div>

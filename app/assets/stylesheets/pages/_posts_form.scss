@@ -1,24 +1,5 @@
 .post-form {
 
-  /* ラベル */
-  .form-label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  /* 入力欄・セレクト */
-  .form-control,
-  .form-select {
-    background: var(--dt-card);
-    border-color: var(--dt-border);
-  }
-
-  .form-control:focus,
-  .form-select:focus {
-    border-color: var(--dt-accent);
-    box-shadow: 0 0 0 0.2rem rgba(184, 169, 149, 0.25);
-  }
-
   /* ラジオボタン */
   .form-check-input:checked {
     background-color: var(--dt-main);
@@ -28,18 +9,5 @@
   .form-check-label {
     color: var(--dt-text);
   }
-
-  /* テキストエリア */
-  text-area.form-control {
-    min-height: 110px;
-    resize: vertical;
-  }
-
-  /* ファイルアップロード */
-  input[type="file"] {
-    padding: 0.65rem 0.75rem;
-  }
-
-  /* ボタン */
 
 }

@@ -1,55 +1,3 @@
-/* フォーム項目 */
-.dt-form-group {
-  margin-bottom: 24px;
-}
-
-.dt-form-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--dt-text);
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.dt-required {
-  margin-left: 3px;
-  color: var(--dt-accent-hover);
-}
-
-/* 入力欄 */
-.dt-form-control {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px 14px;
-  border: 1px solid var(--dt-border);
-  border-radius: 8px;
-  background: var(--dt-card);
-  color: var(--dt-text);
-  font-size: 15px;
-}
-
-.dt-form-control:focus {
-  outline: none;
-  border-color: var(--dt-accent);
-  box-shadow: 0 0 0 3px rgba(184, 169, 149, 0.15);
-}
-
-/* セレクト */
-.dt-form-select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px 14px;
-  border: 1px solid var(--dt-border);
-  border-radius: 8px;
-  background: var(--dt-card);
-  color: var(--dt-text);
-  font-size: 15px;
-}
-
-/* ファイル選択　*/
-input[type="file"].dt-form-control {
-  padding: 9px;
-}
 
 /* チェックボックス */
 .dt-check {
@@ -90,13 +38,6 @@ input[type="file"].dt-form-control {
   margin: 0;
   padding-left: 20px;
   font-size: 14px;
-}
-
-/* 必須項目の説明 */
-.shop-required-note {
-  margin: 28px 0 0;
-  color: var(--dt-muted);
-  font-size: 13px;
 }
 
 /* 送信ボタン */

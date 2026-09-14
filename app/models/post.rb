@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   enum visit_scene: { lunch: 0, cafe: 1, dinner: 2 }
 
   validates :content, presence: true
+  validates :rating_overall, presence: true
+  validates :rating_food, presence: true
+  validates :rating_dog_friendliness, presence: true
+  validates :visited_on, presence: true
 
   def favorited_by?(user)
     if user == nil
