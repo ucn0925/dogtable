@@ -1,4 +1,9 @@
 /* 1. Layout */
+.post-detail-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 .post-detail-card {
   max-width: 720px;
   margin: 0 auto;
@@ -284,5 +289,10 @@
   opacity: 0;
   overflow: hidden;
   pointer-events: none;
+}
 
+@media (max-width: 576px) {
+  .post-detail-card {
+    padding: 20px;
+  }
 }
