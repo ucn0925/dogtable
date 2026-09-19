@@ -40,7 +40,7 @@
             <% end %>
 
             <% if post.visit_scene.present? %>
-              <span class="time-line-meta-pill">
+              <span class="timeline-meta-pill">
                 <%= post.visit_scene %>
               </span>
             <% end %>
@@ -81,27 +81,18 @@
             <% end %>
 
 
-            <div class="timeline-like">
-              <% if post.favorited_by?(current_user) %>
-                <%= button_to shop_post_post_favorite_path(post.shop, post),
-                      method: :delete,
-                      class: "btn btn-danger btn-sm rounded-pill" do %>
-                  ❤︎ いいね済み
-                <% end %>
-              <% else %>
-                <%= button_to shop_post_post_favorite_path(post.shop, post),
-                      method: :post,
-                      class: "btn btn-outline-danger btn-sm rounded-pill" do %>
-                  ♡いいね
-                <% end %>
-              <% end %>
+            <div class="dt-like dt-like--timeline"> 
+              <div class="dt-like-left">
+
+                <% if user_signed%>
+              </div>
             </div>
 
           </div>
 
           <% if post.images.attached? %>
             <div class="timeline-images">
-              <% post.images.first(2). each do |image| %>
+              <% post.images.first(2).each do |image| %>
                 <%= image_tag image %>
               <% end %>
             </div>

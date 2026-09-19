@@ -1,4 +1,14 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy,
+    :destroy_image,
+    :timeline
+  ]
+  
   def create
     @shop = Shop.find(params[:shop_id])
     @post = @shop.posts.build(post_params)

@@ -112,3 +112,49 @@
   background: var(--dt-card-hover);
   transform: scale(1.08);
 }
+
+/*いいねボタン*/
+.dt-like-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dt-like-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dt-border);
+  border-radius: 50%;
+  background: var(--dt-card);
+  padding: 0px;
+  font-size: 16px;
+  color: var(--dt-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dt-like-btn:hover {
+  color: var(--dt-accent);
+  transform: scale(1.06);
+}
+
+.dt-like-btn:active {
+  transform: scale(0.95);
+}
+
+.dt-like-btn .fa-heart {
+  transition: color 0.2s ease;
+}
+
+.dt-like-btn:hover .fa-heart {
+  color: var(--dt-accent);
+}
+
+.dt-like-count {
+  font-size: 14px;
+  color: var(--dt-text);
+}
+

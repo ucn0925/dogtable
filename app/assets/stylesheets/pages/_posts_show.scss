@@ -104,9 +104,7 @@
   margin-left: 4px;
 }
 
-
-
-/*7. Rating */
+/*6. Rating */
 .post-rating {
   margin-top: 20px;
   display: grid;
@@ -125,7 +123,7 @@
   font-weight: 600;
 }
 
-/* 8. Comment */
+/* 7. Comment */
 .comment-section {
   margin-top: 20px;
 }
@@ -164,59 +162,13 @@
   gap: 4px;
 }
 
-/* 9. Like */
-.dt-like-wrap {
+/* 8. Like */
+.dt-like--detail {
   margin-top: 16px;
   padding-top: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 6px;
   border-top: 1px solid var(--dt-border);
-}
-
-.dt-like-btn {
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--dt-border);
-  border-radius: 50%;
-  background: var(--dt-card);
-  padding: 0px;
-  font-size: 16px;
-  color: var(--dt-main);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.dt-like-btn:hover {
-  color: var(--dt-accent);
-  transform: scale(1.06);
-}
-
-.dt-like-btn:active {
-  transform: scale(0.95);
-}
-
-.dt-like-btn .fa-heart {
-  transition: color 0.2s ease;
-}
-
-.dt-like-btn:hover .fa-heart {
-  color: var(--dt-accent);
-}
-
-.dt-like-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.dt-like-count {
-  font-size: 14px;
-  color: var(--dt-text);
 }
 
 .dt-post-date {
@@ -241,7 +193,7 @@
   text-decoration: underline;
 }
 
-/* 10. Images */
+/* 9. Images */
 .post-images {
   display: flex;
   justify-content: flex-start;
