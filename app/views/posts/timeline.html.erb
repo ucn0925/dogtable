@@ -29,6 +29,41 @@
           </div>
         </div>
 
+        <% if post.visited_on.present? || post.visit_scene.present? || post.dog_size.present? %>
+          <div class="timeline-visit-info">
+
+            <% if post.visited_on.present? %>
+              <span class="timeline-meta-pill">
+                <i class="fa-solid facalendar-check"></i>
+                <%= post.visited_on.strftime("%Y/%m") %>
+              </span>
+            <% end %>
+
+            <% if post.visit_scene.present? %>
+              <span class="time-line-meta-pill">
+                <%= post.visit_scene %>
+              </span>
+            <% end %>
+
+            <% if post.dog_size.present? %>
+              <span class="timeline-meta-pill">
+                with
+                <%= case post.dog_size 
+                  when "small" then "小型犬"
+                  when "medium" then "中型犬"
+                  when "large" then "大型犬"
+                end %>
+
+                <% if post.user.dog&.dog_image&.attached? %>
+                  <%= image_tag post.user.dog.dog_image, class:"dog-icon" %>
+                <% else %>
+                  <%= image_tag "default_dog.png", class: "dog-icon" %>
+                <% end %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+
         <div class="timeline-body">
 
           <div class="timeline-content">
