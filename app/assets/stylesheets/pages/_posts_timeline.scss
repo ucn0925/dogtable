@@ -139,24 +139,15 @@
 }
 
 /* いいね */
-.timeline-like {
-  margin-top: 10px;
-}
-
-.timeline-like button {
-  border-radius: 999px;
-  border: 1px solid var(--dt-border);
-  background: var(--dt-card);
-  color: var(--dt-main);
-  padding: 6px 14px;
-  font-size: 13px;
-  transition: 0.2s;
+.dt-like--timeline {
   position: relative;
   z-index: 2;
 }
 
-.timeline-like button:hover {
-  background: var(--dt-main);
-  color: #fff;
-  border-color: var(--dt-main);
+/* レスポンシブ */
+@media (max-width: 576px) {
+  .timeline-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

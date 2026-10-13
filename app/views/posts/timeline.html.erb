@@ -1,4 +1,4 @@
-<div class="container py-4"> 
+<div class="container timeline-container py-4"> 
 
   <% if @posts.any? %> 
     <% @posts.each do |post| %>
@@ -34,7 +34,7 @@
 
             <% if post.visited_on.present? %>
               <span class="timeline-meta-pill">
-                <i class="fa-solid facalendar-check"></i>
+                <i class="fa-solid fa-calendar-check"></i>
                 <%= post.visited_on.strftime("%Y/%m") %>
               </span>
             <% end %>
@@ -80,14 +80,6 @@
               </p>
             <% end %>
 
-
-            <div class="dt-like dt-like--timeline"> 
-              <div class="dt-like-left">
-
-                <% if user_signed%>
-              </div>
-            </div>
-
           </div>
 
           <% if post.images.attached? %>
@@ -97,10 +89,30 @@
               <% end %>
             </div>
           <% end %>
+          
+          <div class="dt-like dt-like--timeline"> 
+            <div class="dt-like-left">
+
+              <%= button_to shop_post_post_favorite_path(post.shop, post),
+                    method: post.favorited_by?(current_user) ? :delete : :post,
+                    class: "dt-like-btn" do %>
+                <% if post.favorited_by?(current_user) %>
+                  <i class="fa-solid fa-heart"></i>
+                <% else %>
+                  <i class="fa-regular fa-heart"></i>
+                <% end %>
+
+              <% end %>
+
+              <span class="dt-like-count">
+                <%= post.post_favorites.count %>
+              </span>
+
+            </div>
+          </div>
 
         </div>
-      </div>
-      
+      </div>    
     
     <% end %>
 
