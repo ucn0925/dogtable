@@ -85,11 +85,44 @@
 
     <script>
     document.addEventListener("turbo:load", () => {
+
       if (window.GLightbox) {
-        GLightbox({
+
+        const lightbox = GLightbox({
           selector: '.glightbox',
           touchNavigation: true, 
           loop: true
+        });
+
+        const updateCounter = (index) => {
+
+          let counter = document.querySelector('.glightbox-counter');
+
+          if (!counter) {
+            counter = document.createElement('div');
+            counter.className = 'glightbox-counter';
+            document.body.appendChild(counter);
+          }
+
+          counter.textContent = `${index + 1} / ${document.querySelectorAll('.glightbox').length}`;
+        };
+
+        lightbox.on('open', () => {
+          setTimeout(() => {
+            updateCounter(lightbox.getActiveSlideIndex());
+          }, 100);
+        });
+
+        lightbox.on('slide_changed', ({ current }) => {
+          updateCounter(current.slideIndex);
+        });
+
+        lightbox.on('close', () => {
+          const counter = document.querySelector('.glightbox-counter');
+
+          if (counter) {
+            counter.remove();
+          }
         });
       }
     });

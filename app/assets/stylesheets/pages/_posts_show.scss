@@ -243,6 +243,11 @@
 
 @media (max-width: 576px) {
   .post-detail-card {
+    margin: 0 10px;
     padding: 20px;
+  }
+
+  .back-link {
+    margin-left: 10px;
   }
 }
