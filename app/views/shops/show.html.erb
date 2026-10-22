@@ -3,7 +3,7 @@
   <div class="shop-content">
 
     <!-- 戻るリンク -->
-    <div class="mb-2">
+    <div class="mb-3">
       <%= link_to shops_path, 
             class: "text-muted small text-decoration-none d-inline-flex align-items-center" do %>
         <i class="fa-solid fa-chevron-left"></i>
@@ -27,7 +27,7 @@
         <% end %>
 
         <div class="section-header">
-          <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-2 mt-3">
+          <h4 class="h6 fw-bold fs-5 border-start border-4 ps-3 mb-2 mt-2">
             店舗情報
           </h4>
 
@@ -208,7 +208,7 @@
     <% if @shop.posts.published.any? %>
       <% @shop.posts.published.includes(:user).order(created_at: :desc).each do |post| %>
       
-        <div class="card mb-3">
+        <div class="card mt-2 mb-3">
           <div class="card-body position-relative">
 
             <!-- カード全体クリック -->

@@ -259,10 +259,26 @@
 
 @media (max-width: 576px) {
   .shop-show {
-
     .shop-info-card .card-body,
     .review-content .card-body {
       padding: 24px 16px;
+    }
+
+    .shop-info-card,
+    .review-content > .card {
+      width: calc(100% - 16px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .shop-content > .mb-2,
+    .shop-content > h1 {
+      margin-left: 8px;
+    }
+
+    .review-content > .d-flex.justify-content-between {
+      margin-left: 8px;
+      margin-right: 8px;
     }
     
     dl.row > dt.col-4 {
