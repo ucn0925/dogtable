@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorite_shops = @user.favorite_shops
+    @posts = @user.posts
   end
 
   def followings

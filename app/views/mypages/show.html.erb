@@ -23,7 +23,7 @@
       <h3 class="card-title">アクティビティ</h3>
 
       <p class="mb-1">
-        <i class="fa-regular fa-comment"></i>
+        <i class="fa-regular fa-comment-dots"></i>
         投稿数：<strong><%= @posts.count %></strong>件</p>
 
       <p class="mb-1">
@@ -39,6 +39,7 @@
           <% frac = avg - full %>
 
           <strong><%= avg %></strong>
+          
           <% 5.times do |i| %>
             <% if i <full %>
               <span class="dt-star">★</span>
