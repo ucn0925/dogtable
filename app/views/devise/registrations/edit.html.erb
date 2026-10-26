@@ -11,12 +11,6 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
                       html: { method: :put, multipart: true }) do |f| %>
 
-            <!-- 名前 -->
-            <div class="mb-3">
-              <%= f.label :name, "名前", class: "form-label" %>
-              <%= f.text_field :name, class: "form-control", autocomplete: "name" %>
-            </div>
-
             <!-- メールアドレス -->
             <div class="mb-3">
               <%= f.label :email, "メールアドレス", class: "form-label" %>
@@ -45,16 +39,8 @@
               <small class="text-muted">※プロフィールを更新するために必要です</small>
             </div>
 
-            <!-- 自己紹介 -->
-            <div class="mb-3">
-              <%= f.label :profile, "自己紹介", class: "form-label" %>
-              <%= f.text_area :profile, rows: 5, class: "form-control" %>
-            </div>
+            <%= render "profile_fields", f: f %>
 
-            <!-- プロフィール画像 -->
-            <div class="mb-3">
-              <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
-              <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
 
               <% if resource.profile_image.attached? %>
                 <div class="form-check mt-2">
@@ -62,41 +48,16 @@
                   <%= label_tag :remove_profile_image, "現在のプロフィール画像を削除する", class: "form-check-label" %>
                 </div>
               <% end %>
-            </div>
-
-            <h4 class="mt-4 mb-3">愛犬情報</h4>
-
+          
             <% resource.build_dog if resource.dog.nil? %>
-            <%= f.fields_for :dog do |d| %>
-
-              <div class="mb-3">
-                <%= d.label :name, "犬の名前", class: "form-label" %>
-                <%= d.text_field :name, class: "form-control" %>
-              </div>
-
-              <div class="mb-3">
-                <%= d.label :breed, "犬種", class: "form-label" %>
-                <%= d.text_field :breed, class: "form-control" %>
-              </div>
-
-              <div class="mb-3">
-                <%= d.label :size, "犬のサイズ", class: "form-label" %>
-                <%= d.select :size, Dog.size_options, { include_blank: "サイズを選択してください" }, class: "form-select" %>
-              </div>
-
-              <div class="mb-3">
-                <%= d.label :dog_image, "犬の写真", class: "form-label" %>
-                <%= d.file_field :dog_image, include_hidden: false, class: "form-control" %>
-
-                <% if resource.dog&.dog_image&.attached? %>
-                  <div class="form-check mt-2">
-                    <%= check_box_tag :remove_dog_image, "1", false, class: "form-check-input" %>
-                    <%= label_tag :remove_dog_image, "犬の写真を削除する", class: "form-check-label" %>
-                  </div>
-                <% end %>
-              </div>
-
-            <% end %>
+            <%= render "dog_fields", f: f %>
+            
+              <% if resource.dog&.dog_image&.attached? %>
+                <div class="form-check mt-2">
+                  <%= check_box_tag :remove_dog_image, "1", false, class: "form-check-input" %>
+                  <%= label_tag :remove_dog_image, "犬の写真を削除する", class: "form-check-label" %>
+                </div>
+              <% end %>     
 
             <div class="d-grid mt-4 mb-3">
               <%= f.submit "更新する", class: "dt-btn dt-btn-primary" %>

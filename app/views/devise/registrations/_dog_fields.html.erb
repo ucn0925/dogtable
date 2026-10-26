@@ -1,0 +1,28 @@
+<h4 class="mt-4 mb-3">愛犬情報</h4>
+
+<%= f.fields_for :dog do |dog_f| %>
+
+  <div class="mb-3">
+    <%= dog_f.label :name, "犬の名前", class: "form-label" %>
+    <%= dog_f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= dog_f.label :breed, "犬種", class: "form-label" %>
+    <%= dog_f.text_field :breed, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= dog_f.label :size, "犬のサイズ", class: "form-label" %>
+    <%= dog_f.select :size,
+        Dog.size_options.map { |label, value| [label, value] },
+        { prompt: "サイズを選択してください" },
+        class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= dog_f.label :dog_image, "愛犬の画像", class: "form-label" %>
+    <%= dog_f.file_field :dog_image, class: "form-control", accept: "image/*" %>
+  </div>
+
+<% end %>
