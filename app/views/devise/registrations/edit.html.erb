@@ -81,7 +81,7 @@
 
               <div class="mb-3">
                 <%= d.label :size, "犬のサイズ", class: "form-label" %>
-                <%= d.select :size, Dog.size_options, {}, class: "form-select" %>
+                <%= d.select :size, Dog.size_options, { include_blank: "サイズを選択してください" }, class: "form-select" %>
               </div>
 
               <div class="mb-3">

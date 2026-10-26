@@ -16,9 +16,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if params[:remove_profile_image] == "1"
             resource.profile_image.purge
         end
-
+  
         if params[:remove_dog_image] == "1"
             resource.dog&.dog_image&.purge
+        end
+
+        if params.dig(:user, :dog_attributes, :size) == ""
+            params[:user][:dog_attributes][:size] = nil
         end
         
         super do |resource|
